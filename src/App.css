@@ -1,38 +1,32 @@
-.App {
-  text-align: center;
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, big, em, font, img, small, strong, sub, sup, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit;  font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline;}
+:focus { outline: 0;}
+ol, ul { list-style: none;}
+table { border-collapse: separate; border-spacing: 0;}
+caption, th, td { text-align: left; font-weight: normal;}
+strong,b{font-weight:bold}
+em{font-style:italic}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+/*-------------------------------------*/
+@font-face {
+  font-family: 'MontserratRegular';
+  src: url('fonts/Montserrat-Regular.eot');
+  src: url('fonts/Montserrat-Regular.eot') format('embedded-opentype'),
+  url('fonts/Montserrat-Regular.woff2') format('woff2'),
+  url('fonts/Montserrat-Regular.woff') format('woff'),
+  url('fonts/Montserrat-Regular.ttf') format('truetype'),
+  url('fonts/Montserrat-Regular.svg#Montserrat-Regular') format('svg');
 }
+/*-------------------------------------*/
+html {width:100%;}
+body {font-size:17px; color: #737373; background: #fff; line-height:1; font-family:'MontserratRegular', sans-serif;}
+a {color: #f39200; text-decoration: underline;}
+a:hover {text-decoration:none;}
+.clr,#clr {clear: both;}
+* {box-sizing: border-box;}
+/*-------------------------------------   word-wrap: break-word;  */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+body {background-color: #fafafa}
+.center {width: 1170px; margin: 0 auto;}
+.split {height: 1px; background-color: #e3e8f0;}
+.noShow {display: none;}

@@ -1,0 +1,11 @@
+.afterHeader {height: 56px; color: #b9bed1; line-height: 56px; font-size: 12px;}
+.afterHeader a {text-decoration: none; text-transform: uppercase; color: #b9bed1;}
+.afterHeaderMenu {float: left;}
+.afterHeaderMenu ul {}
+.afterHeaderMenu ul li {float: left;}
+.afterHeaderMenu ul li a {margin-right: 30px;}
+.support {float: right;}
+.support a {margin-right: 54px;}
+.search {float: right; border-right: 1px #e3e8f0 solid; border-left: 1px #e3e8f0 solid; width: 202px;}
+.search p {float: left;}
+#buttonSearch {display: block; float: left; width: 13px; height: 13px; background:url('../../img/Search-Icon.png') left no-repeat; margin: 22px 26px 0 22px;}

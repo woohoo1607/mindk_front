@@ -1,0 +1,21 @@
+header {line-height: 90px; color: #343e5c; font-size: 11px;}
+header a {color: #343e5c; text-decoration: none; font-size: 14px;}
+
+#adminHeader {background-color: #111; height: 40px; line-height: 40px; padding-left: 50px;}
+#adminHeader ul {float: left;}
+#adminHeader ul li {float: left;}
+#adminHeader ul li a {color: #fff; margin-right: 25px;}
+#adminHeaderProfile {float: right;}
+#adminHeaderProfile p {float: right; display: block; color: #fff;}
+.avatar {float: right; height: 30px; width: 30px; background-color: #f39200; border-radius: 50%; margin: 5px 20px 0 10px;}
+
+.logo {float: left;}
+.auth {float: right; margin-left: 30px;}
+.auth a {border: 2px #e3e8f0 solid; height: 32px; line-height: 90px; padding: 11px 19px; border-radius: 25px; text-transform: uppercase; font-weight: bold;}
+.basket {float: right; text-transform: uppercase; font-weight: bold;}
+.basket a {background:url('../../img/Shopping-Cart-Icon.png') left no-repeat; padding: 10px 0 10px 26px;}
+.basket a span {background-color: #e3e8f0; border-radius: 50%; padding: 4px 7px; margin-left: 5px; display: inline;}
+nav {margin-left: 120px; float: left; height: 90px;}
+nav ul {}
+nav ul li {float: left;}
+nav ul li a {margin-left: 30px; font-weight: bold;}

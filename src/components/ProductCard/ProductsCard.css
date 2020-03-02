@@ -1,0 +1,9 @@
+.product {width: 270px; height: 380px; text-align: center; border: 2px solid #FFF; border-radius: 5px; background-color: #fff; margin-bottom: 20px;}
+.productPhoto {height: 260px; margin: 0 0 15px 0; padding-top: 10px;}
+.productPhoto img {height: 260px;}
+.productTitle {font-size: 16px; color: #000; font-weight: bold; width: 90%; margin-left: 5%; height: 48px;}
+.productColor {margin: 16px 0; text-transform: uppercase; color: #b9bed1; font-size: 12px;}
+.productPrice {font-size: 18px; color: #000; font-weight: bold; width: 60%; display: block; text-align: left; line-height: 43px;}
+.productFooter { margin: 10px 0 10px 10px; display: flex; height: 43px;}
+.buy {background-color: #343e5c; width: 40%; line-height: 43px; color: #FFF;}
+.product:hover {border: 2px solid #343e5c;}

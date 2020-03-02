@@ -1,0 +1,2 @@
+.productsContainer {display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-around; align-content: space-between; margin-top: 15px;}
+a {text-decoration: none;}

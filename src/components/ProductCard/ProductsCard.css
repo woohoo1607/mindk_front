@@ -1,4 +1,4 @@
-.product {width: 270px; height: 380px; text-align: center; border: 2px solid #FFF; border-radius: 5px; background-color: #fff; margin-bottom: 20px;}
+.product {width: 270px; height: 380px; text-align: center; border: 2px solid #FFF; border-radius: 5px; background-color: #fff; margin: 0 0 20px 18px;}
 .productPhoto {height: 260px; margin: 0 0 15px 0; padding-top: 10px;}
 .productPhoto img {height: 260px;}
 .productTitle {font-size: 16px; color: #000; font-weight: bold; width: 90%; margin-left: 5%; height: 48px;}

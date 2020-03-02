@@ -19,18 +19,18 @@
 .productDelivery h3::before { content: ""; display: block; background: url("../../img/delivery-24.png"); background-size: contain; width: 18px; height: 18px; float: left; margin: -2px 6px 0 0;}
 .productDelivery ul {margin: 0 0 15px 0;}
 .productDelivery ul li {font-size: 15px; padding-left: 15px;}
-.productDelivery ul li::before { content: ""; display: block; background: url("../../img/ok-50.png"); background-size: contain; width: 15px; height: 15px; float: left; margin: 0 6px 0 0;}
+.productDelivery ul li::before { content: ""; display: block; background: url("../../img/ok-50.png"); background-size: contain; width: 12px; height: 12px; float: left; margin: 1.5px 6px 0 0;}
 
 .productGuarantee {color: #000;}
 .productGuarantee h3 {font-size: 18px; font-weight: bold; margin-bottom: 5px;}
 .productGuarantee h3::before { content: ""; display: block; background: url("../../img/security-lock-50.png"); background-size: contain; width: 18px; height: 18px; float: left; margin: -2px 6px 0 0;}
 .productGuarantee ul {margin: 0 0 15px 0;}
 .productGuarantee ul li {font-size: 15px; padding-left: 15px;}
-.productGuarantee ul li::before { content: ""; display: block; background: url("../../img/ok-50.png"); background-size: contain; width: 15px; height: 15px; float: left; margin: 0 6px 0 0;}
+.productGuarantee ul li::before { content: ""; display: block; background: url("../../img/ok-50.png"); background-size: contain; width: 12px; height: 12px; float: left; margin: 1.5px 6px 0 0;}
 
 .productPayment {color: #000;}
 .productPayment h3 {font-size: 18px; font-weight: bold; margin-bottom: 5px;}
 .productPayment h3::before { content: ""; display: block; background: url("../../img/ukrainian-hryvnia-50.png"); background-size: contain; width: 18px; height: 18px; float: left; margin: -2px 6px 0 0;}
 .productPayment ul {margin: 0 0 15px 0;}
 .productPayment ul li {font-size: 15px; padding-left: 15px;}
-.productPayment ul li::before { content: ""; display: block; background: url("../../img/ok-50.png"); background-size: contain; width: 15px; height: 15px; float: left; margin: 0 6px 0 0;}
+.productPayment ul li::before { content: ""; display: block; background: url("../../img/ok-50.png"); background-size: contain; width: 12px; height: 12px; float: left; margin: 1.5px 6px 0 0;}

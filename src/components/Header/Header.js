@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import './Header.css'
 import AdminHeader from "./AdminHeader";
 import {NavLink} from "react-router-dom";
-// import Logo from "./logo.jpg";
+import Logo from "../../img/logo_shop.png";
 
 const Header = (props) => {
     return (
@@ -12,9 +12,10 @@ const Header = (props) => {
 
             <div className="clr"></div>
             <div className="center">
-                <div className="logo">
-                    LOGO
-                </div>
+
+                    <NavLink to='/' className='logo'>
+                        <img src={Logo} width='70' height='70' alt="logo"/>
+                    </NavLink>
                 <Navbar/>
                 <div className="auth">
                     <NavLink to="/">SIGN IN</NavLink>
@@ -24,9 +25,6 @@ const Header = (props) => {
                 </div>
                 <div className="clr"></div>
             </div>
-{/*            <NavLink to='/' className='logo'>
-                <img src={Logo} width='70' height='50' alt="logo"/>
-            </NavLink>*/}
             <div className="clr"></div>
         </header>
     )

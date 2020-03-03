@@ -1,4 +1,8 @@
 .productInfo {width: 100%; margin-top: 30px;}
+.productInfo h3 {font-size: 18px; font-weight: bold; margin-bottom: 5px; color: #000;}
+
+.productMenu {width: 100%; background-color: #FFF; color: #000; font-size: 18px;}
+.productMenu ul li {float: left; padding: 10px 10px 10px 30px; color: #1ac6ff;}
 
 .productInfoPictures {height: 400px; width: 34%; background-color: #FFF; text-align: center; padding-top: 10px; float: left;}
 .productInfoPictures img {height: 400px;}
@@ -9,27 +13,31 @@
 .availability {color: #00bb12;}
 .noAvailability {color: red;}
 
+.productInfoLeft {width: 60%; float: left;}
+.productInfoLeft p {color: #000; font-size: 15px; margin-bottom: 3px;}
+.moreCharacteristics {margin-top: 10px;}
+.moreCharacteristics::after {content: "Показать все характеристики >"; color: #019fff; font-size: 15px;}
+.spanAttributesName {font-weight: bold;}
+.productInfoRight {width: 40%; float: left;}
+
 .priceAndPurchase {margin: 15px 0; color: #000;}
 .priceAndPurchase p {font-size: 30px; font-weight: bold;}
 .priceAndPurchase p span {font-size: 20px; font-weight: normal;}
 .add-to-cart-btn {background-color: #343e5c; color: #FFF; height: 50px; width: 170px; font-size: 20px; font-weight: bold; margin-top: 15px; border: none;}
 
 .productDelivery {color: #000;}
-.productDelivery h3 {font-size: 18px; font-weight: bold; margin-bottom: 5px;}
 .productDelivery h3::before { content: ""; display: block; background: url("../../img/delivery-24.png"); background-size: contain; width: 18px; height: 18px; float: left; margin: -2px 6px 0 0;}
 .productDelivery ul {margin: 0 0 15px 0;}
 .productDelivery ul li {font-size: 15px; padding-left: 15px;}
 .productDelivery ul li::before { content: ""; display: block; background: url("../../img/ok-50.png"); background-size: contain; width: 12px; height: 12px; float: left; margin: 1.5px 6px 0 0;}
 
 .productGuarantee {color: #000;}
-.productGuarantee h3 {font-size: 18px; font-weight: bold; margin-bottom: 5px;}
 .productGuarantee h3::before { content: ""; display: block; background: url("../../img/security-lock-50.png"); background-size: contain; width: 18px; height: 18px; float: left; margin: -2px 6px 0 0;}
 .productGuarantee ul {margin: 0 0 15px 0;}
 .productGuarantee ul li {font-size: 15px; padding-left: 15px;}
 .productGuarantee ul li::before { content: ""; display: block; background: url("../../img/ok-50.png"); background-size: contain; width: 12px; height: 12px; float: left; margin: 1.5px 6px 0 0;}
 
 .productPayment {color: #000;}
-.productPayment h3 {font-size: 18px; font-weight: bold; margin-bottom: 5px;}
 .productPayment h3::before { content: ""; display: block; background: url("../../img/ukrainian-hryvnia-50.png"); background-size: contain; width: 18px; height: 18px; float: left; margin: -2px 6px 0 0;}
 .productPayment ul {margin: 0 0 15px 0;}
 .productPayment ul li {font-size: 15px; padding-left: 15px;}

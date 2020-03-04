@@ -45,6 +45,7 @@
 .productPayment ul li::before { content: ""; display: block; background: url("../../img/ok-50.png"); background-size: contain; width: 12px; height: 12px; float: left; margin: 1.5px 6px 0 0;}
 
 
-#product-attributes {color: #000;}
+#product-attributes {color: #000; margin-top: 20px;}
 .tableLable {padding: 10px 0;}
 .tableData {}
+#product-attributes caption {text-transform: uppercase; font-weight: bold; font-size: 20px; margin-bottom: 5px;}

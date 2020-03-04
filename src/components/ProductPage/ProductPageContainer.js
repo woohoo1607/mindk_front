@@ -14,9 +14,18 @@ class ProductPageContainer extends React.Component {
         productMenuNavigator: "Main"
     };
 
+    changeProductMenuNavigator = (value) => {
+        this.setState({
+            productMenuNavigator: value
+        })
+    };
+
     render() {
         return (
-            <ProductPage products = {this.props.products}/>
+            <ProductPage products = {this.props.products}
+                         productMenuNavigator={this.state.productMenuNavigator}
+                         changeProductMenuNavigator={this.changeProductMenuNavigator}
+            />
         )
     }
 }

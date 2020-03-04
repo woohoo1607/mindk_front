@@ -1,8 +1,28 @@
 import React from "react";
 import "./ProductsPage.css";
 import noProductImg from "../../img/product-no-image.jpg";
+import CharacteristicsTable from "./CharacteristicsTable";
+import MainCharacteristics from "./MainCharacteristics";
 
 const ProductPage = (props) => {
+    let Main = true;
+    let Characteristics = false;
+    let Description = false;
+    if (props.productMenuNavigator=="Main") {
+        Main = true;
+        Characteristics = false;
+        Description = false;
+    }
+    if (props.productMenuNavigator=="Characteristics") {
+        Main = false;
+        Characteristics = true;
+        Description = false;
+    }
+    if (props.productMenuNavigator=="Description") {
+        Main = false;
+        Characteristics = false;
+        Description = true;
+    }
     console.log(props.products.product);
     let photos = [];
     let mainCharacteristics = [];
@@ -23,9 +43,9 @@ const ProductPage = (props) => {
             <div className="productInfo">
                 <div className="productMenu">
                     <ul>
-                        <li className="activeLi">Главное</li>
-                        <li>Характеристики</li>
-                        <li>Описание</li>
+                        <li className={Main ? "activeLi" : "noActiveLi"} onClick={()=>props.changeProductMenuNavigator("Main")}>Главное</li>
+                        <li className={Characteristics ? "activeLi" : "noActiveLi"} onClick={()=>props.changeProductMenuNavigator("Characteristics")}>Характеристики</li>
+                        <li className={Description ? "activeLi" : "noActiveLi"} onClick={()=>props.changeProductMenuNavigator("Description")}>Описание</li>
                     </ul>
                     <div className="clr"></div>
                 </div>
@@ -35,83 +55,16 @@ const ProductPage = (props) => {
                 </div>
                 <div className="productInfoInfo">
                     <h2>{props.products.product.name}</h2>
-                    {props.products.product["stock_quantity"]>0 ? <p className="availability">Есть в наличии</p> : <p className="noAvailability">Нет в наличии</p>}
-                    <div className="priceAndPurchase">
-                        <p>{props.products.product.price} <span>грн.</span></p>
-                        <button className="add-to-cart-btn">Купить</button>
-                    </div>
-                    <div className="productInfoLeft">
-                        <h3>Краткие технические характеристики:</h3>
-                        {mainCharacteristics.map(a=> {
-                            return (
-                                <p>
-                                    <span className="spanAttributesName">{a.name}: </span>
-                                    <span>{a.value}</span>
-                                </p>
-                            )
-                        })}
-                        <div className="moreCharacteristics"></div>
-{/*                        <h3>Характеристики:</h3>
-                        <table id="product-attributes">
-                            <colgroup>
-                                <col width="35%" />
-                                <col />
-                            </colgroup>
-                            {props.products.product.attributes && props.products.product.attributes.map(a => {
-                                return (
-                                    <tr>
-                                        <th className="tableLable">{a.name}</th>
-                                        <td className="tableData">{a.value}</td>
-                                    </tr>
-                                )
-                            })}
-                        </table>*/}
-                    </div>
-                    <div className="productInfoRight">
-                        <div className="productDelivery">
-                            <h3>Доставка:</h3>
-                            <ul>
-                                <li>Самовывоз из магазина</li>
-                                <li>Доставка в отделение "Нова пошта"</li>
-                                <li>Адрессная доставка "Нова пошта"</li>
-                            </ul>
-                        </div>
-                        <div className="productGuarantee">
-                            <h3>Гарантия:</h3>
-                            <ul>
-                                <li>Гарантия {props.products.product.guarantee ? props.products.product.guarantee : 12} месяцев</li>
-                                <li>Обмен/возврат в течении 14 дней</li>
-                            </ul>
-                        </div>
-                        <div className="productPayment">
-                            <h3>Оплата:</h3>
-                            <ul>
-                                <li>Наличными при получении</li>
-                                <li>Картой на сайте</li>
-                                <li>Картой в магазине</li>
-                                <li>Наложенный платеж</li>
-                                <li>Рассрочка онлайн</li>
-                                <li>Перевод с VISA/MasterCard</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <table id="product-attributes">
-                        <colgroup>
-                            <col width="35%" />
-                            <col />
-                        </colgroup>
-                        {props.products.product.attributes && props.products.product.attributes.map(a => {
-                            if (a.name!=="Фото") {
-                            return (
-                                <tr>
-                                    <th className="tableLable">{a.name}</th>
-                                    <td className="tableData">{a.value}</td>
-                                </tr>
-                            )
-                        }})}
-                    </table>
+                    {Main &&
+                        <MainCharacteristics mainCharacteristics={mainCharacteristics}
+                                             product={props.products.product}
+                                             changeProductMenuNavigator={props.changeProductMenuNavigator}
+                        />
+                    }
+                    {Characteristics &&
+                        <CharacteristicsTable attributes={props.products.product.attributes}/>
+                    }
+
                 </div>
             </div>
             <div className="clr"></div>

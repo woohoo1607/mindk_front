@@ -23,7 +23,7 @@ const ProductPage = (props) => {
             <div className="productInfo">
                 <div className="productMenu">
                     <ul>
-                        <li>Главное</li>
+                        <li className="activeLi">Главное</li>
                         <li>Характеристики</li>
                         <li>Описание</li>
                     </ul>
@@ -95,6 +95,23 @@ const ProductPage = (props) => {
                             </ul>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <table id="product-attributes">
+                        <colgroup>
+                            <col width="35%" />
+                            <col />
+                        </colgroup>
+                        {props.products.product.attributes && props.products.product.attributes.map(a => {
+                            if (a.name!=="Фото") {
+                            return (
+                                <tr>
+                                    <th className="tableLable">{a.name}</th>
+                                    <td className="tableData">{a.value}</td>
+                                </tr>
+                            )
+                        }})}
+                    </table>
                 </div>
             </div>
             <div className="clr"></div>

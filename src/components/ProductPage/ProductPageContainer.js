@@ -10,6 +10,10 @@ class ProductPageContainer extends React.Component {
         this.props.getProduct(this.props.match.params.id);
     }
 
+    state = {
+        productMenuNavigator: "Main"
+    };
+
     render() {
         return (
             <ProductPage products = {this.props.products}/>

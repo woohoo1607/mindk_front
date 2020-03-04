@@ -1,8 +1,9 @@
 .productInfo {width: 100%; margin-top: 30px;}
 .productInfo h3 {font-size: 18px; font-weight: bold; margin-bottom: 5px; color: #000;}
 
-.productMenu {width: 100%; background-color: #FFF; color: #000; font-size: 18px;}
-.productMenu ul li {float: left; padding: 10px 10px 10px 30px; color: #1ac6ff;}
+.productMenu {width: 100%; background-color: #FFF; color: #000; font-size: 18px; margin-bottom: 10px;}
+.productMenu ul li {float: left; padding: 10px 5px; margin: 0 5px 0 25px; color: #1ac6ff; cursor: pointer; text-transform: uppercase;}
+.activeLi {color: #343e5c !important; border-bottom: 1px solid #343e5c;}
 
 .productInfoPictures {height: 400px; width: 34%; background-color: #FFF; text-align: center; padding-top: 10px; float: left;}
 .productInfoPictures img {height: 400px;}
@@ -15,7 +16,7 @@
 
 .productInfoLeft {width: 60%; float: left;}
 .productInfoLeft p {color: #000; font-size: 15px; margin-bottom: 3px;}
-.moreCharacteristics {margin-top: 10px;}
+.moreCharacteristics {margin-top: 10px; cursor: pointer;}
 .moreCharacteristics::after {content: "Показать все характеристики >"; color: #019fff; font-size: 15px;}
 .spanAttributesName {font-weight: bold;}
 .productInfoRight {width: 40%; float: left;}
@@ -42,3 +43,8 @@
 .productPayment ul {margin: 0 0 15px 0;}
 .productPayment ul li {font-size: 15px; padding-left: 15px;}
 .productPayment ul li::before { content: ""; display: block; background: url("../../img/ok-50.png"); background-size: contain; width: 12px; height: 12px; float: left; margin: 1.5px 6px 0 0;}
+
+
+#product-attributes {color: #000;}
+.tableLable {padding: 10px 0;}
+.tableData {}

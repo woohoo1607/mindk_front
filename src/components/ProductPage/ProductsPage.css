@@ -5,7 +5,7 @@
 .productMenu ul li {float: left; padding: 10px 5px; margin: 0 5px 0 25px; color: #1ac6ff; cursor: pointer; text-transform: uppercase;}
 .activeLi {color: #343e5c !important; border-bottom: 1px solid #343e5c;}
 
-.productInfoPictures {height: 400px; width: 34%; background-color: #FFF; text-align: center; padding-top: 10px; float: left;}
+.productInfoPictures {height: 410px; width: 34%; background-color: #FFF; text-align: center; padding-top: 10px; float: left;}
 .productInfoPictures img {height: 400px;}
 
 .productInfoInfo {float: left; margin-left: 2%; width: 64%; background-color: #FFF; padding: 25px;}

@@ -23,16 +23,16 @@ const ProductPage = (props) => {
         Characteristics = false;
         Description = true;
     }
-    console.log(props.products.product);
+    console.log(props.product);
     let photos = [];
     let mainCharacteristics = [];
-    if (props.products.product.attributes!==undefined) {
-        photos = props.products.product.attributes.filter(a => {
+    if (props.product.attributes!==undefined) {
+        photos = props.product.attributes.filter(a => {
             if (a.name === "Фото") {
                 return a
             }
         });
-        mainCharacteristics = props.products.product.attributes.filter(a => {
+        mainCharacteristics = props.product.attributes.filter(a => {
             if (a.name === "Диагональ дисплея" || a.name === "Разрешение дисплея" || a.name === "Оперативная память" || a.name === "Основная камера" || a.name === "Класс защиты") {
                 return a
             }
@@ -54,15 +54,15 @@ const ProductPage = (props) => {
                     {photos.length===0 && <img src={noProductImg} />}
                 </div>
                 <div className="productInfoInfo">
-                    <h2>{props.products.product.name}</h2>
+                    <h2>{props.product.name}</h2>
                     {Main &&
                         <MainCharacteristics mainCharacteristics={mainCharacteristics}
-                                             product={props.products.product}
+                                             product={props.product}
                                              changeProductMenuNavigator={props.changeProductMenuNavigator}
                         />
                     }
                     {Characteristics &&
-                        <CharacteristicsTable attributes={props.products.product.attributes}/>
+                        <CharacteristicsTable attributes={props.product.attributes}/>
                     }
 
                 </div>

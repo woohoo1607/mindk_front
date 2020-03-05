@@ -2,6 +2,7 @@ import React from "react";
 import Home from "./Home";
 import {connect} from "react-redux";
 import {getProducts} from "../../reducers/productsReducer";
+import {getProductsSelector} from "../../reducers/products-selectors";
 
 class HomeContainer extends React.Component {
 
@@ -11,14 +12,14 @@ class HomeContainer extends React.Component {
 
     render() {
         return (
-            <Home products = {this.props.products}/>
+            <Home {...this.props}/>
         )
     }
 }
 
 let mapStateToProps = (state) => {
     return {
-        products: state.products
+        products: getProductsSelector(state),
     }
 };
 

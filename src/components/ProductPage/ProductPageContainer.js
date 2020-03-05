@@ -3,6 +3,12 @@ import ProductPage from "./ProductPage";
 import {connect} from "react-redux";
 import {getProduct} from "../../reducers/productsReducer";
 import {withRouter} from "react-router-dom";
+import {
+    getCurrentPageSelector, getPageSizeSelector,
+    getProductsCountSelector,
+    getProductSelector,
+    getProductsSelector
+} from "../../reducers/products-selectors";
 
 class ProductPageContainer extends React.Component {
 
@@ -22,7 +28,7 @@ class ProductPageContainer extends React.Component {
 
     render() {
         return (
-            <ProductPage products = {this.props.products}
+            <ProductPage {...this.props}
                          productMenuNavigator={this.state.productMenuNavigator}
                          changeProductMenuNavigator={this.changeProductMenuNavigator}
             />
@@ -32,7 +38,11 @@ class ProductPageContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        products: state.products
+        products: getProductsSelector(state),
+        product: getProductSelector(state),
+        currentPage: getCurrentPageSelector(state),
+        productsCount: getProductsCountSelector(state),
+        pageSize: getPageSizeSelector(state),
     }
 };
 

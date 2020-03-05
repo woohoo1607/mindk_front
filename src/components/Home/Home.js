@@ -7,7 +7,7 @@ const Home = (props) => {
     return (
         <div className="center">
             <section className="productsContainer">
-                {props.products.products.map(p=> <NavLink to={`/products/${p.id}`} key={p.id}><ProductCard key={p.id} product={p}/></NavLink>)}
+                {props.products.map(p=> <NavLink to={`/products/${p.id}`} key={p.id}><ProductCard key={p.id} product={p}/></NavLink>)}
             </section>
         </div>
     )

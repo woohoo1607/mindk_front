@@ -9,6 +9,7 @@ let initialState = {
     products: [],
     product: {},
     currentPage: 1,
+    pageSize: 12,
     count: 0
 };
 

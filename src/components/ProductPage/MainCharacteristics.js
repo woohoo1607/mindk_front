@@ -18,7 +18,7 @@ const MainCharacteristics = (props) => {
                         </p>
                     )
                 })}
-                <div className="moreCharacteristics" onClick={()=>props.changeProductMenuNavigator("Characteristics")}></div>
+                <div className="moreCharacteristics" onClick={()=>props.setProductNavigation("Characteristics")}></div>
             </div>
             <div className="productInfoRight">
                 <div className="productDelivery">

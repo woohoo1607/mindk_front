@@ -41,7 +41,7 @@ const ProductPage = (props) => {
                     {productNavigation==="Main" &&
                         <MainCharacteristics mainCharacteristics={mainCharacteristics}
                                              product={props.product}
-                                             changeProductMenuNavigator={props.changeProductMenuNavigator}
+                                             setProductNavigation={setProductNavigation}
                         />
                     }
                     {productNavigation==="Characteristics" &&

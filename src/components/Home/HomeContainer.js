@@ -1,25 +1,30 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Home from "./Home";
 import {connect} from "react-redux";
 import {getProducts} from "../../reducers/productsReducer";
-import {getProductsSelector} from "../../reducers/products-selectors";
+import {
+    getCurrentPageSelector,
+    getPageSizeSelector,
+    getProductsCountSelector,
+    getProductsSelector
+} from "../../reducers/products-selectors";
 
-class HomeContainer extends React.Component {
+const HomeContainer = (props) => {
+    useEffect( ()=> {
+        props.getProducts(props.currentPage)
+    }, [props.currentPage]);
+    return (
+        <Home {...props}/>
+    )
+};
 
-    componentDidMount() {
-        this.props.getProducts();
-    }
-
-    render() {
-        return (
-            <Home {...this.props}/>
-        )
-    }
-}
 
 let mapStateToProps = (state) => {
     return {
         products: getProductsSelector(state),
+        currentPage: getCurrentPageSelector(state),
+        productsCount: getProductsCountSelector(state),
+        pageSize: getPageSizeSelector(state),
     }
 };
 

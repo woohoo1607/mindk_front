@@ -60,8 +60,8 @@ export const setCount = (count) =>
 export const setCurrentPage = (currentPage) =>
     ({type: SET_CURRENT_PAGE, currentPage: currentPage});
 
-export const getProducts = () => (dispatch) => {
-    productsAPI.getProducts()
+export const getProducts = (page) => (dispatch) => {
+    productsAPI.getProducts(page)
         .then(response => {
             if (response.responseCode ===0) {
                 dispatch(setProducts(response.data));

@@ -1,28 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import "./ProductsPage.css";
 import noProductImg from "../../img/product-no-image.jpg";
 import CharacteristicsTable from "./CharacteristicsTable";
 import MainCharacteristics from "./MainCharacteristics";
 
 const ProductPage = (props) => {
-    let Main = true;
-    let Characteristics = false;
-    let Description = false;
-    if (props.productMenuNavigator=="Main") {
-        Main = true;
-        Characteristics = false;
-        Description = false;
-    }
-    if (props.productMenuNavigator=="Characteristics") {
-        Main = false;
-        Characteristics = true;
-        Description = false;
-    }
-    if (props.productMenuNavigator=="Description") {
-        Main = false;
-        Characteristics = false;
-        Description = true;
-    }
+    let [productNavigation, setProductNavigation] = useState("Main");
     console.log(props.product);
     let photos = [];
     let mainCharacteristics = [];
@@ -43,9 +26,9 @@ const ProductPage = (props) => {
             <div className="productInfo">
                 <div className="productMenu">
                     <ul>
-                        <li className={Main ? "activeLi" : "noActiveLi"} onClick={()=>props.changeProductMenuNavigator("Main")}>Главное</li>
-                        <li className={Characteristics ? "activeLi" : "noActiveLi"} onClick={()=>props.changeProductMenuNavigator("Characteristics")}>Характеристики</li>
-                        <li className={Description ? "activeLi" : "noActiveLi"} onClick={()=>props.changeProductMenuNavigator("Description")}>Описание</li>
+                        <li className={productNavigation=="Main" ? "activeLi" : "noActiveLi"} onClick={()=>setProductNavigation("Main")}>Главное</li>
+                        <li className={productNavigation=="Characteristics" ? "activeLi" : "noActiveLi"} onClick={()=>setProductNavigation("Characteristics")}>Характеристики</li>
+                        <li className={productNavigation=="Description" ? "activeLi" : "noActiveLi"} onClick={()=>setProductNavigation("Description")}>Описание</li>
                     </ul>
                     <div className="clr"></div>
                 </div>
@@ -55,13 +38,13 @@ const ProductPage = (props) => {
                 </div>
                 <div className="productInfoInfo">
                     <h2>{props.product.name}</h2>
-                    {Main &&
+                    {productNavigation=="Main" &&
                         <MainCharacteristics mainCharacteristics={mainCharacteristics}
                                              product={props.product}
                                              changeProductMenuNavigator={props.changeProductMenuNavigator}
                         />
                     }
-                    {Characteristics &&
+                    {productNavigation=="Characteristics" &&
                         <CharacteristicsTable attributes={props.product.attributes}/>
                     }
 

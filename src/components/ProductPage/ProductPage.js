@@ -26,9 +26,9 @@ const ProductPage = (props) => {
             <div className="productInfo">
                 <div className="productMenu">
                     <ul>
-                        <li className={productNavigation=="Main" ? "activeLi" : "noActiveLi"} onClick={()=>setProductNavigation("Main")}>Главное</li>
-                        <li className={productNavigation=="Characteristics" ? "activeLi" : "noActiveLi"} onClick={()=>setProductNavigation("Characteristics")}>Характеристики</li>
-                        <li className={productNavigation=="Description" ? "activeLi" : "noActiveLi"} onClick={()=>setProductNavigation("Description")}>Описание</li>
+                        <li className={productNavigation==="Main" ? "activeLi" : "noActiveLi"} onClick={()=>setProductNavigation("Main")}>Главное</li>
+                        <li className={productNavigation==="Characteristics" ? "activeLi" : "noActiveLi"} onClick={()=>setProductNavigation("Characteristics")}>Характеристики</li>
+                        <li className={productNavigation==="Description" ? "activeLi" : "noActiveLi"} onClick={()=>setProductNavigation("Description")}>Описание</li>
                     </ul>
                     <div className="clr"></div>
                 </div>
@@ -38,13 +38,13 @@ const ProductPage = (props) => {
                 </div>
                 <div className="productInfoInfo">
                     <h2>{props.product.name}</h2>
-                    {productNavigation=="Main" &&
+                    {productNavigation==="Main" &&
                         <MainCharacteristics mainCharacteristics={mainCharacteristics}
                                              product={props.product}
                                              changeProductMenuNavigator={props.changeProductMenuNavigator}
                         />
                     }
-                    {productNavigation=="Characteristics" &&
+                    {productNavigation==="Characteristics" &&
                         <CharacteristicsTable attributes={props.product.attributes}/>
                     }
 

@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import Home from "./Home";
 import {connect} from "react-redux";
-import {getProducts} from "../../reducers/productsReducer";
+import {getProducts, setCurrentPage} from "../../reducers/productsReducer";
 import {
     getCurrentPageSelector,
     getPageSizeSelector,
@@ -14,7 +14,9 @@ const HomeContainer = (props) => {
         props.getProducts(props.currentPage)
     }, [props.currentPage]);
     return (
-        <Home {...props}/>
+        <Home {...props}
+              setCurrentPage={props.setCurrentPage}
+        />
     )
 };
 
@@ -28,4 +30,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getProducts})(HomeContainer);
+export default connect(mapStateToProps, {getProducts, setCurrentPage})(HomeContainer);

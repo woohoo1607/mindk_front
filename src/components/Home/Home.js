@@ -11,7 +11,7 @@ const Home = (props) => {
             <section className="productsContainer">
                 {props.products.map(p=> <NavLink to={`/products/${p.id}`} key={p.id}><ProductCard key={p.id} product={p}/></NavLink>)}
             </section>
-            <ReactPaginate pageCount={20}
+            <ReactPaginate pageCount={totalPages}
                            pageRangeDisplayed={3}
                            marginPagesDisplayed={3}
                            initialPage={props.currentPage-1}

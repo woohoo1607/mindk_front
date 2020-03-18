@@ -1,0 +1,19 @@
+.formControl {
+    display: flex;
+}
+.formControl.error input {
+    border: solid red 2px;
+}
+.formControl.error span {
+    color: white;
+}
+span {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    text-align: center;
+    font-size: 20px;
+    line-height: 20px;
+}

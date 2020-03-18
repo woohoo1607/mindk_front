@@ -1,4 +1,4 @@
-/*import {userAPI} from "../api/api";*/
+import {authAPI} from "../api/api";
 
 const SET_USER_DATA = "SET_USER_DATA";
 const SET_IS_AUTH = "SET_IS_AUTH";
@@ -7,8 +7,8 @@ let initialState = {
     user: {
         id: null,
         login: null,
-        firstname: null,
-        surname: null,
+        first_name: null,
+        second_name: null,
         email: null,
         isadmin: false,
         token: null
@@ -42,6 +42,17 @@ export const setUserData = (user) =>
 
 export const setAuth = (isAuth) =>
     ({type: SET_IS_AUTH, isAuth: isAuth});
+
+export const signIn = (username, password) => (dispatch) => {
+    return authAPI.login(username, password)
+        .then(res=> {
+            if (res.responseCode===0) {
+                dispatch(setUserData(res.data));
+                dispatch(setAuth(true));
+                return res.data.token
+            }
+        })
+};
 
 /*export const getUserData = () => (dispatch) => {
     userAPI.getUser()

@@ -20,3 +20,18 @@ export const productsAPI = {
         })
     }
 };
+
+export const authAPI = {
+    login(username, password) {
+        let data = qs.stringify({username, password});
+        return instance.post(`login`, data).then(response => {
+            return response.data
+        })
+    },
+    logout() {
+
+    },
+    register() {
+
+    }
+};

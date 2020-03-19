@@ -6,6 +6,7 @@ import {NavLink} from "react-router-dom";
 import Logo from "../../img/logo_shop.png";
 
 const Header = (props) => {
+    console.log(props);
     return (
         <header>
             {/*{props.user.isAdmin && <AdminHeader user = {props.user}/>}*/}

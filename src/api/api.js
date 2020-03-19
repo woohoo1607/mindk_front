@@ -4,7 +4,9 @@ import qs from 'qs';
 const instance = axios.create({
     withCredentials: true,
     baseURL: 'http://localhost:5000/',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    headers: {'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Bearer' + localStorage.getItem('token'),
+    }
 });
 
 export const productsAPI = {
@@ -34,4 +36,8 @@ export const authAPI = {
     register() {
 
     }
+};
+
+export const userAPI = {
+
 };

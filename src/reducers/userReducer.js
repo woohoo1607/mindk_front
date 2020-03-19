@@ -49,9 +49,14 @@ export const signIn = (username, password) => (dispatch) => {
             if (res.responseCode===0) {
                 dispatch(setUserData(res.data));
                 dispatch(setAuth(true));
+                localStorage.setItem("token", res.data.token);
                 return res.data.token
             }
         })
+};
+
+export const me = () => (dispatch) => {
+
 };
 
 /*export const getUserData = () => (dispatch) => {

@@ -14,5 +14,6 @@
 
 .profile-data {}
 .profile-data h2 {color: #000; font-weight: bold; font-size: 20px; text-align: center;}
-.profile-data form {width: 50%; margin: 0 auto; font-size: 18px; color: #000;}
-.profile-data form input {height: 30px; width: 300px; margin: 5px 0 10px 0;}
+.profile-data form {width: 50%; margin: 0 auto; font-size: 16px;}
+.profile-data form p {  }
+.profile-data form input {height: 30px; width: 300px; margin: 5px 0 10px 0; font-size: 16px;}

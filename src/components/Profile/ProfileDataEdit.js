@@ -41,7 +41,8 @@ const ProfileDataEdit = (props) => {
         console.log(formData);
     };
     return (
-        <div>
+        <div className="profile-data">
+            <h2>Мои данные</h2>
             <ProfileDataEditReduxForm onSubmit={onSubmit} initialValues={initial}/>
         </div>
     )

@@ -20,7 +20,7 @@ export const productsAPI = {
     },
 
     getProduct(id) {
-        return instance.get(`products/${id}`).then(response => {
+        return instance.get(`products/${id}`, getToken()).then(response => {
             return response.data
         })
     }
@@ -33,8 +33,11 @@ export const authAPI = {
             return response.data
         })
     },
-    logout() {
-
+    logout(id) {
+        let data = qs.stringify({id});
+        return instance.post(`login`, data).then(response => {
+            return response.data
+        })
     },
     register() {
 

@@ -67,6 +67,17 @@ export const getMe = () => (dispatch) => {
         })
 };
 
+export const signOut = (id) => (dispatch) => {
+    return authAPI.logout(id)
+        .then(res => {
+            if (res.responseCode===0) {
+                delete localStorage.token;
+                dispatch(setUserData(initialState.user));
+                dispatch(setAuth(false));
+            }
+        })
+};
+
 /*export const getUserData = () => (dispatch) => {
     userAPI.getUser()
         .then(response => {

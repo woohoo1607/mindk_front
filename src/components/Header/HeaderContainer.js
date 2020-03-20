@@ -1,14 +1,18 @@
 import React, {useEffect} from 'react';
-import Header from './Header'
+import Header from './Header';
 import {connect} from "react-redux";
-import {getUserSelector} from "../../reducers/user-selectors";
-/*import {getUserData} from "../../reducers/userReducer";*/
+import {getUserSelector, isAuthSelector} from "../../reducers/user-selectors";
+import {getMe} from "../../reducers/userReducer";
 
 const HeaderContainer = (props) => {
-
+    useEffect( ()=> {
+        props.getMe()
+    }, [props.user.token]);
     return (
         <div>
-            <Header {...props}/>
+            <Header user={props.user}
+                    isAuth={props.isAuth}
+            />
         </div>
     )
 };
@@ -16,7 +20,8 @@ const HeaderContainer = (props) => {
 let mapStateToProps = (state) => {
     return {
         user: getUserSelector(state),
+        isAuth: isAuthSelector(state),
     }
 };
 
-export default connect(mapStateToProps, {})(HeaderContainer);
+export default connect(mapStateToProps, {getMe})(HeaderContainer);

@@ -5,13 +5,16 @@ const instance = axios.create({
     withCredentials: true,
     baseURL: 'http://localhost:5000/',
     headers: {'Content-Type': 'application/x-www-form-urlencoded',
-              'Authorization': 'Bearer' + localStorage.getItem('token'),
+/*              'Authorization': 'Bearer' + localStorage.getItem('token'),*/
     }
 });
+let getToken = () => {
+    return ({headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}})
+};
 
 export const productsAPI = {
     getProducts(currentPage=1) {
-        return instance.get(`products/?page=${currentPage}`).then(response => {
+        return instance.get(`products/?page=${currentPage}`, getToken()).then(response => {
             return response.data
         })
     },
@@ -35,6 +38,11 @@ export const authAPI = {
     },
     register() {
 
+    },
+    me() {
+        return instance.get('me', getToken()).then(response => {
+            return response.data
+        })
     }
 };
 

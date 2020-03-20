@@ -6,7 +6,6 @@ import {NavLink} from "react-router-dom";
 import Logo from "../../img/logo_shop.png";
 
 const Header = (props) => {
-    console.log(props);
     return (
         <header>
             {/*{props.user.isAdmin && <AdminHeader user = {props.user}/>}*/}
@@ -19,7 +18,8 @@ const Header = (props) => {
                     </NavLink>
                 <Navbar/>
                 <div className="auth">
-                    <NavLink to="/login">SIGN IN</NavLink>
+                    {!props.isAuth && <NavLink to="/login">SIGN IN</NavLink>}
+                    {props.isAuth && <NavLink to="/profile">{props.user.login}</NavLink>}
                 </div>
                 <div className="basket">
                     <NavLink to="/">Cart <span>0</span></NavLink>

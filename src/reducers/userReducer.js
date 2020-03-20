@@ -11,6 +11,7 @@ let initialState = {
         second_name: null,
         email: null,
         isadmin: false,
+        mobile_phone: null,
         token: null
     },
     isAuth: false
@@ -44,19 +45,26 @@ export const setAuth = (isAuth) =>
     ({type: SET_IS_AUTH, isAuth: isAuth});
 
 export const signIn = (username, password) => (dispatch) => {
-    return authAPI.login(username, password)
+    authAPI.login(username, password)
         .then(res=> {
             if (res.responseCode===0) {
                 dispatch(setUserData(res.data));
                 dispatch(setAuth(true));
                 localStorage.setItem("token", res.data.token);
-                return res.data.token
             }
         })
 };
 
-export const me = () => (dispatch) => {
-
+export const getMe = () => (dispatch) => {
+    return authAPI.me()
+        .then(res=> {
+            if (res.responseCode===0) {
+                let user = {...res.data};
+                user.token = localStorage.getItem("token");
+                dispatch(setUserData(user));
+                dispatch(setAuth(true));
+            }
+        })
 };
 
 /*export const getUserData = () => (dispatch) => {

@@ -11,7 +11,7 @@ import {getOrdersList} from "../../reducers/ordersReducer";
 const ProfileContainer = (props) => {
     useEffect( ()=> {
         props.getOrdersList()
-    }, [props.user.tokeb]);
+    }, [props.user.token]);
     /*props.getOrdersList();*/
 
     return (

@@ -6,6 +6,7 @@ import Button from "../Button/Button";
 
 const Profile = (props) => {
     console.log(props);
+    console.log(props.ordersList)
     return (
         <div className="profile">
             <div className="profile-container">

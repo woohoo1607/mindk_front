@@ -4,9 +4,7 @@ import qs from 'qs';
 const instance = axios.create({
     withCredentials: true,
     baseURL: 'http://localhost:5000/',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded',
-/*              'Authorization': 'Bearer' + localStorage.getItem('token'),*/
-    }
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 });
 let getToken = () => {
     return ({headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}})
@@ -51,4 +49,17 @@ export const authAPI = {
 
 export const userAPI = {
 
+};
+
+export const ordersAPI = {
+    getOrders () {
+        return instance.get(`orders`, getToken()).then(response => {
+            return response.data
+        })
+    },
+    getOrderById (id) {
+        return instance.get(`orders/${id}`, getToken()).then(response => {
+           return response.data
+        });
+    },
 };

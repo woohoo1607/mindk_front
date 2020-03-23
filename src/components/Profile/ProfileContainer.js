@@ -12,7 +12,6 @@ const ProfileContainer = (props) => {
     useEffect( ()=> {
         props.getOrdersList()
     }, [props.user.token]);
-    /*props.getOrdersList();*/
 
     return (
         <div className="center">

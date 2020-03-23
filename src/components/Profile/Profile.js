@@ -1,12 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Profile.css";
 import avatar from "../../img/user-male-icon.png";
 import ProfileDataEdit from "./ProfileDataEdit";
 import Button from "../Button/Button";
+import OrdersHistory from "./OrdersHistory";
 
 const Profile = (props) => {
     console.log(props);
-    console.log(props.ordersList)
+    console.log(props.ordersList);
+
+    let [myInfo, setMyInfo] = useState(true);
+    let [ordersHistory, setOrdersHistory] = useState(false);
+
+    let goToMyInfo = () => {
+        setMyInfo(true);
+        setOrdersHistory(false);
+    };
+
+    let goToOrdersHistory = () => {
+        setMyInfo(false);
+        setOrdersHistory(true);
+    };
+
     return (
         <div className="profile">
             <div className="profile-container">
@@ -30,13 +45,14 @@ const Profile = (props) => {
             </div>
             <div className="clr"></div>
             <div className="profile-tabs">
-                <ul>
-                    <li>Мои данные</li>
-                    <li>История заказов</li>
+                <ul className="profile-tabs-nav">
+                    <li onClick={()=> goToMyInfo()} className={myInfo && 'active'}>Мои данные</li>
+                    <li onClick={()=> goToOrdersHistory()} className={ordersHistory && 'active'}>История заказов</li>
                 </ul>
                 <div className="clr"></div>
                 <div className="profile-tabs-container">
-                    <ProfileDataEdit {...props.user}/>
+                    {myInfo && <ProfileDataEdit {...props.user}/>}
+                    {ordersHistory && <OrdersHistory ordersList={props.ordersList}/>}
                 </div>
             </div>
         </div>

@@ -28,9 +28,13 @@ const ordersReducer = (state = initialState, action) => {
         }
         case SET_ORDER_DATA:
         {
+            let data = {...action.order};
+            data.products = [...action.order.products];
+            delete data["id_users"];
+            console.log(data);
             return {
                 ...state,
-                order: action.order
+                order: {...data}
             };
         }
         default:
@@ -49,6 +53,15 @@ export const getOrdersList = () => (dispatch) => {
         .then(res=> {
             if (res.responseCode===0) {
                 dispatch(setOrdersList(res.data))
+            }
+        })
+};
+export const getOrder = (id) => (dispatch) => {
+    ordersAPI.getOrderById(id)
+        .then(res=> {
+            console.log(res);
+            if (res.responseCode===0) {
+                dispatch(setOrderData(res.data))
             }
         })
 };

@@ -13,9 +13,9 @@ const OrdersHistory = (props) => {
                 return (
                     <li>
                         <b><Moment format="DD.MM.YYYY " date={o.date_start}></Moment></b>
-                        <NavLink to={`/orders${o.id}`}>Заказ №{o.id}</NavLink>
+                        <NavLink to={`/orders/${o.id}`}>Заказ №{o.id}</NavLink>
                         , {o.status}
-                        <NavLink to={`/orders${o.id}`} className="order-more">Детали заказа</NavLink>
+                        <NavLink to={`/orders/${o.id}`} className="order-more">Детали заказа</NavLink>
                     </li>
                 )
             })}

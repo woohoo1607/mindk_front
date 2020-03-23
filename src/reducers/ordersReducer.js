@@ -59,7 +59,6 @@ export const getOrdersList = () => (dispatch) => {
 export const getOrder = (id) => (dispatch) => {
     ordersAPI.getOrderById(id)
         .then(res=> {
-            console.log(res);
             if (res.responseCode===0) {
                 dispatch(setOrderData(res.data))
             }

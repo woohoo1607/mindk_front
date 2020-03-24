@@ -8,6 +8,7 @@ import ProductPageContainer from "./components/ProductPage/ProductPageContainer"
 import LoginContainer from "./components/Login/LoginContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import OrderPageContainer from "./components/OrderPage/OrderPageContainer";
+import CatalogContainer from "./components/Catalog/CatalogContainer";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/products/:id' render={ () => <ProductPageContainer /> }/>
         <Route exact path='/profile' render={ () => <ProfileContainer /> }/>
         <Route path='/orders/:id' render={ () => <OrderPageContainer /> }/>
+        <Route path='/catalog' render={ () => <CatalogContainer /> }/>
     </div>
   );
 }

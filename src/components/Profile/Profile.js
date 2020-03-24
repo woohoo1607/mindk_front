@@ -46,8 +46,8 @@ const Profile = (props) => {
             <div className="clr"></div>
             <div className="profile-tabs">
                 <ul className="profile-tabs-nav">
-                    <li onClick={()=> goToMyInfo()} className={myInfo && 'active'}>Мои данные</li>
-                    <li onClick={()=> goToOrdersHistory()} className={ordersHistory && 'active'}>История заказов</li>
+                    <li onClick={()=> goToMyInfo()} className={myInfo ? 'active' : undefined}>Мои данные</li>
+                    <li onClick={()=> goToOrdersHistory()} className={ordersHistory ? 'active' : undefined}>История заказов</li>
                 </ul>
                 <div className="clr"></div>
                 <div className="profile-tabs-container">

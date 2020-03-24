@@ -2,6 +2,7 @@ import {ordersAPI} from "../api/api";
 
 const SET_ORDERS_LIST = "SET_ORDERS_LIST";
 const SET_ORDER_DATA = "SET_ORDER_DATA";
+const IS_FETCHING = "IS_FETCHING";
 
 let initialState = {
     ordersList: [],
@@ -14,7 +15,8 @@ let initialState = {
         date_start: null,
         date_end: null,
         products: []
-    }
+    },
+    isFetching: false,
 };
 
 const ordersReducer = (state = initialState, action) => {
@@ -31,10 +33,16 @@ const ordersReducer = (state = initialState, action) => {
             let data = {...action.order};
             data.products = [...action.order.products];
             delete data["id_users"];
-            console.log(data);
             return {
                 ...state,
                 order: {...data}
+            };
+        }
+        case IS_FETCHING:
+        {
+            return {
+                ...state,
+                isFetching: action.isFetching
             };
         }
         default:
@@ -48,19 +56,26 @@ export const setOrdersList = (ordersList) =>
 export const setOrderData = (order) =>
     ({type: SET_ORDER_DATA, order: order});
 
+export const setIsFetching = (isFetching) =>
+    ({type: IS_FETCHING, isFetching: isFetching});
+
 export const getOrdersList = () => (dispatch) => {
+    dispatch(setIsFetching(true));
     ordersAPI.getOrders()
         .then(res=> {
             if (res.responseCode===0) {
-                dispatch(setOrdersList(res.data))
+                dispatch(setOrdersList(res.data));
+                dispatch(setIsFetching(false));
             }
         })
 };
 export const getOrder = (id) => (dispatch) => {
+    dispatch(setIsFetching(true));
     ordersAPI.getOrderById(id)
         .then(res=> {
             if (res.responseCode===0) {
-                dispatch(setOrderData(res.data))
+                dispatch(setOrderData(res.data));
+                dispatch(setIsFetching(false));
             }
         })
 };

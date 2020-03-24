@@ -7,3 +7,7 @@ export const getOrdersListSelector = (state) => {
 export const getOrderSelector = (state) => {
     return state.orders.order
 };
+
+export const getIsFetchingSelector = (state) => {
+    return state.orders.isFetching
+};

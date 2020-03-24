@@ -9,9 +9,9 @@ const OrdersHistory = (props) => {
         <div>
             <h2>Мои заказы</h2>
         <ul id="orders-history">
-            {props.ordersList.map(o=> {
+            {props.ordersList.map((o,i)=> {
                 return (
-                    <li>
+                    <li key={i}>
                         <b><Moment format="DD.MM.YYYY " date={o.date_start}></Moment></b>
                         <NavLink to={`/orders/${o.id}`}>Заказ №{o.id}</NavLink>
                         , {o.status}

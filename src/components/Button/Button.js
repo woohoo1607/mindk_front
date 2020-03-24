@@ -6,7 +6,7 @@ const Button = (props) => {
         height: props.height,
         width: props.width,
         color: props.color,
-        "background-color": props["background-color"],
+        backgroundColor: props["background-color"],
         border: props.border,
         fontSize: props.fontSize,
     };

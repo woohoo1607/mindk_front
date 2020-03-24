@@ -1,0 +1,20 @@
+.order-page {display: flex; margin-top: 30px;}
+.order-page h2 {font-size: 22px; font-weight: bold; color: #000;}
+.order-page h3 {}
+.order-page h4 {color: #000; font-size: 20px; margin:15px 0 40px 0;}
+.order-page a {color: #0095ff;}
+.order-page a:hover {color: #000;}
+
+#order-details {width: 400px; padding: 20px; background-color: #C1CDEC; border-radius: 15px; align-self: flex-start;}
+#order-details h2 {color:#000; text-align: left; margin-bottom: 15px;}
+#order-details table th {padding:7px 5px 7px 0;}
+#order-details table td {color: #000;}
+
+#order-products {margin-left: 50px; width: calc(100% - 450px);}
+#order-products h3 span { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #F11705; margin-left: 5px;}
+#order-products img {width: 100px}
+#order-products table {color: #000; vertical-align: center; width: 100%; margin: 20px 0;}
+#order-products table tr {}
+#order-products table td {display: table-cell; text-align: center; vertical-align: middle; padding: 15px 0; border-bottom: 1px solid #343e5c;}
+#order-products table th {font-size: 19px; font-weight: bold;}
+.order-total-price {text-align: center; padding: 25px 0;}

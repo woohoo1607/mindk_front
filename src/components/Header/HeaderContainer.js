@@ -1,26 +1,27 @@
-import React from 'react';
-import Header from './Header'
+import React, {useEffect} from 'react';
+import Header from './Header';
 import {connect} from "react-redux";
-/*import {getUserData} from "../../reducers/userReducer";*/
+import {getUserSelector, isAuthSelector} from "../../reducers/user-selectors";
+import {getMe} from "../../reducers/userReducer";
 
-class HeaderContainer extends React.Component {
-    componentDidMount() {
-        /*this.props.getUserData();*/
-    }
-
-    render() {
-        return (
-            <div>
-                <Header user = {this.props.user}/>
-            </div>
-        )
-    }
-}
+const HeaderContainer = (props) => {
+    useEffect( ()=> {
+        props.getMe()
+    }, [props.user.token]);
+    return (
+        <div>
+            <Header user={props.user}
+                    isAuth={props.isAuth}
+            />
+        </div>
+    )
+};
 
 let mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: getUserSelector(state),
+        isAuth: isAuthSelector(state),
     }
 };
 
-export default connect(mapStateToProps, {})(HeaderContainer);
+export default connect(mapStateToProps, {getMe})(HeaderContainer);

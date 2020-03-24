@@ -18,7 +18,8 @@ const Header = (props) => {
                     </NavLink>
                 <Navbar/>
                 <div className="auth">
-                    <NavLink to="/">SIGN IN</NavLink>
+                    {!props.isAuth && <NavLink to="/login">SIGN IN</NavLink>}
+                    {props.isAuth && <NavLink to="/profile">{props.user.login}</NavLink>}
                 </div>
                 <div className="basket">
                     <NavLink to="/">Cart <span>0</span></NavLink>

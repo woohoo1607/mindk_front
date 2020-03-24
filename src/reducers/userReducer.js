@@ -1,4 +1,4 @@
-/*import {userAPI} from "../api/api";*/
+import {authAPI} from "../api/api";
 
 const SET_USER_DATA = "SET_USER_DATA";
 const SET_IS_AUTH = "SET_IS_AUTH";
@@ -7,10 +7,11 @@ let initialState = {
     user: {
         id: null,
         login: null,
-        firstname: null,
-        surname: null,
+        first_name: null,
+        second_name: null,
         email: null,
         isadmin: false,
+        mobile_phone: null,
         token: null
     },
     isAuth: false
@@ -42,6 +43,40 @@ export const setUserData = (user) =>
 
 export const setAuth = (isAuth) =>
     ({type: SET_IS_AUTH, isAuth: isAuth});
+
+export const signIn = (username, password) => (dispatch) => {
+    authAPI.login(username, password)
+        .then(res=> {
+            if (res.responseCode===0) {
+                dispatch(setUserData(res.data));
+                dispatch(setAuth(true));
+                localStorage.setItem("token", res.data.token);
+            }
+        })
+};
+
+export const getMe = () => (dispatch) => {
+    return authAPI.me()
+        .then(res=> {
+            if (res.responseCode===0) {
+                let user = {...res.data};
+                user.token = localStorage.getItem("token");
+                dispatch(setUserData(user));
+                dispatch(setAuth(true));
+            }
+        })
+};
+
+export const signOut = (id) => (dispatch) => {
+    return authAPI.logout(id)
+        .then(res => {
+            if (res.responseCode===0) {
+                delete localStorage.token;
+                dispatch(setUserData(initialState.user));
+                dispatch(setAuth(false));
+            }
+        })
+};
 
 /*export const getUserData = () => (dispatch) => {
     userAPI.getUser()

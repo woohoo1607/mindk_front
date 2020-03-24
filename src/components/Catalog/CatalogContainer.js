@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 import {getProducts, setCurrentPage} from "../../reducers/productsReducer";
 import Catalog from "./Catalog";
@@ -31,4 +32,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getProducts, setCurrentPage})(CatalogContainer);
+export default connect(mapStateToProps, {getProducts, setCurrentPage})(withRouter(CatalogContainer));

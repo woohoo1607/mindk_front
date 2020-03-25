@@ -12,7 +12,7 @@ let getToken = () => {
 
 export const productsAPI = {
     getProducts(currentPage=1) {
-        return instance.get(`products/?page=${currentPage}`, getToken()).then(response => {
+        return instance.get(`products/?page=${currentPage}&category=2`, getToken()).then(response => {
             return response.data
         })
     },

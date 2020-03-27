@@ -19,3 +19,7 @@ export const getProductsCountSelector = (state) => {
 export const getPageSizeSelector = (state) => {
     return state.products.pageSize
 };
+
+export const getCategoriesListSelector = (state) => {
+    return state.products.categories
+};

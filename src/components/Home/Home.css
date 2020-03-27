@@ -1,2 +1,13 @@
-.productsContainer {display: flex; flex-wrap: wrap; flex-direction: row; justify-content: normal; align-content: space-between; margin-top: 15px;}
+.home-container {}
+.categories-menu {width: 288px;}
+.categories-menu a {text-decoration: none; color: #000;}
 
+.products-home-container {display: flex; flex-wrap: wrap; flex-direction: row; justify-content: normal; align-content: space-between; margin-top: 25px;}
+
+
+
+/*____________menu animation__________________*/
+.menuNav {}
+.menuNav div:hover {}
+.secondMenu {display: none;}
+.thirdMenu {display: none;}

@@ -1,16 +1,18 @@
-import {productsAPI} from "../api/api";
+import {categoriesAPI, productsAPI} from "../api/api";
 
 const SET_PRODUCTS = "SET_PRODUCTS";
 const SET_PRODUCT = "SET_PRODUCT";
 const SET_COUNT = "SET_COUNT";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const SET_CATEGORIES = "SET_CATEGORIES";
 
 let initialState = {
     products: [],
     product: {},
     currentPage: 1,
     pageSize: 12,
-    count: 0
+    count: 0,
+    categories: [],
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -43,6 +45,13 @@ const productsReducer = (state = initialState, action) => {
                 currentPage: +action.currentPage
             };
         }
+        case SET_CATEGORIES:
+        {
+            return {
+                ...state,
+                categories: [...action.categories]
+            };
+        }
         default:
             return state;
     }
@@ -60,6 +69,9 @@ export const setCount = (count) =>
 export const setCurrentPage = (currentPage) =>
     ({type: SET_CURRENT_PAGE, currentPage: currentPage});
 
+export const setCategories = (categories) =>
+    ({type: SET_CATEGORIES, categories: categories});
+
 export const getProducts = (page) => (dispatch) => {
     productsAPI.getProducts(page)
         .then(response => {
@@ -75,6 +87,15 @@ export const getProduct = (id) => (dispatch) => {
         .then(response => {
             if (response.responseCode ===0) {
                 dispatch(setProduct(response.data));
+            }
+        });
+};
+
+export const getCategoriesList = () => (dispatch) => {
+    categoriesAPI.getCategories()
+        .then(response => {
+            if (response.responseCode ===0) {
+                dispatch(setCategories(response.data));
             }
         });
 };

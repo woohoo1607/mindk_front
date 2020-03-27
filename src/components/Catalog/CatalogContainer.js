@@ -13,8 +13,8 @@ import {
 
 const CatalogContainer = (props) => {
     useEffect( ()=> {
-        props.getProducts(props.currentPage)
-    }, [props.currentPage]);
+        props.getProducts(props.location.search)
+    }, [props.location.search]);
 
     return (
         <Catalog {...props}

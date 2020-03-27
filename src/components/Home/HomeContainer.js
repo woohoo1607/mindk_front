@@ -12,7 +12,7 @@ import {
 
 const HomeContainer = (props) => {
     useEffect( ()=> {
-        props.getProducts(props.currentPage)
+        props.getProducts(`?page=${props.currentPage}`)
     }, [props.currentPage]);
 
     useEffect( ()=> {

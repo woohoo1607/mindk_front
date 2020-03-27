@@ -18,6 +18,7 @@ const useStyles = makeStyles(() => ({
         left: '250px',
         top: '0px',
         width: '250px',
+        borderLeft: '1px solid rgba(0, 0, 0, 0.12)',
     },
     thirdMenu: {
         backgroundColor: '#FFF',
@@ -25,6 +26,7 @@ const useStyles = makeStyles(() => ({
         left: '250px',
         top: '0px',
         width: '250px',
+        borderLeft: '1px solid rgba(0, 0, 0, 0.12)',
     },
 }));
 

@@ -23,3 +23,7 @@ export const getPageSizeSelector = (state) => {
 export const getCategoriesListSelector = (state) => {
     return state.products.categories
 };
+
+export const getFiltersDataSelector = (state) => {
+    return state.products.filtersData
+};

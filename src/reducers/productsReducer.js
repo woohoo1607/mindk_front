@@ -5,6 +5,7 @@ const SET_PRODUCT = "SET_PRODUCT";
 const SET_COUNT = "SET_COUNT";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_CATEGORIES = "SET_CATEGORIES";
+const SET_FILTERS_DATA = "SET_FILTERS_DATA";
 
 let initialState = {
     products: [],
@@ -13,6 +14,7 @@ let initialState = {
     pageSize: 12,
     count: 0,
     categories: [],
+    filtersData: {},
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -52,6 +54,13 @@ const productsReducer = (state = initialState, action) => {
                 categories: [...action.categories]
             };
         }
+        case SET_FILTERS_DATA:
+        {
+            return {
+                ...state,
+                filtersData: {...action.filtersData}
+            };
+        }
         default:
             return state;
     }
@@ -72,11 +81,15 @@ export const setCurrentPage = (currentPage) =>
 export const setCategories = (categories) =>
     ({type: SET_CATEGORIES, categories: categories});
 
+export const setFiltersData = (filtersData) =>
+    ({type: SET_FILTERS_DATA, filtersData: filtersData});
+
 export const getProducts = (page) => (dispatch) => {
     productsAPI.getProducts(page)
         .then(response => {
             if (response.responseCode ===0) {
                 dispatch(setProducts(response.data));
+                dispatch(setFiltersData(response.filtersData));
                 dispatch(setCount(response.count));
             }
         });

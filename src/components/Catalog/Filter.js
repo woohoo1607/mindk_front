@@ -6,6 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
+import OneFilter from "./OneFilter";
 
 const createDisplayFilters = (deviceType, attributes, values) => {
     /*deviceType => mobile, tablet, laptop, tv, monitor*/
@@ -91,43 +92,72 @@ const createRAMFilters = (deviceType, attributes, values) => {
     }
 };
 
+const createMainCameraFilters = (deviceType, attributes, values) => {
+    let filterInfo = attributes.find(a => a.name === 'Основная камера');
+    let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
+    if (deviceType==="mobile") {
+        let parameters = ["до 8 Мп", "от 8 до 13 МП", "от 13 до 20 МП", "более 20 МП"];
+        let count = [0,0,0,0];
+        valuesArr.forEach(elem => {
+            let val = +elem.value.split('+')[0].slice(0, -2);
+            if (val<8) {
+                count[0]++;
+            } else if (8<=val && val<13) {
+                count[1]++;
+            } else if (13<=val && val<20) {
+                count[2]++;
+            } else {
+                count[3]++;
+            }
+        });
+        return {name: filterInfo.name, parameters, count}
+    }
+};
+
+const createFrontCameraFilters = (deviceType, attributes, values) => {
+    let filterInfo = attributes.find(a => a.name === 'Фронтальная камера');
+    let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
+    if (deviceType==="mobile") {
+        let parameters = ["до 5 Мп", "от 5 до 8 МП", "от 8 до 13 МП", "более 13 МП"];
+        let count = [0,0,0,0];
+        valuesArr.forEach(elem => {
+            let val = +elem.value.split('+')[0].slice(0, -2);
+            if (val<5) {
+                count[0]++;
+            } else if (5<=val && val<8) {
+                count[1]++;
+            } else if (8<=val && val<13) {
+                count[2]++;
+            } else {
+                count[3]++;
+            }
+        });
+        return {name: filterInfo.name, parameters, count}
+    }
+};
+
 
 const createFilters = (attributes, values, categoryName) => {
     if (categoryName==='smartphones') {
         let displayFilters = createDisplayFilters("mobile", attributes, values);
         let ROMFilters = createROMFilters("mobile", attributes, values);
         let RAMFilters = createRAMFilters("mobile", attributes, values);
-        return [displayFilters,ROMFilters,RAMFilters];
-        console.log(RAMFilters);
-        return [
-            {
-                name: 'Основная камера',
-                parameters: ["до 8 Мп", "от 8 до 13 МП", "от 13 до 20 МП", "более 20 МП"],
-                count: [],
-            },
-            {
-                name: 'Фронтальная камера',
-                parameters: ["до 5 Мп", "от 5 до 8 МП", "от 8 до 13 МП", "более 13 МП"],
-                count: [],
-            },
-        ];
+        let MainCamera = createMainCameraFilters("mobile", attributes, values);
+        let FrontCamera = createFrontCameraFilters("mobile", attributes, values);
+        return [displayFilters,ROMFilters,RAMFilters,MainCamera,FrontCamera];
     }
 };
 
+
+
 const Filter = (props) => {
+
+
     let filters = createFilters(props.filtersData.attributes, props.filtersData.values, props.filtersData.categoryName) || [];
     console.log(filters);
     return (
         <div className="filter">
-            {filters.map((filter, index) => {
-                return (
-                    <List>
-                        <ListItem>
-                            <ListItemText>{filter.name}</ListItemText>
-                        </ListItem>
-                    </List>
-                )
-            })}
+            {filters.map((filter, index) => <OneFilter index={index} filter={filter}/>)}
         </div>
     )
 };

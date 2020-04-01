@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from "./FormsConrols.module.css"
 
+import styles from "./FormsConrols.module.css"
 
 export const Input = ({input, meta, ...props}) => {
 

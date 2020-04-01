@@ -1,13 +1,13 @@
-import React, {useEffect} from "react";
-import Login from "./Login";
+import React from "react";
 import {connect} from "react-redux";
+
+import Login from "./Login";
 import {signIn} from "../../reducers/userReducer";
-import {getUserSelector, isAuthSelector} from "../../reducers/user-selectors";
+import {getUserSelector, isAuthSelector} from "../../selectors/user-selectors";
 
 const LoginContainer = (props) => {
     const logIn = async (username, password) => {
-        let res = await props.signIn(username, password);
-        console.log(props.user);
+        props.signIn(username, password);
     };
     return (
         <Login {...props}

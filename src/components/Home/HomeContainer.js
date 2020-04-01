@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
-import Home from "./Home";
 import {connect} from "react-redux";
+
+import Home from "./Home";
 import {getCategoriesList, getProducts, setCurrentPage} from "../../reducers/productsReducer";
 import {
     getCategoriesListSelector,
@@ -8,7 +9,7 @@ import {
     getPageSizeSelector,
     getProductsCountSelector,
     getProductsSelector
-} from "../../reducers/products-selectors";
+} from "../../selectors/products-selectors";
 
 const HomeContainer = (props) => {
     useEffect( ()=> {

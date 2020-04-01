@@ -10,7 +10,7 @@ import {
     getPageSizeSelector,
     getProductsCountSelector,
     getProductsSelector
-} from "../../reducers/products-selectors";
+} from "../../selectors/products-selectors";
 
 const CatalogContainer = (props) => {
     useEffect( ()=> {
@@ -23,11 +23,8 @@ const CatalogContainer = (props) => {
         }
     }, []);
 
-
-
     return (
         <Catalog {...props}
-                 setCurrentPage={props.setCurrentPage}
         />
     )
 };

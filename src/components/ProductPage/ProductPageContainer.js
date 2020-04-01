@@ -1,12 +1,13 @@
 import React, {useEffect} from "react";
-import ProductPage from "./ProductPage";
 import {connect} from "react-redux";
-import {getProduct} from "../../reducers/productsReducer";
 import {withRouter} from "react-router-dom";
+
+import ProductPage from "./ProductPage";
+import {getProduct} from "../../reducers/productsReducer";
 import {
     getProductSelector,
     getProductsSelector
-} from "../../reducers/products-selectors";
+} from "../../selectors/products-selectors";
 
 
 const ProductPageContainer = (props) => {

@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
-import Header from './Header';
 import {connect} from "react-redux";
-import {getUserSelector, isAuthSelector} from "../../reducers/user-selectors";
+
+import Header from './Header';
+import {getUserSelector, isAuthSelector} from "../../selectors/user-selectors";
 import {getMe} from "../../reducers/userReducer";
 
 const HeaderContainer = (props) => {

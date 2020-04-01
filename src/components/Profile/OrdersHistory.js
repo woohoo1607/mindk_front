@@ -1,8 +1,9 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import "./Profile.css";
 import Moment from 'react-moment';
 import 'moment-timezone';
+
+import "./Profile.css";
 
 const OrdersHistory = (props) => {
     return (

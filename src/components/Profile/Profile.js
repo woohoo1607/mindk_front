@@ -1,13 +1,12 @@
 import React, {useState} from "react";
-import "./Profile.css";
+
 import avatar from "../../img/user-male-icon.png";
 import ProfileDataEdit from "./ProfileDataEdit";
 import Button from "../Button/Button";
 import OrdersHistory from "./OrdersHistory";
+import "./Profile.css";
 
 const Profile = (props) => {
-    console.log(props);
-    console.log(props.ordersList);
 
     let [myInfo, setMyInfo] = useState(true);
     let [ordersHistory, setOrdersHistory] = useState(false);

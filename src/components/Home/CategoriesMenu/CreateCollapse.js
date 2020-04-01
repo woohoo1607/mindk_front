@@ -2,8 +2,8 @@ import List from "@material-ui/core/List";
 import Collapse from "@material-ui/core/Collapse";
 import React, {useState} from "react";
 
-import useStyles from "./CategoriesMenuStyles";
 import CreateMenuLi from "./CreateMenuLi";
+import useStyles from "./CategoriesMenuStyles";
 
 const CreateCollapse = ({children, open, index}) => {
     const classes = useStyles();

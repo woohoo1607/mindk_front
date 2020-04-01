@@ -1,12 +1,12 @@
 import React, {useState} from "react";
-import "./ProductsPage.css";
+
 import noProductImg from "../../img/product-no-image.jpg";
 import CharacteristicsTable from "./CharacteristicsTable";
 import MainCharacteristics from "./MainCharacteristics";
+import "./ProductsPage.css";
 
 const ProductPage = (props) => {
     let [productNavigation, setProductNavigation] = useState("Main");
-    console.log(props.product);
     let photos = [];
     let mainCharacteristics = [];
     if (props.product.attributes!==undefined) {

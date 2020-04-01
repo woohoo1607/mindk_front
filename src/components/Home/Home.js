@@ -1,9 +1,10 @@
 import React from "react";
-import "./Home.css";
-import ProductCard from "../ProductCard/ProductCard";
 import {NavLink} from "react-router-dom";
 import ReactPaginate from "react-paginate";
+
 import CategoriesMenu from "./CategoriesMenu/CategoriesMenu";
+import ProductCard from "../ProductCard/ProductCard";
+import "./Home.css";
 
 const Home = (props) => {
     let totalPages = Math.ceil(props.productsCount/props.pageSize);

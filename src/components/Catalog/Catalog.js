@@ -2,9 +2,9 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import ReactPaginate from "react-paginate";
 
-import "./Catalog.css";
 import ProductCard from "../ProductCard/ProductCard";
 import Filter from "./Filter";
+import "./Catalog.css";
 
 const Catalog = (props) => {
     let totalPages = Math.ceil(props.productsCount/props.pageSize);
@@ -28,8 +28,8 @@ const Catalog = (props) => {
                            previousLinkClassName={"prevPaginatorA"}
                            nextLinkClassName={"nextPaginatorA"}
                            containerClassName={"paginator"}
-                           previousLabel={''}
-                           nextLabel={''}
+                           previousLabel={""}
+                           nextLabel={""}
                            activeLinkClassName={"activePaginatorA"}
                            breakClassName={"paginatorBreakLi"}
                            breakLinkClassName={"paginatorBreakA"}

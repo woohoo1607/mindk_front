@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
-import Profile from './Profile';
 import {connect} from "react-redux";
-import {getUserSelector, isAuthSelector} from "../../reducers/user-selectors";
-import {getProduct} from "../../reducers/productsReducer";
 import {withRouter} from "react-router-dom";
+
+import Profile from './Profile';
+import {getUserSelector, isAuthSelector} from "../../selectors/user-selectors";
+import {getProduct} from "../../reducers/productsReducer";
 import {signOut} from "../../reducers/userReducer";
-import {getOrderSelector, getOrdersListSelector} from "../../reducers/orders-selectors";
+import {getOrderSelector, getOrdersListSelector} from "../../selectors/orders-selectors";
 import {getOrdersList} from "../../reducers/ordersReducer";
 
 const ProfileContainer = (props) => {

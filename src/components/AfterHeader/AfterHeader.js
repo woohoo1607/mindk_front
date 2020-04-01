@@ -1,8 +1,9 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
+
 import AfterHeaderMenu from "./AfterHeaderMenu";
 import Search from "./Search";
 import './AfterHeader.css';
-import {NavLink} from "react-router-dom";
 
 const AfterHeader = () => {
     return (

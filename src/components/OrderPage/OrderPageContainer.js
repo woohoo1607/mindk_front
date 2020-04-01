@@ -1,10 +1,11 @@
 import React, {useEffect} from "react";
-import OrderPage from "./OrderPage";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {getIsFetchingSelector, getOrderSelector} from "../../reducers/orders-selectors";
+
+import OrderPage from "./OrderPage";
+import {getIsFetchingSelector, getOrderSelector} from "../../selectors/orders-selectors";
 import {getOrder} from "../../reducers/ordersReducer";
-import {getUserSelector} from "../../reducers/user-selectors";
+import {getUserSelector} from "../../selectors/user-selectors";
 
 const OrderPageContainer = (props) => {
     useEffect( ()=> {

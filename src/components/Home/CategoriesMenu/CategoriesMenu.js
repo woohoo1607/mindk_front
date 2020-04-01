@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import List from "@material-ui/core/List";
 
-import useStyles from "./CategoriesMenuStyles";
 import CreateMenuLi from "./CreateMenuLi";
+import useStyles from "./CategoriesMenuStyles";
 
 const CategoriesMenu = (props) => {
     const classes = useStyles();

@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import ReactPaginate from "react-paginate";
 
 import ProductCard from "../ProductCard/ProductCard";
-import Filter from "./Filter";
+import Filter from "./Filter/Filter";
 import "./Catalog.css";
 
 const Catalog = (props) => {

@@ -17,7 +17,7 @@ const CreateCollapse = ({children, open, index}) => {
     return (
         <Collapse in={open} timeout="auto" unmountOnExit key={index} className={classes.secondMenu}>
             <List>
-                {children.map((c, i)=> <CreateMenuLi id={c.id} name={c.name} childrenCount={c.children.length} children={c.children} index={i} changeWhoOpen={changeWhoOpen} whoOpen={whoOpen}/>)}
+                {children.map((c, i)=> <CreateMenuLi key={i} id={c.id} name={c.name} childrenCount={c.children.length} children={c.children} index={i} changeWhoOpen={changeWhoOpen} whoOpen={whoOpen}/>)}
             </List>
         </Collapse>
     )

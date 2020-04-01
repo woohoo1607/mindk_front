@@ -17,7 +17,7 @@ const CategoriesMenu = (props) => {
     return (
         <div className={classes.categoriesMenu} >
             <List component="nav" className={classes.menuNav} onMouseLeave={()=> changeWhoOpen(CLOSE)}>
-                {props.categories.map((c, i)=> <CreateMenuLi id={c.id} name={c.name} childrenCount={c.children.length} children={c.children} index={i} changeWhoOpen={changeWhoOpen} whoOpen={whoOpen}/>)}
+                {props.categories.map((c, i)=> <CreateMenuLi key={i} id={c.id} name={c.name} childrenCount={c.children.length} children={c.children} index={i} changeWhoOpen={changeWhoOpen} whoOpen={whoOpen}/>)}
             </List>
         </div>
     )

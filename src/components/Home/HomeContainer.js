@@ -20,12 +20,15 @@ const HomeContainer = (props) => {
     }, []);
 
     let categoriesMenu = props.categories.filter(c=> c.parent_id===null);
-    categoriesMenu.map(mainCateg => {
-        mainCateg.children = props.categories.filter(c=> c.parent_id===mainCateg.id);
-        mainCateg.children.map(childCateg => {
-            childCateg.children  = props.categories.filter(c=> c.parent_id===childCateg.id);
-        });
-    });
+
+    const findChildren = (parentArr, arr) => {
+        parentArr.map(main => {
+            main.children = arr.filter(c=> c.parent_id===main.id);
+            findChildren(main.children, arr);
+        })
+    };
+    findChildren(categoriesMenu, props.categories);
+
 
     return (
         <Home {...props}

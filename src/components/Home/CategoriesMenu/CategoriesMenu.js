@@ -63,7 +63,7 @@ const CategoriesMenu = (props) => {
                           onMouseEnter={()=> onMouseEnterMenu(id,level)}
                 >
                     <ListItemText primary={name} />
-                    {childrenCount>0 ? <ArrowForwardIosIcon fontSize="small"/> : <></>}
+                    {childrenCount ? <ArrowForwardIosIcon fontSize="small"/> : <></>}
                 </ListItem>
                 <Divider />
             </NavLink>

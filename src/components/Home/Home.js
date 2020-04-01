@@ -4,7 +4,6 @@ import ProductCard from "../ProductCard/ProductCard";
 import {NavLink} from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import CategoriesMenu from "./CategoriesMenu/CategoriesMenu";
-import NewCategoriesMenu from "./CategoriesMenu/NewCategoriesMenu";
 
 const Home = (props) => {
     let totalPages = Math.ceil(props.productsCount/props.pageSize);
@@ -12,7 +11,6 @@ const Home = (props) => {
         <div className="center">
             <div className="home-container">
                 <CategoriesMenu categories = {props.categoriesMenu}/>
-                <NewCategoriesMenu categories = {props.categoriesMenu}/>
                 <section className="products-home-container">
                     {props.products.map(p=> <NavLink to={`/products/${p.id}`} key={p.id}><ProductCard key={p.id} product={p}/></NavLink>)}
                 </section>

@@ -11,6 +11,7 @@ import {
     getProductsCountSelector,
     getProductsSelector
 } from "../../selectors/products-selectors";
+import {addProductCart} from "../../reducers/cartReducer";
 
 const CatalogContainer = (props) => {
     useEffect( ()=> {
@@ -40,4 +41,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getProducts, setCurrentPage, getCategoriesList})(withRouter(CatalogContainer));
+export default connect(mapStateToProps, {getProducts, setCurrentPage, getCategoriesList, addProductCart})(withRouter(CatalogContainer));

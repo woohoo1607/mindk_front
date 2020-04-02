@@ -1,5 +1,4 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
 import ReactPaginate from "react-paginate";
 
 import CategoriesMenu from "./CategoriesMenu/CategoriesMenu";
@@ -13,7 +12,7 @@ const Home = (props) => {
             <div className="home-container">
                 <CategoriesMenu categories = {props.categoriesMenu}/>
                 <section className="products-home-container">
-                    {props.products.map(p=> <NavLink to={`/products/${p.id}`} key={p.id}><ProductCard key={p.id} product={p}/></NavLink>)}
+                    {props.products.map(p=> <ProductCard key={p.id} product={p}/>)}
                 </section>
             </div>
             <ReactPaginate pageCount={totalPages}
@@ -29,13 +28,12 @@ const Home = (props) => {
                            previousLinkClassName={"prevPaginatorA"}
                            nextLinkClassName={"nextPaginatorA"}
                            containerClassName={"paginator"}
-                           previousLabel={''}
-                           nextLabel={''}
+                           previousLabel={""}
+                           nextLabel={""}
                            activeLinkClassName={"activePaginatorA"}
                            breakClassName={"paginatorBreakLi"}
                            breakLinkClassName={"paginatorBreakA"}
             />
-
         </div>
     )
 };

@@ -5,6 +5,7 @@ import 'moment-timezone';
 
 import "./OrderPage.css";
 import noProductImg from "../../img/product-no-image.jpg";
+import TableWithSelectedProducts from "./TableWithSelectedProducts/TableWithSelectedProducts";
 
 const OrderPage = (props) => {
     console.log(props);
@@ -59,41 +60,7 @@ const OrderPage = (props) => {
                     Статус: {props.order.status}
                     <span/>
                 </h3>
-                <table>
-                    <tbody>
-                    {!props.isFetching && props.order.products.map((p,i) => {
-                        return (
-                            <tr key={i}>
-                                <td>{p.fullProductInfo.attributes
-                                    .filter(a => a.name == "Фото")
-                                    .map((a, index, arr)=> {
-                                        return (
-                                            <NavLink to={`/products/${p["id_products"]}`} key={index}>
-                                                <img src={a.value}/>
-                                            </NavLink>
-                                        )
-                                    })}
-                                </td>
-                                <td style={{width: '200px'}}>
-                                    <NavLink to={`/products/${p["id_products"]}`} key={i}>
-                                        {p.fullProductInfo.name}
-                                    </NavLink>
-                                </td>
-                                <td>{p.price} грн.</td>
-                                <td>x{p.quantity} шт.</td>
-                                <td>{p.total_price} грн.</td>
-                            </tr>
-                        )
-                    })}
-                    <tr>
-                        <th>К оплате</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th className="order-total-price">{props.order.total_price} грн.</th>
-                    </tr>
-                    </tbody>
-                </table>
+                <TableWithSelectedProducts products={props.order.products} isFetching={props.isFetching} total_price={props.order.total_price}/>
             </div>
         </div>
     )

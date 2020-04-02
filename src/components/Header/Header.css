@@ -12,9 +12,9 @@ header a {color: #343e5c; text-decoration: none; font-size: 14px;}
 .logo {float: left; display: block; height: 70px; width: 70px; margin-top: 10px;}
 .auth {float: right; margin-left: 30px;}
 .auth a {border: 2px #e3e8f0 solid; height: 32px; line-height: 90px; padding: 11px 19px; border-radius: 25px; text-transform: uppercase; font-weight: bold;}
-.basket {float: right; text-transform: uppercase; font-weight: bold;}
-.basket a {background:url('../../img/Shopping-Cart-Icon.png') left no-repeat; padding: 10px 0 10px 26px;}
-.basket a span {background-color: #e3e8f0; border-radius: 50%; padding: 4px 7px; margin-left: 5px; display: inline;}
+.basket {float: right; text-transform: uppercase; font-weight: bold; cursor: pointer;}
+.basket p {background:url('../../img/Shopping-Cart-Icon.png') left no-repeat; padding: 0px 0 0px 26px; color: #343e5c; font-size: 14px;}
+.basket p span {background-color: #e3e8f0; border-radius: 50%; padding: 4px 7px; margin-left: 5px; display: inline;}
 header nav {margin-left: 120px; float: left; height: 90px;}
 header nav ul {}
 header nav ul li {float: left;}

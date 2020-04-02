@@ -5,6 +5,7 @@ import AdminHeader from "./AdminHeader";
 import Logo from "../../img/logo_shop.png";
 import Navbar from './Navbar';
 import './Header.css'
+import CartContainer from "../Cart/CartContainer";
 
 const Header = (props) => {
     return (
@@ -23,11 +24,12 @@ const Header = (props) => {
                     {props.isAuth && <NavLink to="/profile">{props.user.login}</NavLink>}
                 </div>
                 <div className="basket">
-                    <NavLink to="/">Cart <span>0</span></NavLink>
+                    <p onClick={()=>props.openCart()}>Cart <span>{props.countProductsCart}</span></p>
                 </div>
                 <div className="clr"></div>
             </div>
             <div className="clr"></div>
+            <CartContainer />
         </header>
     )
 };

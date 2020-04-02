@@ -1,5 +1,4 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
 import ReactPaginate from "react-paginate";
 
 import ProductCard from "../ProductCard/ProductCard";
@@ -8,12 +7,11 @@ import "./Catalog.css";
 
 const Catalog = (props) => {
     let totalPages = Math.ceil(props.productsCount/props.pageSize);
-
     return (
         <div className="center">
             <Filter filtersData={props.filtersData}/>
             <section className="productsContainer">
-                {props.products.map(p=> <NavLink to={`/products/${p.id}`} key={p.id}><ProductCard key={p.id} product={p}/></NavLink>)}
+                {props.products.map(p=> <ProductCard key={p.id} product={p} addProductCart={props.addProductCart}/>)}
             </section>
             <ReactPaginate pageCount={totalPages}
                            pageRangeDisplayed={3}

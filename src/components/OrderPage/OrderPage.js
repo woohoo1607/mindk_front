@@ -8,7 +8,7 @@ import noProductImg from "../../img/product-no-image.jpg";
 import TableWithSelectedProducts from "./TableWithSelectedProducts/TableWithSelectedProducts";
 
 const OrderPage = (props) => {
-    console.log(props);
+
     return (
         <div className="center order-page">
             <div id="order-details">
@@ -60,7 +60,7 @@ const OrderPage = (props) => {
                     Статус: {props.order.status}
                     <span/>
                 </h3>
-                <TableWithSelectedProducts products={props.order.products} isFetching={props.isFetching} total_price={props.order.total_price}/>
+            <TableWithSelectedProducts products={props.order.products} isFetching={props.isFetching} total_price={props.order.total_price}/>
             </div>
         </div>
     )

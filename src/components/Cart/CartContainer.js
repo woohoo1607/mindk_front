@@ -5,9 +5,9 @@ import Cart from "./Cart";
 import {
     getProductsCountCartSelector,
     getIsFetchingCartSelector, getIsOpenCartSelector,
-    getProductsCartSelector
+    getProductsCartSelector, getProductsCartDataSelector
 } from "../../selectors/cart-selectors";
-import {setIsOpen} from "../../reducers/cartReducer";
+import {addProductCart, setIsOpen} from "../../reducers/cartReducer";
 
 
 const CartContainer = (props) => {
@@ -16,10 +16,22 @@ const CartContainer = (props) => {
         props.setIsOpen(false);
     };
 
+    const addCount = (id) => {
+        props.addProductCart(id, 1);
+    };
+
+    const reduceCount = (id) => {
+        props.addProductCart(id, -1);
+    };
+
     return (
         <Cart productsCart={props.productsCart}
+              productsCartData={props.productsCartData}
               isOpen={props.isOpen}
               onClose={closeCart}
+              isFetching={props.isFetching}
+              addCount={addCount}
+              reduceCount={reduceCount}
         />
     )
 };
@@ -27,10 +39,11 @@ const CartContainer = (props) => {
 let mapStateToProps = (state) => {
     return {
         productsCart: getProductsCartSelector(state),
+        productsCartData: getProductsCartDataSelector(state),
         countProductsCart: getProductsCountCartSelector(state),
         isFetching: getIsFetchingCartSelector(state),
         isOpen: getIsOpenCartSelector(state),
     }
 };
 
-export default connect(mapStateToProps, {setIsOpen})(CartContainer);
+export default connect(mapStateToProps, {setIsOpen, addProductCart})(CartContainer);

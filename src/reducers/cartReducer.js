@@ -1,12 +1,16 @@
+import {productsAPI} from "../api/api";
+
 const SET_PRODUCTS_CART = "SET_PRODUCTS_CART";
+const SET_PRODUCTS_CART_DATA = "SET_PRODUCTS_CART_DATA";
 const SET_COUNT_PRODUCTS_CART = "SET_COUNT_PRODUCTS_CART";
 const SET_IS_FETCHING = "SET_IS_FETCHING";
 const SET_IS_OPEN = "SET_IS_OPEN";
 
 let initialState = {
     productsCart: [],
+    productsCartData: [],
     countProductsCart: 0,
-    isFetching: false,
+    isFetchingCart: false,
     isOpen: false,
 };
 
@@ -17,6 +21,13 @@ const cartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 productsCart: [...action.productsCart]
+            };
+        }
+        case SET_PRODUCTS_CART_DATA:
+        {
+            return {
+                ...state,
+                productsCartData: [...action.productsCartData]
             };
         }
         case SET_COUNT_PRODUCTS_CART:
@@ -30,7 +41,7 @@ const cartReducer = (state = initialState, action) => {
         {
             return {
                 ...state,
-                isFetching: action.isFetching
+                isFetchingCart: action.isFetchingCart
             };
         }
         case SET_IS_OPEN:
@@ -48,27 +59,37 @@ const cartReducer = (state = initialState, action) => {
 export const setProductsCart = (productsCart) =>
     ({type: SET_PRODUCTS_CART, productsCart: productsCart});
 
+export const setProductsCartData = (productsCartData) =>
+    ({type: SET_PRODUCTS_CART_DATA, productsCartData: productsCartData});
+
 export const setCountProductsCart = (countProductsCart) =>
     ({type: SET_COUNT_PRODUCTS_CART, countProductsCart: countProductsCart});
 
-export const setIsFetchingCart = (isFetching) =>
-    ({type: SET_IS_FETCHING, isFetching: isFetching});
+export const setIsFetchingCart = (isFetchingCart) =>
+    ({type: SET_IS_FETCHING, isFetchingCart: isFetchingCart});
 
 export const setIsOpen = (isOpen) =>
     ({type: SET_IS_OPEN, isOpen: isOpen});
 
 export const getProductsCart = () => (dispatch) =>{
+    dispatch(setIsFetchingCart(true));
     let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+    let ids = cartProducts.map(p=> p.id);
+    dispatch(getProductsData(ids));
     dispatch(setProductsCart(cartProducts));
     dispatch(getCountProductsCart(cartProducts));
+    dispatch(setIsFetchingCart(false));
 };
 
 export const getCountProductsCart = (cartProducts) => (dispatch) =>{
+    dispatch(setIsFetchingCart(true));
     let count = cartProducts.reduce((sum, p) => sum+p.count, 0);
     dispatch(setCountProductsCart(count));
+    dispatch(setIsFetchingCart(false));
 };
 
 export const addProductCart = (id, count) => (dispatch) => {
+    dispatch(setIsFetchingCart(true));
     let products = JSON.parse(localStorage.getItem("cartProducts")) || [];
     let index = products.findIndex(p=> p.id===id);
     if(index===-1) {
@@ -78,6 +99,23 @@ export const addProductCart = (id, count) => (dispatch) => {
     }
     localStorage.setItem("cartProducts", JSON.stringify(products));
     dispatch(getProductsCart());
+    dispatch(setIsFetchingCart(false));
 };
+
+export const getProductsData = (ids) => (dispatch) => {
+    dispatch(setIsFetchingCart(true));
+    let request = '?id='+ids.toString();
+    productsAPI.getProducts(request)
+        .then(response => {
+            if (response.responseCode ===0) {
+                dispatch(setProductsCartData(response.data));
+                dispatch(setIsFetchingCart(false));
+            }
+        })
+};
+
+export const rewriteCartProductsInLocalStorage = (data) => (dispatch) => {
+
+}
 
 export default cartReducer;

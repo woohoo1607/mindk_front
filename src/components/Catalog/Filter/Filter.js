@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import OneFilter from "./OneFilter";
 import createFilters from "./createFilters";
 

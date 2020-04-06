@@ -9,10 +9,12 @@ const Catalog = (props) => {
     let totalPages = Math.ceil(props.productsCount/props.pageSize);
     return (
         <div className="center">
-            <Filter filtersData={props.filtersData}/>
-            <section className="productsContainer">
-                {props.products.map(p=> <ProductCard key={p.id} product={p} addProductCart={props.addProductCart}/>)}
-            </section>
+            <div className="catalogContainer">
+                <Filter filtersData={props.filtersData}/>
+                <section className="productsContainer">
+                    {props.products.map(p=> <ProductCard key={p.id} product={p} addProductCart={props.addProductCart}/>)}
+                </section>
+            </div>
             <ReactPaginate pageCount={totalPages}
                            pageRangeDisplayed={3}
                            marginPagesDisplayed={3}
@@ -32,7 +34,6 @@ const Catalog = (props) => {
                            breakClassName={"paginatorBreakLi"}
                            breakLinkClassName={"paginatorBreakA"}
             />
-
         </div>
     )
 };

@@ -41,13 +41,13 @@ const ProductForCart = ({id, name, price, img, stock_quantity, productsCart, add
     return (
         <div className="product-for-cart">
             <div className="cart-img">
-                <NavLink to={`/products/${id}`}>
+                <NavLink to={`/products/${id}`} target="_blank">
                     <img src={img ? img : noProductImg}/>
                 </NavLink>
             </div>
             <div className="cart-container">
                 <div className="cart-title">
-                    <NavLink to={`/products/${id}`}>
+                    <NavLink to={`/products/${id}`} target="_blank">
                         <h2>{name}</h2>
                     </NavLink>
                     <DeleteTwoToneIcon color="error" cursor="pointer" onClick={()=>deleteProductCart(id)}/>

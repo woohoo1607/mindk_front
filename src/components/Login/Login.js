@@ -1,19 +1,18 @@
 import React from "react";
 import {reduxForm, Field} from "redux-form";
 
-import {Input} from "../FormsControls/FormControls";
+import {Input, renderTextField} from "../FormsControls/FormControls";
 import "./Login.css";
 
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className="inputContainer">
-                <p className="inputName">username</p>
-                <Field name="username" component={Input} placeholder="username"/>
+                <Field name="username" component={renderTextField} label="username"/>
             </div>
             <div className="inputContainer">
                 <p className="inputName">password</p>
-                <Field name="password" component={Input} placeholder="password" type="password"/>
+                <Field name="password" component={renderTextField} label="password" type="password"/>
             </div>
             <button type="submit">Log In</button>
         </form>

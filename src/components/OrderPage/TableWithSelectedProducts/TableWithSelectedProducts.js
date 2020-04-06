@@ -10,7 +10,7 @@ const TableWithSelectedProducts = ({products, isFetching, total_price}) => {
                 return (
                     <tr key={i}>
                         <td>{p.fullProductInfo.attributes
-                            .filter(a => a.name == "Фото")
+                            .filter(a => a.name === "Фото")
                             .map((a, index, arr)=> {
                                 return (
                                     <NavLink to={`/products/${p["id_products"]}`} key={index}>

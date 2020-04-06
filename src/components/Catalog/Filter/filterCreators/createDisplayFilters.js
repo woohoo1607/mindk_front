@@ -1,9 +1,10 @@
+import {deviceTypes} from "../filter-const";
+
 const createDisplayFilters = (deviceType, attributes, values) => {
-    /*deviceType => mobile, tablet, laptop, tv, monitor*/
 
     let filterInfo = attributes.find(a => a.name === 'Диагональ дисплея');
     let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
-    if (deviceType==="mobile") {
+    if (deviceType===deviceTypes.MOBILE) {
         let parameters = ["до 4\"", "от 4\" до 5\"", "от 5\" до 6\"", "более 6\""];
         let count = [0,0,0,0];
         valuesArr.forEach(elem => {

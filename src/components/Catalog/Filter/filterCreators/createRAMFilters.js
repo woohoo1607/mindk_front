@@ -1,7 +1,9 @@
+import {deviceTypes} from "../filter-const";
+
 const createRAMFilters = (deviceType, attributes, values) => {
     let filterInfo = attributes.find(a => a.name === 'Встроенная память');
     let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
-    if (deviceType==="mobile") {
+    if (deviceType===deviceTypes.MOBILE) {
         let parameters = ["менее 16 Гб", "16 Гб", "32 Гб", "64 Гб" ,"128 Гб" ,"256 Гб", "512 Гб", "более 512 Гб"];
         let count = [0,0,0,0,0,0,0,0];
         valuesArr.forEach(elem => {

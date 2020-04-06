@@ -1,7 +1,9 @@
+import {deviceTypes} from "../filter-const";
+
 const createMainCameraFilters = (deviceType, attributes, values) => {
     let filterInfo = attributes.find(a => a.name === 'Основная камера');
     let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
-    if (deviceType==="mobile") {
+    if (deviceType===deviceTypes.MOBILE) {
         let parameters = ["до 8 Мп", "от 8 до 13 МП", "от 13 до 20 МП", "более 20 МП"];
         let count = [0,0,0,0];
         valuesArr.forEach(elem => {

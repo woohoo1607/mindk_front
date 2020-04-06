@@ -1,7 +1,9 @@
+import {deviceTypes} from "../filter-const";
+
 const createFrontCameraFilters = (deviceType, attributes, values) => {
     let filterInfo = attributes.find(a => a.name === 'Фронтальная камера');
     let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
-    if (deviceType==="mobile") {
+    if (deviceType===deviceTypes.MOBILE) {
         let parameters = ["до 5 Мп", "от 5 до 8 МП", "от 8 до 13 МП", "более 13 МП"];
         let count = [0,0,0,0];
         valuesArr.forEach(elem => {

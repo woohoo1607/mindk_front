@@ -5,6 +5,6 @@
 .productColor {margin: 16px 0; text-transform: uppercase; color: #b9bed1; font-size: 12px;}
 .productPrice {font-size: 18px; color: #000; font-weight: bold; width: 60%; display: block; text-align: left; line-height: 43px;}
 .productFooter { margin: 10px 0 10px 10px; display: flex; height: 43px;}
-.buy {background-color: #343e5c; width: 40%; line-height: 43px; color: #FFF;}
+.buy {background-color: #343e5c; width: 40%; line-height: 43px; color: #FFF; cursor: pointer;}
 .product:hover {border: 2px solid #343e5c;}
 a {text-decoration: none;}

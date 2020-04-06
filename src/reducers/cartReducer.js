@@ -114,8 +114,17 @@ export const getProductsData = (ids) => (dispatch) => {
         })
 };
 
-export const rewriteCartProductsInLocalStorage = (data) => (dispatch) => {
-
-}
+export const deleteProductCart = (id, productsCartData) => (dispatch) => {
+    dispatch(setIsFetchingCart(true));
+    let products = JSON.parse(localStorage.getItem("cartProducts"));
+    let index = products.findIndex(p=> p.id===id);
+    let indexData = productsCartData.findIndex(p=> p.id===id);
+    productsCartData.splice(indexData,1);
+    dispatch(setProductsCartData(productsCartData));
+    products.splice(index,1);
+    localStorage.setItem("cartProducts", JSON.stringify(products));
+    dispatch(getProductsCart());
+    dispatch(setIsFetchingCart(false));
+};
 
 export default cartReducer;

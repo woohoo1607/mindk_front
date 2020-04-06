@@ -4,23 +4,45 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 
-const ProductForCart = ({id, name, price, img, productsCart, addCount, reduceCount}) => {
+import noProductImg from "../../../img/product-no-image.jpg";
+
+const ProductForCart = ({id, name, price, img, stock_quantity, productsCart, addCount, reduceCount, deleteProductCart}) => {
 
     let count = productsCart.find(p=>p.id===id).count;
     let total_price = price*count;
 
+    let reduceProduct = (id, count) => {
+        if (count>1) {
+            reduceCount(id)
+        }
+    };
+
+    let addProduct = (id, count) => {
+        if (count<stock_quantity) {
+            addCount(id);
+        }
+    };
+
     let removeIconColor = "disabled";
     let removeIconCursor = "inherit";
+    let addIconColor = "disabled";
+    let addIconCursor = "inherit";
+
     if (count>1) {
         removeIconColor = "inherit";
         removeIconCursor = "pointer";
+    }
+
+    if (count<stock_quantity) {
+        addIconColor = "inherit";
+        addIconCursor = "pointer";
     }
 
     return (
         <div className="product-for-cart">
             <div className="cart-img">
                 <NavLink to={`/products/${id}`}>
-                    <img src={img}/>
+                    <img src={img ? img : noProductImg}/>
                 </NavLink>
             </div>
             <div className="cart-container">
@@ -28,12 +50,12 @@ const ProductForCart = ({id, name, price, img, productsCart, addCount, reduceCou
                     <NavLink to={`/products/${id}`}>
                         <h2>{name}</h2>
                     </NavLink>
-                    <DeleteTwoToneIcon color="error" cursor="pointer"/>
+                    <DeleteTwoToneIcon color="error" cursor="pointer" onClick={()=>deleteProductCart(id)}/>
                 </div>
                 <div className="count">
-                    <RemoveIcon color={removeIconColor} onClick={()=>reduceCount(id)} cursor={removeIconCursor}/>
+                    <RemoveIcon color={removeIconColor} onClick={()=>reduceProduct(id, count)} cursor={removeIconCursor}/>
                     <p>{count}</p>
-                    <AddIcon onClick={()=>addCount(id)} cursor="pointer"/>
+                    <AddIcon color={addIconColor} onClick={()=>addProduct(id, count)} cursor={addIconCursor}/>
                 </div>
                 <p className="price">x {price} грн.</p>
                 <p className="total-product-price">{total_price} грн.</p>

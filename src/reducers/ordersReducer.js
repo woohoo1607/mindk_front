@@ -80,10 +80,4 @@ export const getOrder = (id) => (dispatch) => {
         })
 };
 
-export const createOrder = (data) => (dispatch) => {
-    dispatch(setIsFetching(true));
-    console.log(data);
-    dispatch(setIsFetching(false));
-};
-
 export default ordersReducer;

@@ -3,9 +3,11 @@ import {reduxForm, Field} from "redux-form";
 
 import {renderTextArea, renderTextField} from "../../FormsControls/FormControls";
 import {email, requiredField} from "../../../validators/validators";
+import {connect} from "react-redux";
 
 
-const CheckoutForm = ({handleSubmit, isAuth}) => {
+const CheckoutForm = ({handleSubmit, isAuth, ...props}) => {
+    console.log(props);
     return (
         <form onSubmit={handleSubmit}>
             <div className="checkout-field">
@@ -30,7 +32,7 @@ const CheckoutForm = ({handleSubmit, isAuth}) => {
             </>
             }
             <div className="checkout-field">
-                <Field name="Адрес" component={renderTextField} label="Адрес" type="text" validate={[requiredField]}/>
+                <Field name="address" component={renderTextField} label="Адрес" type="text" validate={[requiredField]}/>
             </div>
             <div className="checkout-field">
                 <Field name="comments" component={renderTextArea} label="Коментарий к заказу" type="text"/>

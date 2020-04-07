@@ -1,4 +1,4 @@
-import {productsAPI} from "../api/api";
+import {ordersAPI, productsAPI} from "../api/api";
 
 const SET_PRODUCTS_CART = "SET_PRODUCTS_CART";
 const SET_PRODUCTS_CART_DATA = "SET_PRODUCTS_CART_DATA";
@@ -126,5 +126,20 @@ export const deleteProductCart = (id, productsCartData) => (dispatch) => {
     dispatch(getProductsCart());
     dispatch(setIsFetchingCart(false));
 };
+
+export const createOrder = (data) => (dispatch) => {
+    dispatch(setIsFetchingCart(true));
+   return ordersAPI.addOrder(data)
+        .then(res=> {
+            if (res.responseCode===0) {
+                dispatch(setIsFetchingCart(false));
+                return true;
+            } else {
+                dispatch(setIsFetchingCart(false));
+                return false
+            }
+        });
+};
+
 
 export default cartReducer;

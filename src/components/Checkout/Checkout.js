@@ -1,12 +1,30 @@
 import React from "react";
 
-import CreateOrderForm from "./CheckoutForm/CheckoutForm";
+import CheckoutForm from "./CheckoutForm/CheckoutForm";
 import "./styles.css";
+import ProductForCart from "../Cart/ProductForCart/ProductForCart";
+import {totalPriceAllOrder} from "../../helpers/totalPriceAllOrder";
 
-const Checkout = ({user, isAuth}) => {
-    console.log(user);
+const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder, addCount, reduceCount, deleteProductCart}) => {
+
     const submit = (data) => {
-        console.log(data);
+        let products = productsCartData.map(product => {
+            let result = {
+                quantity: productsCart.find(p=>p.id===product.id).count,
+                guarantee: product.guarantee,
+                id_products: product.id,
+                price: product.price,
+            };
+            result.total_price = result.price*result.quantity;
+            return result
+        });
+        if (isAuth) {
+            delete data.first_name;
+            delete data.second_name;
+            delete data.email;
+            delete data.mobile_phone;
+            createNewOrder({...data, total_price, products});
+        }
     };
 
     let initial = {
@@ -16,9 +34,34 @@ const Checkout = ({user, isAuth}) => {
         mobile_phone: user.mobile_phone
     };
 
+    let total_price = totalPriceAllOrder(productsCartData, productsCart);
+
     return (
         <div className="center">
-            <CreateOrderForm onSubmit={submit} isAuth={isAuth} initialValues={initial}/>
+            <div className="checkout">
+                <div className="checkout-form">
+                    <h2>Оформление заказа:</h2>
+                    <CheckoutForm onSubmit={submit} isAuth={isAuth} initialValues={initial}/>
+                </div>
+                <div className="checkout-products">
+                    <h3>Ваш заказ:</h3>
+                    {productsCartData.map(p=> <ProductForCart key={p.id}
+                                                              id={p.id}
+                                                              name={p.name}
+                                                              price={p.price}
+                                                              img={p.img}
+                                                              stock_quantity={p.stock_quantity}
+                                                              productsCart={productsCart}
+                                                              addCount={addCount}
+                                                              reduceCount={reduceCount}
+                                                              deleteProductCart={deleteProductCart}
+                    />)}
+                    <div className="checkout-total-price">
+                        <h3>Сумма заказа:</h3>
+                        <p>{total_price} <span>грн.</span></p>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 };

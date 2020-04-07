@@ -20,5 +20,22 @@ export const renderTextField = ({label, input, meta: {touched, invalid, error}, 
                       helperText={touched && error}
                       {...input}
                       {...props}
+                      fullWidth={true}
+
             />
+};
+
+export const renderTextArea = ({label, input, meta: {touched, invalid, error}, ...props}) => {
+    return <TextField label={label}
+                      placeholder={label}
+                      error={touched && invalid}
+                      helperText={touched && error}
+                      {...input}
+                      {...props}
+                      multiline
+                      rows={4}
+                      rowsMax={8}
+                      variant="outlined"
+                      fullWidth={true}
+    />
 };

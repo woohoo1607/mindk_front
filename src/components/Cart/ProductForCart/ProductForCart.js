@@ -42,7 +42,7 @@ const ProductForCart = ({id, name, price, img, stock_quantity, productsCart, add
         <div className="product-for-cart">
             <div className="cart-img">
                 <NavLink to={`/products/${id}`} target="_blank">
-                    <img src={img ? img : noProductImg}/>
+                    <img src={img || noProductImg}/>
                 </NavLink>
             </div>
             <div className="cart-container">

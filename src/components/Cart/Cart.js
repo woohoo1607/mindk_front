@@ -2,16 +2,17 @@ import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
+import {NavLink} from "react-router-dom";
 
 import ProductForCart from "./ProductForCart/ProductForCart";
+import {totalPriceAllOrder} from "../../helpers/totalPriceAllOrder";
 import "./styles.css";
+
 
 
 const Cart = ({isOpen, onClose, productsCart, productsCartData, isFetching, addCount, reduceCount, deleteProductCart}) => {
 
-    let total_price = productsCartData.reduce((sum,p) => {
-        return sum+(+productsCart.find(c=>c.id===p.id).count)*(+p.price)
-    },0);
+    let total_price = totalPriceAllOrder(productsCartData, productsCart);
 
     return (
         <Dialog open={isOpen} onClose={onClose} maxWidth="md" fullWidth>
@@ -35,9 +36,9 @@ const Cart = ({isOpen, onClose, productsCart, productsCartData, isFetching, addC
                         <h3>Сумма заказа:</h3>
                         <p>{total_price} <span>грн.</span></p>
                     </div>
-                    <div className="create-order">
+                    <NavLink to="checkout" className="create-order" onClick={onClose}>
                         <p>Оформить заказ</p>
-                    </div>
+                    </NavLink>
                 </div>
             </DialogContent>
         </Dialog>

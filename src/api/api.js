@@ -62,6 +62,12 @@ export const ordersAPI = {
            return response.data
         });
     },
+    addOrder (orderData) {
+        let data = qs.stringify(orderData);
+        return instance.post(`orders`, data, getToken()).then(response => {
+           return response.data
+        });
+    }
 };
 
 export const categoriesAPI = {

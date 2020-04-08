@@ -75,10 +75,12 @@ export const getProductsCart = () => (dispatch) =>{
     dispatch(setIsFetchingCart(true));
     let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
     let ids = cartProducts.map(p=> p.id);
-    dispatch(getProductsData(ids));
-    dispatch(setProductsCart(cartProducts));
-    dispatch(getCountProductsCart(cartProducts));
-    dispatch(setIsFetchingCart(false));
+    if (ids.length>0) {
+        dispatch(getProductsData(ids));
+        dispatch(setProductsCart(cartProducts));
+        dispatch(getCountProductsCart(cartProducts));
+        dispatch(setIsFetchingCart(false));
+    }
 };
 
 export const getCountProductsCart = (cartProducts) => (dispatch) =>{

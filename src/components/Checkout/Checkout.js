@@ -1,9 +1,9 @@
 import React from "react";
 
 import CheckoutForm from "./CheckoutForm/CheckoutForm";
-import "./styles.css";
 import ProductForCart from "../Cart/ProductForCart/ProductForCart";
 import {totalPriceAllOrder} from "../../helpers/totalPriceAllOrder";
+import "./styles.css";
 
 const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder, addCount, reduceCount, deleteProductCart, registerAndCreateNewOrder}) => {
 

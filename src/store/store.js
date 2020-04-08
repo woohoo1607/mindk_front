@@ -6,12 +6,14 @@ import userReducer from "../reducers/userReducer"
 import productsReducer from "../reducers/productsReducer";
 import ordersReducer from "../reducers/ordersReducer";
 import cartReducer from "../reducers/cartReducer";
+import popupReducer from "../reducers/popupReducer";
 
 let reducers = combineReducers({
     user: userReducer,
     products: productsReducer,
     orders: ordersReducer,
     cart: cartReducer,
+    popup: popupReducer,
     form: formReducer
 });
 

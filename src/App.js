@@ -10,6 +10,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import OrderPageContainer from "./components/OrderPage/OrderPageContainer";
 import CatalogContainer from "./components/Catalog/CatalogContainer";
 import CheckoutContainer from "./components/Checkout/CheckoutForm/CheckoutContainer";
+import PopUp from "./components/PopUp/PopUp";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
         <Route path='/orders/:id' render={ () => <OrderPageContainer /> }/>
         <Route path='/catalog' render={ () => <CatalogContainer /> }/>
         <Route path='/checkout' render={ () => <CheckoutContainer /> }/>
+
+        <PopUp />
     </div>
   );
 }

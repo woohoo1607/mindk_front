@@ -12,16 +12,18 @@ import {
 import {getUserSelector, isAuthSelector} from "../../../selectors/user-selectors";
 import {addProductCart, clearCart, createOrder, deleteProductCart} from "../../../reducers/cartReducer";
 import {createUser, signIn} from "../../../reducers/userReducer";
+import {callPopUp} from "../../../reducers/popupReducer";
 
 
 
 const CheckoutContainer = (props) => {
-
+    const msgSuccess = "Ваш заказ успешно создан и передан на обработку";
     const createNewOrder = async (data) => {
         let isNewOrder = await props.createOrder(data);
         if (isNewOrder) {
             props.clearCart();
-            props.history.push("/profile")
+            props.history.push("/profile");
+            props.callPopUp(msgSuccess);
         }
     };
 
@@ -33,7 +35,8 @@ const CheckoutContainer = (props) => {
                 let isNewOrder = await props.createOrder(order);
                 if (isNewOrder) {
                     props.clearCart();
-                    props.history.push("/profile")
+                    props.history.push("/profile");
+                    props.callPopUp(msgSuccess);
                 }
             }
 
@@ -77,4 +80,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {createOrder, addProductCart, deleteProductCart, clearCart, createUser, signIn})(withRouter(CheckoutContainer));
+export default connect(mapStateToProps, {createOrder, addProductCart, deleteProductCart, clearCart, createUser, signIn, callPopUp})(withRouter(CheckoutContainer));

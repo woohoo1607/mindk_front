@@ -106,13 +106,11 @@ export const signOut = (id) => (dispatch) => {
 };
 
 export const resetUserError = () => (dispatch) => {
-    console.log("reset");
     dispatch(changeErrorStatus(false));
     dispatch(setMsgUserError(''));
 };
 
 export const createUserError = (msg) => (dispatch) => {
-    console.log("create");
     dispatch(changeErrorStatus(true));
     dispatch(setMsgUserError(msg));
 };

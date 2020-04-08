@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
 import {Route} from "react-router-dom";
+
 import HeaderContainer from "./components/Header/HeaderContainer";
 import AfterHeader from "./components/AfterHeader/AfterHeader";
 import HomeContainer from "./components/Home/HomeContainer";
@@ -9,8 +9,9 @@ import LoginContainer from "./components/Login/LoginContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import OrderPageContainer from "./components/OrderPage/OrderPageContainer";
 import CatalogContainer from "./components/Catalog/CatalogContainer";
-import CheckoutContainer from "./components/Checkout/CheckoutForm/CheckoutContainer";
+import CheckoutContainer from "./components/Checkout/CheckoutContainer";
 import PopUp from "./components/PopUp/PopUp";
+import './App.css';
 
 function App() {
   return (

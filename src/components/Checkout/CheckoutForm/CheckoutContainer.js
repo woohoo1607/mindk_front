@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 
@@ -30,17 +30,23 @@ const CheckoutContainer = (props) => {
         }
     }, []);
 
+    let [isFetching, setIsFetching] = useState(false);
+
     const msgSuccess = "Ваш заказ успешно создан и передан на обработку";
     const createNewOrder = async (data) => {
+        setIsFetching(true);
         let isNewOrder = await props.createOrder(data);
         if (isNewOrder) {
             props.clearCart();
+            setIsFetching(false);
             props.history.push("/profile");
             props.callPopUp(msgSuccess);
         }
+        setIsFetching(false);
     };
 
     const registerAndCreateNewOrder = async (user, order) => {
+        setIsFetching(true);
         let isRegister = await props.createUser(user);
         if (isRegister) {
             let isLogIn = await props.signIn(user.login, user.pass);
@@ -48,12 +54,13 @@ const CheckoutContainer = (props) => {
                 let isNewOrder = await props.createOrder(order);
                 if (isNewOrder) {
                     props.clearCart();
+                    setIsFetching(false);
                     props.history.push("/profile");
                     props.callPopUp(msgSuccess);
                 }
             }
-
         }
+        setIsFetching(false);
     };
 
     const addCount = (id) => {
@@ -69,7 +76,8 @@ const CheckoutContainer = (props) => {
     };
 
     return (
-        <Checkout user={props.user}
+        <>
+            {!isFetching && <Checkout user={props.user}
                   isAuth={props.isAuth}
                   createNewOrder={createNewOrder}
                   productsCartData={props.productsCartData}
@@ -80,7 +88,9 @@ const CheckoutContainer = (props) => {
                   registerAndCreateNewOrder={registerAndCreateNewOrder}
                   isUserError={props.isUserError}
                   msgUserError={props.msgUserError}
-        />
+        />}
+            {isFetching && <p>LOOOOOOOOOOOOOOOOOOOOOOOOOOAAAAAAAAAAAAAAAAAAADDDDDDDDDDDDDDDDDDDDDDDDIIIIIIIIIINNNNNNNNNNNNNNGGGGGGGGGGGGGG!!!!!!!!!!!!!!!!!!</p>}
+        </>
     )
 };
 

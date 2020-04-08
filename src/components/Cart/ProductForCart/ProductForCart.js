@@ -11,13 +11,13 @@ const ProductForCart = ({id, name, price, img, stock_quantity, productsCart, add
     let count = productsCart.find(p=>p.id===id).count;
     let total_price = price*count;
 
-    let reduceProduct = (id, count) => () => {
+    const reduceProduct = (id, count) => () => {
         if (count>1) {
             reduceCount(id)
         }
     };
 
-    let addProduct = (id, count) => () => {
+    const addProduct = (id, count) => () => {
         if (count<stock_quantity) {
             addCount(id);
         }

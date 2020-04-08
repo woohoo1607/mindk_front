@@ -7,3 +7,11 @@ export const getUserSelector = (state) => {
 export const isAuthSelector = (state) => {
     return state.user.isAuth
 };
+
+export const isUserErrorSelector = (state) => {
+    return state.user.isUserError
+};
+
+export const getMsgUserErrorSelector = (state) => {
+    return state.user.msgUserError
+};

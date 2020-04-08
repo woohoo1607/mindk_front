@@ -10,3 +10,5 @@
 .checkout-total-price h3 {font-size: 30px; color: #000;}
 .checkout-total-price p {font-weight: bold; font-size: 30px; color:#000;}
 .checkout-total-price p span {font-size: 20px;}
+
+.checkout-error {color: red; width: 50%; margin-bottom: 20px;}

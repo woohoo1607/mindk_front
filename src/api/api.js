@@ -41,7 +41,7 @@ export const authAPI = {
         let data = qs.stringify(user);
         return instance.post(`users`, data).then(response => {
             return response.data
-        })
+        }).catch(err=> JSON.parse(err.request.responseText));
     },
     me() {
         return instance.get('me', getToken()).then(response => {

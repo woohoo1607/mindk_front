@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 
@@ -9,14 +9,27 @@ import {
     getProductsCartSelector,
     getProductsCountCartSelector
 } from "../../../selectors/cart-selectors";
-import {getUserSelector, isAuthSelector} from "../../../selectors/user-selectors";
+import {
+    getMsgUserErrorSelector,
+    getUserSelector,
+    isAuthSelector,
+    isUserErrorSelector
+} from "../../../selectors/user-selectors";
 import {addProductCart, clearCart, createOrder, deleteProductCart} from "../../../reducers/cartReducer";
-import {createUser, signIn} from "../../../reducers/userReducer";
+import {createUser, resetUserError, signIn} from "../../../reducers/userReducer";
 import {callPopUp} from "../../../reducers/popupReducer";
 
 
 
 const CheckoutContainer = (props) => {
+
+    useEffect(()=> {
+
+        return function clear() {
+            props.resetUserError();
+        }
+    }, []);
+
     const msgSuccess = "Ваш заказ успешно создан и передан на обработку";
     const createNewOrder = async (data) => {
         let isNewOrder = await props.createOrder(data);
@@ -65,6 +78,8 @@ const CheckoutContainer = (props) => {
                   reduceCount={reduceCount}
                   deleteProductCart={deleteProductCart}
                   registerAndCreateNewOrder={registerAndCreateNewOrder}
+                  isUserError={props.isUserError}
+                  msgUserError={props.msgUserError}
         />
     )
 };
@@ -77,7 +92,9 @@ let mapStateToProps = (state) => {
         isFetching: getIsFetchingCartSelector(state),
         isAuth: isAuthSelector(state),
         user: getUserSelector(state),
+        isUserError: isUserErrorSelector(state),
+        msgUserError: getMsgUserErrorSelector(state),
     }
 };
 
-export default connect(mapStateToProps, {createOrder, addProductCart, deleteProductCart, clearCart, createUser, signIn, callPopUp})(withRouter(CheckoutContainer));
+export default connect(mapStateToProps, {createOrder, addProductCart, deleteProductCart, clearCart, createUser, signIn, callPopUp, resetUserError})(withRouter(CheckoutContainer));

@@ -2,6 +2,10 @@ import {authAPI} from "../api/api";
 
 const SET_USER_DATA = "SET_USER_DATA";
 const SET_IS_AUTH = "SET_IS_AUTH";
+const SET_IS_MSG_USER_ERROR = "SET_IS_MSG_USER_ERROR";
+const SET_IS_USER_ERROR = "SET_IS_USER_ERROR";
+
+const uniqueErrorMsg = "Нарушение ограничения уникальности";
 
 let initialState = {
     user: {
@@ -14,7 +18,9 @@ let initialState = {
         mobile_phone: null,
         token: null
     },
-    isAuth: false
+    isAuth: false,
+    isUserError: false,
+    msgUserError: '',
 };
 
 const userReducer = (state = initialState, action) => {
@@ -33,6 +39,20 @@ const userReducer = (state = initialState, action) => {
                 isAuth: action.isAuth
             };
         }
+        case SET_IS_MSG_USER_ERROR:
+        {
+            return {
+                ...state,
+                msgUserError: action.msgUserError
+            };
+        }
+        case SET_IS_USER_ERROR:
+        {
+            return {
+                ...state,
+                isUserError: action.isUserError
+            };
+        }
         default:
             return state;
     }
@@ -43,6 +63,12 @@ export const setUserData = (user) =>
 
 export const setAuth = (isAuth) =>
     ({type: SET_IS_AUTH, isAuth: isAuth});
+
+export const setMsgUserError = (msgUserError) =>
+    ({type: SET_IS_MSG_USER_ERROR, msgUserError: msgUserError});
+
+export const changeErrorStatus = (isUserError) =>
+    ({type: SET_IS_USER_ERROR, isUserError: isUserError});
 
 export const signIn = (username, password) => (dispatch) => {
     return authAPI.login(username, password)
@@ -79,14 +105,34 @@ export const signOut = (id) => (dispatch) => {
         })
 };
 
+export const resetUserError = () => (dispatch) => {
+    console.log("reset");
+    dispatch(changeErrorStatus(false));
+    dispatch(setMsgUserError(''));
+};
+
+export const createUserError = (msg) => (dispatch) => {
+    console.log("create");
+    dispatch(changeErrorStatus(true));
+    dispatch(setMsgUserError(msg));
+};
+
 export const createUser = (user) => (dispatch) => {
+    dispatch(resetUserError());
     return authAPI.register(user)
         .then(res=> {
-            console.log(res);
             if (res.responseCode===0) {
                 return true;
+            } else {
+                if (res.message===uniqueErrorMsg) {
+                    let msg = "Логин, email и/или мобильный телефон уже используются";
+                    dispatch(createUserError(msg));
+                } else {
+                    dispatch(createUserError(res.message));
+                }
+                return false
             }
-        })
+        }).catch(err=>console.log(err))
 };
 
 export default userReducer;

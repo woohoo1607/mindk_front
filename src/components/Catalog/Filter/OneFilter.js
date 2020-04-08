@@ -36,8 +36,9 @@ const OneFilter = ({index, filter}) => {
             <Collapse component="li" in={open} timeout="auto" unmountOnExit>
                 <List>
                     {filter.parameters.length && filter.parameters.map((p,i) => {
+                        let isDisabled = filter.count[i] ? false : true;
                         return (
-                            <ListItem key={i} button onClick={handleToggle(i)}>
+                            <ListItem key={i} button onClick={handleToggle(i)} disabled={isDisabled}>
                                 <ListItemIcon>
                                     <Checkbox
                                         edge="start"

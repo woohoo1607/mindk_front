@@ -11,13 +11,13 @@ const ProductForCart = ({id, name, price, img, stock_quantity, productsCart, add
     let count = productsCart.find(p=>p.id===id).count;
     let total_price = price*count;
 
-    let reduceProduct = (id, count) => {
+    let reduceProduct = (id, count) => () => {
         if (count>1) {
             reduceCount(id)
         }
     };
 
-    let addProduct = (id, count) => {
+    let addProduct = (id, count) => () => {
         if (count<stock_quantity) {
             addCount(id);
         }
@@ -53,9 +53,9 @@ const ProductForCart = ({id, name, price, img, stock_quantity, productsCart, add
                     <DeleteTwoToneIcon color="error" cursor="pointer" onClick={()=>deleteProductCart(id)}/>
                 </div>
                 <div className="count">
-                    <RemoveIcon color={removeIconColor} onClick={()=>reduceProduct(id, count)} cursor={removeIconCursor}/>
+                    <RemoveIcon color={removeIconColor} onClick={reduceProduct(id, count)} cursor={removeIconCursor}/>
                     <p>{count}</p>
-                    <AddIcon color={addIconColor} onClick={()=>addProduct(id, count)} cursor={addIconCursor}/>
+                    <AddIcon color={addIconColor} onClick={addProduct(id, count)} cursor={addIconCursor}/>
                 </div>
                 <p className="price">x {price} грн.</p>
                 <p className="total-product-price">{total_price} грн.</p>

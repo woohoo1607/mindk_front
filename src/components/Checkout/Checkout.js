@@ -5,7 +5,7 @@ import ProductForCart from "../Cart/ProductForCart/ProductForCart";
 import {totalPriceAllOrder} from "../../helpers/totalPriceAllOrder";
 import "./styles.css";
 
-const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder, addCount, reduceCount, deleteProductCart, registerAndCreateNewOrder, isUserError, msgUserError}) => {
+const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder, addCount, reduceCount, deleteProductCart, registerAndCreateNewOrder, isUserError, msgUserError, isCartError, msgCartError}) => {
 
     const submit = (data) => {
         let products = productsCartData.map(product => {
@@ -58,6 +58,7 @@ const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder,
             <div className="checkout">
                 <div className="checkout-form">
                     {isUserError && <p className="checkout-error">{msgUserError}</p>}
+                    {isCartError && <p className="checkout-error">{msgCartError}</p>}
                     <h2>Оформление заказа:</h2>
                     <CheckoutForm onSubmit={submit} isAuth={isAuth} initialValues={initial} />
                 </div>

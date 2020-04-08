@@ -4,10 +4,10 @@ import {withRouter} from "react-router-dom";
 
 import Checkout from "./Checkout";
 import {
-    getIsFetchingCartSelector,
+    getIsFetchingCartSelector, getMsgCartErrorSelector,
     getProductsCartDataSelector,
     getProductsCartSelector,
-    getProductsCountCartSelector
+    getProductsCountCartSelector, isCartErrorSelector
 } from "../../selectors/cart-selectors";
 import {
     getMsgUserErrorSelector,
@@ -15,7 +15,7 @@ import {
     isAuthSelector,
     isUserErrorSelector
 } from "../../selectors/user-selectors";
-import {addProductCart, clearCart, createOrder, deleteProductCart} from "../../reducers/cartReducer";
+import {addProductCart, clearCart, createOrder, deleteProductCart, resetCartError} from "../../reducers/cartReducer";
 import {createUser, resetUserError, signIn} from "../../reducers/userReducer";
 import {callPopUp} from "../../reducers/popupReducer";
 
@@ -27,6 +27,7 @@ const CheckoutContainer = (props) => {
 
         return function clear() {
             props.resetUserError();
+            props.resetCartError();
         }
     }, []);
 
@@ -36,7 +37,6 @@ const CheckoutContainer = (props) => {
     const createNewOrder = async (data) => {
         setIsFetching(true);
         let isNewOrder = await props.createOrder(data);
-        console.log(isNewOrder);
         if (isNewOrder) {
             props.clearCart();
             setIsFetching(false);
@@ -77,21 +77,20 @@ const CheckoutContainer = (props) => {
     };
 
     return (
-        <>
-            {!isFetching && <Checkout user={props.user}
-                  isAuth={props.isAuth}
-                  createNewOrder={createNewOrder}
-                  productsCartData={props.productsCartData}
-                  productsCart={props.productsCart}
-                  addCount={addCount}
-                  reduceCount={reduceCount}
-                  deleteProductCart={deleteProductCart}
-                  registerAndCreateNewOrder={registerAndCreateNewOrder}
-                  isUserError={props.isUserError}
-                  msgUserError={props.msgUserError}
-        />}
-            {isFetching && <p>LOOOOOOOOOOOOOOOOOOOOOOOOOOAAAAAAAAAAAAAAAAAAADDDDDDDDDDDDDDDDDDDDDDDDIIIIIIIIIINNNNNNNNNNNNNNGGGGGGGGGGGGGG!!!!!!!!!!!!!!!!!!</p>}
-        </>
+        <Checkout user={props.user}
+              isAuth={props.isAuth}
+              createNewOrder={createNewOrder}
+              productsCartData={props.productsCartData}
+              productsCart={props.productsCart}
+              addCount={addCount}
+              reduceCount={reduceCount}
+              deleteProductCart={deleteProductCart}
+              registerAndCreateNewOrder={registerAndCreateNewOrder}
+              isUserError={props.isUserError}
+              msgUserError={props.msgUserError}
+              isCartError={props.isCartError}
+              msgCartError={props.msgCartError}
+        />
     )
 };
 
@@ -105,7 +104,9 @@ let mapStateToProps = (state) => {
         user: getUserSelector(state),
         isUserError: isUserErrorSelector(state),
         msgUserError: getMsgUserErrorSelector(state),
+        isCartError: isCartErrorSelector(state),
+        msgCartError: getMsgCartErrorSelector(state),
     }
 };
 
-export default connect(mapStateToProps, {createOrder, addProductCart, deleteProductCart, clearCart, createUser, signIn, callPopUp, resetUserError})(withRouter(CheckoutContainer));
+export default connect(mapStateToProps, {createOrder, addProductCart, deleteProductCart, clearCart, createUser, signIn, callPopUp, resetUserError, resetCartError})(withRouter(CheckoutContainer));

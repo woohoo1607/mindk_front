@@ -19,3 +19,11 @@ export const getIsFetchingCartSelector = (state) => {
 export const getIsOpenCartSelector = (state) => {
     return state.cart.isOpen
 };
+
+export const isCartErrorSelector = (state) => {
+    return state.cart.isCartError
+};
+
+export const getMsgCartErrorSelector = (state) => {
+    return state.cart.msgCartError
+};

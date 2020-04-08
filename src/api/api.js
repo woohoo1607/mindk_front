@@ -69,7 +69,7 @@ export const ordersAPI = {
         let data = qs.stringify(orderData);
         return instance.post(`orders`, data, getToken()).then(response => {
            return response.data
-        });
+        }).catch(err=> JSON.parse(err.request.responseText));
     }
 };
 

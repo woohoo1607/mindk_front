@@ -1,10 +1,13 @@
 import {ordersAPI, productsAPI} from "../api/api";
+import {changeErrorStatus, setMsgUserError} from "./userReducer";
 
 const SET_PRODUCTS_CART = "SET_PRODUCTS_CART";
 const SET_PRODUCTS_CART_DATA = "SET_PRODUCTS_CART_DATA";
 const SET_COUNT_PRODUCTS_CART = "SET_COUNT_PRODUCTS_CART";
 const SET_IS_FETCHING = "SET_IS_FETCHING";
 const SET_IS_OPEN = "SET_IS_OPEN";
+const SET_IS_MSG_CART_ERROR = "SET_IS_MSG_CART_ERROR";
+const SET_IS_CART_ERROR = "SET_IS_CART_ERROR";
 
 let initialState = {
     productsCart: [],
@@ -12,6 +15,8 @@ let initialState = {
     countProductsCart: 0,
     isFetchingCart: false,
     isOpen: false,
+    isCartError: false,
+    msgCartError: '',
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -51,6 +56,20 @@ const cartReducer = (state = initialState, action) => {
                 isOpen: action.isOpen
             };
         }
+        case SET_IS_MSG_CART_ERROR:
+        {
+            return {
+                ...state,
+                msgCartError: action.msgCartError
+            };
+        }
+        case SET_IS_CART_ERROR:
+        {
+            return {
+                ...state,
+                isCartError: action.isCartError
+            };
+        }
         default:
             return state;
     }
@@ -70,6 +89,22 @@ export const setIsFetchingCart = (isFetchingCart) =>
 
 export const setIsOpen = (isOpen) =>
     ({type: SET_IS_OPEN, isOpen: isOpen});
+
+export const setMsgCartError = (msgCartError) =>
+    ({type: SET_IS_MSG_CART_ERROR, msgCartError: msgCartError});
+
+export const changeCartErrorStatus = (isCartError) =>
+    ({type: SET_IS_CART_ERROR, isCartError: isCartError});
+
+export const resetCartError = () => (dispatch) => {
+    dispatch(changeCartErrorStatus(false));
+    dispatch(setMsgCartError(''));
+};
+
+export const createCartError = (msg) => (dispatch) => {
+    dispatch(changeCartErrorStatus(true));
+    dispatch(setMsgCartError(msg));
+};
 
 export const getProductsCart = () => (dispatch) =>{
     dispatch(setIsFetchingCart(true));
@@ -130,13 +165,16 @@ export const deleteProductCart = (id, productsCartData) => (dispatch) => {
 };
 
 export const createOrder = (data) => (dispatch) => {
+    dispatch(resetCartError());
     dispatch(setIsFetchingCart(true));
-   return ordersAPI.addOrder(data)
+    return ordersAPI.addOrder(data)
         .then(res=> {
             if (res.responseCode===0) {
                 dispatch(setIsFetchingCart(false));
                 return true;
             } else {
+                let msg = "Ошибка при создании заказа. Повторите попытку позже.";
+                dispatch(createCartError(msg));
                 dispatch(setIsFetchingCart(false));
                 return false
             }

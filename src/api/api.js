@@ -37,8 +37,11 @@ export const authAPI = {
             return response.data
         })
     },
-    register() {
-
+    register(user) {
+        let data = qs.stringify(user);
+        return instance.post(`users`, data).then(response => {
+            return response.data
+        })
     },
     me() {
         return instance.get('me', getToken()).then(response => {

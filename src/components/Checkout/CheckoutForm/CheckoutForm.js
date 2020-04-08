@@ -3,11 +3,9 @@ import {reduxForm, Field} from "redux-form";
 
 import {renderTextArea, renderTextField} from "../../FormsControls/FormControls";
 import {email, requiredField} from "../../../validators/validators";
-import {connect} from "react-redux";
 
 
-const CheckoutForm = ({handleSubmit, isAuth, ...props}) => {
-    console.log(props);
+const CheckoutForm = ({handleSubmit, isAuth}) => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="checkout-field">

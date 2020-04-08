@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 import Checkout from "../Checkout";
 import {
@@ -9,8 +10,9 @@ import {
     getProductsCountCartSelector
 } from "../../../selectors/cart-selectors";
 import {getUserSelector, isAuthSelector} from "../../../selectors/user-selectors";
-import {addProductCart, createOrder, deleteProductCart} from "../../../reducers/cartReducer";
-import {withRouter} from "react-router-dom";
+import {addProductCart, clearCart, createOrder, deleteProductCart} from "../../../reducers/cartReducer";
+import {createUser, signIn} from "../../../reducers/userReducer";
+
 
 
 const CheckoutContainer = (props) => {
@@ -18,7 +20,23 @@ const CheckoutContainer = (props) => {
     const createNewOrder = async (data) => {
         let isNewOrder = await props.createOrder(data);
         if (isNewOrder) {
+            props.clearCart();
             props.history.push("/profile")
+        }
+    };
+
+    const registerAndCreateNewOrder = async (user, order) => {
+        let isRegister = await props.createUser(user);
+        if (isRegister) {
+            let isLogIn = await props.signIn(user.login, user.pass);
+            if (isLogIn) {
+                let isNewOrder = await props.createOrder(order);
+                if (isNewOrder) {
+                    props.clearCart();
+                    props.history.push("/profile")
+                }
+            }
+
         }
     };
 
@@ -43,6 +61,7 @@ const CheckoutContainer = (props) => {
                   addCount={addCount}
                   reduceCount={reduceCount}
                   deleteProductCart={deleteProductCart}
+                  registerAndCreateNewOrder={registerAndCreateNewOrder}
         />
     )
 };
@@ -58,4 +77,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {createOrder, addProductCart, deleteProductCart})(withRouter(CheckoutContainer));
+export default connect(mapStateToProps, {createOrder, addProductCart, deleteProductCart, clearCart, createUser, signIn})(withRouter(CheckoutContainer));

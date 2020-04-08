@@ -141,5 +141,14 @@ export const createOrder = (data) => (dispatch) => {
         });
 };
 
+export const clearCart = () => (dispatch) => {
+    dispatch(setIsFetchingCart(true));
+    localStorage.removeItem("cartProducts");
+    dispatch(setProductsCartData([]));
+    dispatch(setProductsCart([]));
+    dispatch(setCountProductsCart(0));
+    dispatch(setIsFetchingCart(false));
+};
+
 
 export default cartReducer;

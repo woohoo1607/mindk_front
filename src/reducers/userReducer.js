@@ -45,18 +45,19 @@ export const setAuth = (isAuth) =>
     ({type: SET_IS_AUTH, isAuth: isAuth});
 
 export const signIn = (username, password) => (dispatch) => {
-    authAPI.login(username, password)
+    return authAPI.login(username, password)
         .then(res=> {
             if (res.responseCode===0) {
                 dispatch(setUserData(res.data));
                 dispatch(setAuth(true));
                 localStorage.setItem("token", res.data.token);
+                return true
             }
         })
 };
 
 export const getMe = () => (dispatch) => {
-    return authAPI.me()
+    authAPI.me()
         .then(res=> {
             if (res.responseCode===0) {
                 let user = {...res.data};
@@ -68,7 +69,7 @@ export const getMe = () => (dispatch) => {
 };
 
 export const signOut = (id) => (dispatch) => {
-    return authAPI.logout(id)
+    authAPI.logout(id)
         .then(res => {
             if (res.responseCode===0) {
                 delete localStorage.token;
@@ -78,15 +79,14 @@ export const signOut = (id) => (dispatch) => {
         })
 };
 
-/*export const getUserData = () => (dispatch) => {
-    userAPI.getUser()
-        .then(response => {
-            if (response.status ===1) {
-                let user = response.result[0];
-                dispatch(setUserData(user));
-                dispatch(setAuth(true));
+export const createUser = (user) => (dispatch) => {
+    return authAPI.register(user)
+        .then(res=> {
+            console.log(res);
+            if (res.responseCode===0) {
+                return true;
             }
-        });
-};*/
+        })
+};
 
 export default userReducer;

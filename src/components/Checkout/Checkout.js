@@ -5,7 +5,7 @@ import "./styles.css";
 import ProductForCart from "../Cart/ProductForCart/ProductForCart";
 import {totalPriceAllOrder} from "../../helpers/totalPriceAllOrder";
 
-const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder, addCount, reduceCount, deleteProductCart}) => {
+const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder, addCount, reduceCount, deleteProductCart, registerAndCreateNewOrder}) => {
 
     const submit = (data) => {
         let products = productsCartData.map(product => {
@@ -24,6 +24,23 @@ const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder,
             delete data.email;
             delete data.mobile_phone;
             createNewOrder({...data, total_price, products});
+        } else {
+            let user = {
+                first_name: data.first_name,
+                second_name: data.second_name,
+                login: data.login,
+                pass: data.password,
+                email: data.email,
+                mobile_phone: data.mobile_phone,
+                isadmin: false,
+            };
+            delete data.first_name;
+            delete data.second_name;
+            delete data.email;
+            delete data.mobile_phone;
+            delete data.password;
+            delete data.login;
+            registerAndCreateNewOrder(user, {...data, total_price, products})
         }
     };
 

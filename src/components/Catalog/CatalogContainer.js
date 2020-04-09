@@ -38,6 +38,7 @@ const CatalogContainer = (props) => {
 
     const applyFiltersInSearch = (filters) => {
         let search = changeFilterInSearch(props.location.search, filters);
+        console.log(search);
         props.history.push(props.location.pathname+search);
     };
 

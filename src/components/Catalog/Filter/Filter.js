@@ -11,14 +11,6 @@ const Filter = (props) => {
         props.applyFiltersInSearch(filterSearch);
     },[filterSearch]);
 
-    //если в url пришли фильтры а в стейте их нет, то записать их в стейт
-    console.log(props.filtersFromSearch);
-    console.log(filterSearch);
-    if (props.filtersFromSearch && !filterSearch.length) {
-        console.log(props.filtersFromSearch);
-        setFilterSearch(props.filtersFromSearch)
-    }
-
     const changeFilter = (filterID, query) => {
         let filterIndex = filterSearch.findIndex(filters=>+filters[0]===+filterID);
         if (filterIndex!==-1 && query) {
@@ -29,7 +21,9 @@ const Filter = (props) => {
             setFilterSearch([...filterSearch, [filterID, query]])
         } else {
             let newFilterSearch = [...filterSearch];
-            newFilterSearch.splice(filterIndex, 1);
+            if (filterIndex!==-1) {
+                newFilterSearch.splice(filterIndex, 1);
+            }
             setFilterSearch(newFilterSearch);
         }
     };

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -6,16 +6,16 @@ import Collapse from "@material-ui/core/Collapse";
 import Checkbox from '@material-ui/core/Checkbox';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 
-const OneFilter = ({index, filter, filterSearch, changeFilter, filtersFromSearch}) => {
-    const [checked, setChecked] = React.useState([]);
+const OneFilter = ({index, filter, filterSearch, changeFilter}) => {
+    const [checked, setChecked] = useState([]);
+    const [isOnceLoad, setIsOnceLoad] = useState(false);
 
-    if (filterSearch && !checked.length) {
+    if (filterSearch && !checked.length && !isOnceLoad) {
+        setIsOnceLoad(true);
         let isFilterInUrl = filterSearch.find(filterURL=>+filterURL[0]===filter.searchName);
         if (isFilterInUrl) {
-            let queryInSearch = filterSearch[0][1].split(",");
-            console.log(queryInSearch);
+            let queryInSearch = isFilterInUrl[1].split(",");
             let sameQueryArr = filter.query.map((query,i)=> {
-                console.log(query);
                 let same = queryInSearch.filter(querySearch=> {
                         if (querySearch===query) {
                             return true
@@ -26,12 +26,9 @@ const OneFilter = ({index, filter, filterSearch, changeFilter, filtersFromSearch
                 if (same.length) {
                     return i;
                 }
-
             });
             let indexQueryInSearch = sameQueryArr.filter(query=>query!==undefined);
-            console.log(indexQueryInSearch);
             setChecked(indexQueryInSearch);
-            console.log(filter.query);
         }
     }
 

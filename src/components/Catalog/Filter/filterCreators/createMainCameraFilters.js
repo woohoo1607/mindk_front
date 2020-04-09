@@ -5,6 +5,7 @@ const createMainCameraFilters = (deviceType, attributes, values) => {
     let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
     if (deviceType===deviceTypes.MOBILE) {
         let parameters = ["до 8 Мп", "от 8 до 13 МП", "от 13 до 20 МП", "более 20 МП"];
+        let query = ["0-8","8-13","13-20","20-0"];
         let count = [0,0,0,0];
         valuesArr.forEach(elem => {
             let val = +elem.value.split('+')[0].slice(0, -2);
@@ -18,7 +19,7 @@ const createMainCameraFilters = (deviceType, attributes, values) => {
                 count[3]++;
             }
         });
-        return {name: filterInfo.name, parameters, count}
+        return {name: filterInfo.name, parameters, count, searchName:filterInfo.id, query}
     }
 };
 

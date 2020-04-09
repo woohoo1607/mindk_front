@@ -10,7 +10,7 @@ const Catalog = (props) => {
     return (
         <div className="center">
             <div className="catalogContainer">
-                <Filter filtersData={props.filtersData}/>
+                <Filter filtersData={props.filtersData} applyFiltersInSearch={props.applyFiltersInSearch} search={props.search} filtersFromSearch={props.filtersFromSearch}/>
                 <section className="productsContainer">
                     {props.products.map(p=> <ProductCard key={p.id} product={p} addProductCart={props.addProductCart}/>)}
                 </section>

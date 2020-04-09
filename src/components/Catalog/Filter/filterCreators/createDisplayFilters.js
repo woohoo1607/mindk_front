@@ -6,6 +6,7 @@ const createDisplayFilters = (deviceType, attributes, values) => {
     let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
     if (deviceType===deviceTypes.MOBILE) {
         let parameters = ["до 4\"", "от 4\" до 5\"", "от 5\" до 6\"", "более 6\""];
+        let query = ["0-4", "4-5","5-6","6-0"];
         let count = [0,0,0,0];
         valuesArr.forEach(elem => {
             let val = +elem.value;
@@ -19,7 +20,7 @@ const createDisplayFilters = (deviceType, attributes, values) => {
                 count[3]++;
             }
         });
-        return {name: filterInfo.name, parameters, count}
+        return {name: filterInfo.name, parameters, count, searchName:filterInfo.id, query}
     }
 };
 

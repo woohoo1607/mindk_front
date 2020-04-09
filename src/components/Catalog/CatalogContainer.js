@@ -13,6 +13,8 @@ import {
 } from "../../selectors/products-selectors";
 import {addProductCart} from "../../reducers/cartReducer";
 import {changePageInSearch} from "../../helpers/changePageInSearch";
+import {changeFilterInSearch} from "../../helpers/changeFilterInSearch";
+import {getFiltersFromSearch} from "../../helpers/getFiltersFromSearch";
 
 const CatalogContainer = (props) => {
     useEffect( ()=> {
@@ -34,9 +36,19 @@ const CatalogContainer = (props) => {
         }
     };
 
+    const applyFiltersInSearch = (filters) => {
+        let search = changeFilterInSearch(props.location.search, filters);
+        props.history.push(props.location.pathname+search);
+    };
+
+    let filtersFromSearch = getFiltersFromSearch(props.location.search);//преобразуем фильтры в строке url
+
     return (
         <Catalog {...props}
                  changePage={changePage}
+                 applyFiltersInSearch={applyFiltersInSearch}
+                 search={props.location.search}
+                 filtersFromSearch={filtersFromSearch}
         />
     )
 };

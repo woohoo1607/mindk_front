@@ -5,6 +5,7 @@ const createRAMFilters = (deviceType, attributes, values) => {
     let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
     if (deviceType===deviceTypes.MOBILE) {
         let parameters = ["менее 16 Гб", "16 Гб", "32 Гб", "64 Гб" ,"128 Гб" ,"256 Гб", "512 Гб", "более 512 Гб"];
+        let query = ["0-16","16","32","64","128","256","512","512-0"];
         let count = [0,0,0,0,0,0,0,0];
         valuesArr.forEach(elem => {
             let val = +elem.value.split(' ')[0];
@@ -26,7 +27,7 @@ const createRAMFilters = (deviceType, attributes, values) => {
                 count[7]++;
             }
         });
-        return {name: filterInfo.name, parameters, count}
+        return {name: filterInfo.name, parameters, count, searchName:filterInfo.id, query}
     }
 };
 

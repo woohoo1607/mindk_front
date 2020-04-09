@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -6,14 +6,45 @@ import Collapse from "@material-ui/core/Collapse";
 import Checkbox from '@material-ui/core/Checkbox';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 
-const OneFilter = ({index, filter}) => {
+const OneFilter = ({index, filter, filterSearch, changeFilter, filtersFromSearch}) => {
+    const [checked, setChecked] = React.useState([]);
+
+    if (filterSearch && !checked.length) {
+        let isFilterInUrl = filterSearch.find(filterURL=>+filterURL[0]===filter.searchName);
+        if (isFilterInUrl) {
+            let queryInSearch = filterSearch[0][1].split(",");
+            console.log(queryInSearch);
+            let sameQueryArr = filter.query.map((query,i)=> {
+                console.log(query);
+                let same = queryInSearch.filter(querySearch=> {
+                        if (querySearch===query) {
+                            return true
+                        }
+                    }
+
+                );
+                if (same.length) {
+                    return i;
+                }
+
+            });
+            let indexQueryInSearch = sameQueryArr.filter(query=>query!==undefined);
+            console.log(indexQueryInSearch);
+            setChecked(indexQueryInSearch);
+            console.log(filter.query);
+        }
+    }
+
+    useEffect(()=>{
+        let oneFilterQuery = checked.sort().map(i=>filter.query[i]).join();
+        changeFilter(filter.searchName, oneFilterQuery);
+    },[checked]);
+
     const [open, setOpen] = React.useState(false);
 
     const handleCategoriesClick = () => {
         setOpen(prevOpen => !prevOpen);
     };
-
-    const [checked, setChecked] = React.useState([]);
 
     const handleToggle = (value) => () => {
         const currentIndex = checked.indexOf(value);

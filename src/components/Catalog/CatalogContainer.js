@@ -12,6 +12,7 @@ import {
     getProductsSelector
 } from "../../selectors/products-selectors";
 import {addProductCart} from "../../reducers/cartReducer";
+import {changePageInSearch} from "../../helpers/changePageInSearch";
 
 const CatalogContainer = (props) => {
     useEffect( ()=> {
@@ -24,8 +25,18 @@ const CatalogContainer = (props) => {
         }
     }, []);
 
+    const changePage = (page) => {
+        if (props.location.search) {
+            let search = changePageInSearch(props.location.search, page);
+            props.history.push(props.location.pathname+search);
+            props.setCurrentPage(page);
+            window.scrollTo(0,0);
+        }
+    };
+
     return (
         <Catalog {...props}
+                 changePage={changePage}
         />
     )
 };

@@ -19,7 +19,7 @@ const Catalog = (props) => {
                            pageRangeDisplayed={3}
                            marginPagesDisplayed={3}
                            initialPage={props.currentPage-1}
-                           onPageChange={(e)=>props.setCurrentPage(e.selected+1)}
+                           onPageChange={(e)=>props.changePage(e.selected+1)}
                            pageClassName={"paginatorLi"}
                            pageLinkClassName={"paginatorA"}
                            activeClassName={"activePaginatorLi"}

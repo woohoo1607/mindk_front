@@ -1,12 +1,17 @@
 import React from "react";
 
 const MainCharacteristics = (props) => {
+
+    const addProduct = (id) => () => {
+        props.addProductCart(id, 1);
+    };
+
     return (
         <div className="mainCharacteristics">
             {props.product["stock_quantity"]>0 ? <p className="availability">Есть в наличии</p> : <p className="noAvailability">Нет в наличии</p>}
             <div className="priceAndPurchase">
                 <p>{props.product.price} <span>грн.</span></p>
-                <button className="add-to-cart-btn" onClick={()=>props.addProductCart(props.product.id, 1)}>
+                <button className="add-to-cart-btn" onClick={addProduct(props.product.id, 1)}>
                     Купить
                 </button>
             </div>

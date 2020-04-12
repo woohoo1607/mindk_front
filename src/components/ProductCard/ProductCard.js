@@ -5,6 +5,11 @@ import noProductImg from "../../img/product-no-image.jpg";
 import "./ProductsCard.css";
 
 const ProductCard = (props) => {
+
+    const addProduct = (id) => () => {
+        props.addProductCart(id, 1);
+    };
+
     return (
         <div className="product">
             <NavLink to={`/products/${props.product.id}`} key={props.product.id}>
@@ -17,7 +22,7 @@ const ProductCard = (props) => {
             {props.product["stock_quantity"]>0 &&
                 <div className="productFooter">
                     <p className="productPrice">{props.product.price} грн.</p>
-                    <p className="buy" onClick={()=>props.addProductCart(props.product.id, 1)}>Купить</p>
+                    <p className="buy" onClick={addProduct(props.product.id, 1)}>Купить</p>
                 </div>
             }
             {!props.product["stock_quantity"] &&

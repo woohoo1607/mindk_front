@@ -8,6 +8,7 @@ import {
     getProductSelector,
     getProductsSelector
 } from "../../selectors/products-selectors";
+import {addProductCart} from "../../reducers/cartReducer";
 
 
 const ProductPageContainer = (props) => {
@@ -30,4 +31,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getProduct})(withRouter(ProductPageContainer));
+export default connect(mapStateToProps, {getProduct, addProductCart})(withRouter(ProductPageContainer));

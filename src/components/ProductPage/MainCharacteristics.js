@@ -6,7 +6,9 @@ const MainCharacteristics = (props) => {
             {props.product["stock_quantity"]>0 ? <p className="availability">Есть в наличии</p> : <p className="noAvailability">Нет в наличии</p>}
             <div className="priceAndPurchase">
                 <p>{props.product.price} <span>грн.</span></p>
-                <button className="add-to-cart-btn">Купить</button>
+                <button className="add-to-cart-btn" onClick={()=>props.addProductCart(props.product.id, 1)}>
+                    Купить
+                </button>
             </div>
             <div className="productInfoLeft">
                 <h3>Краткие технические характеристики:</h3>

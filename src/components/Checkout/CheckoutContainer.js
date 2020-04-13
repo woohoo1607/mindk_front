@@ -36,32 +36,39 @@ const CheckoutContainer = (props) => {
     const msgSuccess = "Ваш заказ успешно создан и передан на обработку";
     const createNewOrder = async (data) => {
         setIsFetching(true);
-        let isNewOrder = await props.createOrder(data);
+        const isNewOrder = await props.createOrder(data);
         if (isNewOrder) {
             props.clearCart();
             setIsFetching(false);
+            setIsFetching(false);
             props.history.push("/profile");
             props.callPopUp(msgSuccess);
+        } else {
+            setIsFetching(false);
         }
-        setIsFetching(false);
     };
 
     const registerAndCreateNewOrder = async (user, order) => {
         setIsFetching(true);
-        let isRegister = await props.createUser(user);
+        const isRegister = await props.createUser(user);
         if (isRegister) {
-            let isLogIn = await props.signIn(user.login, user.pass);
+            const isLogIn = await props.signIn(user.login, user.pass);
             if (isLogIn) {
-                let isNewOrder = await props.createOrder(order);
+                const isNewOrder = await props.createOrder(order);
                 if (isNewOrder) {
                     props.clearCart();
                     setIsFetching(false);
                     props.history.push("/profile");
                     props.callPopUp(msgSuccess);
+                } else {
+                    setIsFetching(false);
                 }
+            } else {
+                setIsFetching(false);
             }
+        } else {
+            setIsFetching(false);
         }
-        setIsFetching(false);
     };
 
     const addCount = (id) => {

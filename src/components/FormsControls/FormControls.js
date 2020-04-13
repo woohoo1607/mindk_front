@@ -18,10 +18,9 @@ export const renderTextField = ({label, input, meta: {touched, invalid, error}, 
                       placeholder={label}
                       error={touched && invalid}
                       helperText={touched && error}
+                      fullWidth={true}
                       {...input}
                       {...props}
-                      fullWidth={true}
-
             />
 };
 
@@ -30,12 +29,12 @@ export const renderTextArea = ({label, input, meta: {touched, invalid, error}, .
                       placeholder={label}
                       error={touched && invalid}
                       helperText={touched && error}
+                      fullWidth={true}
                       {...input}
                       {...props}
                       multiline
                       rows={4}
                       rowsMax={8}
                       variant="outlined"
-                      fullWidth={true}
     />
 };

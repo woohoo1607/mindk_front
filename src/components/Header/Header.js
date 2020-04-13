@@ -8,13 +8,15 @@ import './Header.css'
 import CartContainer from "../Cart/CartContainer";
 
 const Header = (props) => {
+
+    const openCart = () => {
+        props.openCart();
+    };
+
     return (
         <header>
-            {/*{props.user.isAdmin && <AdminHeader user = {props.user}/>}*/}
-
             <div className="clr"></div>
             <div className="center">
-
                     <NavLink to='/' className='logo'>
                         <img src={Logo} width='70' height='70' alt="logo"/>
                     </NavLink>
@@ -24,7 +26,7 @@ const Header = (props) => {
                     {props.isAuth && <NavLink to="/profile">{props.user.login}</NavLink>}
                 </div>
                 <div className="basket">
-                    <p onClick={()=>props.openCart()}>Cart <span>{props.countProductsCart}</span></p>
+                    <p onClick={openCart}>Cart <span>{props.countProductsCart}</span></p>
                 </div>
                 <div className="clr"></div>
             </div>

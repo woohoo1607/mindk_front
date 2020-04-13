@@ -3,8 +3,8 @@ import ReactPaginate from "react-paginate";
 
 import ProductCard from "../ProductCard/ProductCard";
 import Filter from "./Filter/Filter";
-import "./Catalog.css";
 import CatalogMainPage from "./CatalogMainPage";
+import "./Catalog.css";
 
 const Catalog = (props) => {
     let totalPages = Math.ceil(props.productsCount/props.pageSize);

@@ -4,8 +4,8 @@ import {NavLink} from "react-router-dom";
 import AdminHeader from "./AdminHeader";
 import Logo from "../../img/logo_shop.png";
 import Navbar from './Navbar';
-import './Header.css'
 import CartContainer from "../Cart/CartContainer";
+import './Header.css'
 
 const Header = (props) => {
 

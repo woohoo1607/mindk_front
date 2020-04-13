@@ -15,3 +15,7 @@ export const isUserErrorSelector = (state) => {
 export const getMsgUserErrorSelector = (state) => {
     return state.user.msgUserError
 };
+
+export const getIsFetchingUserSelector = (state) => {
+    return state.user.isFetching
+};

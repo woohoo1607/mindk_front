@@ -29,7 +29,7 @@ export const authAPI = {
         let data = qs.stringify({username, password});
         return instance.post(`login`, data).then(response => {
             return response.data
-        })
+        }).catch(err=> JSON.parse(err.request.responseText));
     },
     logout(id) {
         let data = qs.stringify({id});

@@ -4,8 +4,10 @@ const SET_USER_DATA = "SET_USER_DATA";
 const SET_IS_AUTH = "SET_IS_AUTH";
 const SET_IS_MSG_USER_ERROR = "SET_IS_MSG_USER_ERROR";
 const SET_IS_USER_ERROR = "SET_IS_USER_ERROR";
+const IS_FETCHING = "IS_FETCHING";
 
 const uniqueErrorMsg = "Нарушение ограничения уникальности";
+const notFoundMsg = "Пользователь не найден";
 
 let initialState = {
     user: {
@@ -19,6 +21,7 @@ let initialState = {
         token: null
     },
     isAuth: false,
+    isFetching: false,
     isUserError: false,
     msgUserError: '',
 };
@@ -53,6 +56,13 @@ const userReducer = (state = initialState, action) => {
                 isUserError: action.isUserError
             };
         }
+        case IS_FETCHING:
+        {
+            return {
+                ...state,
+                isFetching: action.isFetching
+            };
+        }
         default:
             return state;
     }
@@ -70,15 +80,27 @@ export const setMsgUserError = (msgUserError) =>
 export const changeErrorStatus = (isUserError) =>
     ({type: SET_IS_USER_ERROR, isUserError: isUserError});
 
+export const setIsFetching = (isFetching) =>
+    ({type: IS_FETCHING, isFetching: isFetching});
+
 export const signIn = (username, password) => (dispatch) => {
-    return authAPI.login(username, password)
+    dispatch(resetUserError());
+    dispatch(setIsFetching(true));
+    authAPI.login(username, password)
         .then(res=> {
             if (res.responseCode===0) {
                 dispatch(setUserData(res.data));
                 dispatch(setAuth(true));
                 localStorage.setItem("token", res.data.token);
-                return true
+            } else {
+                if (res.message===notFoundMsg) {
+                    let msg = "Неверный логин и/или пароль";
+                    dispatch(createUserError(msg));
+                } else {
+                    dispatch(createUserError(res.message));
+                }
             }
+            dispatch(setIsFetching(false));
         })
 };
 

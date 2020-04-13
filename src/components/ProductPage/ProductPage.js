@@ -4,7 +4,6 @@ import noProductImg from "../../img/product-no-image.jpg";
 import CharacteristicsTable from "./CharacteristicsTable";
 import MainCharacteristics from "./MainCharacteristics";
 import "./ProductsPage.css";
-import {addProductCart} from "../../reducers/cartReducer";
 
 const ProductPage = (props) => {
     let [productNavigation, setProductNavigation] = useState("Main");

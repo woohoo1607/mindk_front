@@ -1,20 +1,21 @@
 import React from "react";
 import {reduxForm, Field} from "redux-form";
 
-import {Input, renderTextField} from "../FormsControls/FormControls";
+import {renderTextField} from "../FormsControls/FormControls";
+import {requiredField} from "../../validators/validators";
+import Fetching from "../Fetching/Fetching";
 import "./Login.css";
 
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className="inputContainer">
-                <Field name="username" component={renderTextField} label="username"/>
+                <Field name="username" component={renderTextField} label="username" type="text" validate={[requiredField]}/>
             </div>
             <div className="inputContainer">
-                <p className="inputName">password</p>
-                <Field name="password" component={renderTextField} label="password" type="password"/>
+                <Field name="password" component={renderTextField} label="password" type="password" validate={[requiredField]}/>
             </div>
-            <button type="submit">Log In</button>
+            <button type="submit" className="login-btn" disabled={props.isFetching}>Log In</button>
         </form>
     )
 };
@@ -25,9 +26,15 @@ const Login = (props) => {
     const onSubmit = (formData) => {
         props.logIn(formData.username, formData.password);
     };
+
     return (
-        <div>
-            <LoginReduxForm onSubmit={onSubmit}/>
+        <div className="center">
+            <div className="login">
+                <h2>Вход</h2>
+                <p className="login-error">{props.msgUserError}</p>
+                <LoginReduxForm onSubmit={onSubmit} isFetching={props.isFetching}/>
+                {props.isFetching && <Fetching />}
+            </div>
         </div>
     )
 };

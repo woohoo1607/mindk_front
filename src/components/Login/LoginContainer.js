@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
 
 import Login from "./Login";
 import {resetUserError, signIn} from "../../reducers/userReducer";
@@ -9,7 +10,6 @@ import {
     isAuthSelector,
     isUserErrorSelector
 } from "../../selectors/user-selectors";
-import {Redirect} from "react-router-dom";
 
 const LoginContainer = (props) => {
 

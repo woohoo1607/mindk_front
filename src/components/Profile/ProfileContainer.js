@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {compose} from "redux";
 
 import Profile from './Profile';
 import {getUserSelector, isAuthSelector} from "../../selectors/user-selectors";
@@ -8,6 +9,8 @@ import {getProduct} from "../../reducers/productsReducer";
 import {signOut} from "../../reducers/userReducer";
 import {getOrderSelector, getOrdersListSelector} from "../../selectors/orders-selectors";
 import {getOrdersList} from "../../reducers/ordersReducer";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+
 
 const ProfileContainer = (props) => {
     useEffect( ()=> {
@@ -34,4 +37,9 @@ let mapStateToProps = (state) => {
         order: getOrderSelector(state),
     }
 };
-export default connect(mapStateToProps, {getProduct, signOut, getOrdersList})(withRouter(ProfileContainer));
+
+export default compose(
+    connect(mapStateToProps, {getProduct, signOut, getOrdersList}),
+    withRouter,
+    withAuthRedirect
+)(ProfileContainer);

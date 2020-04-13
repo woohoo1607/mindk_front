@@ -67,6 +67,7 @@ export const getOrdersList = () => (dispatch) => {
                 dispatch(setOrdersList(res.data));
                 dispatch(setIsFetching(false));
             }
+            dispatch(setIsFetching(false));
         })
 };
 export const getOrder = (id) => (dispatch) => {

@@ -1,11 +1,13 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {compose} from "redux";
 
 import OrderPage from "./OrderPage";
 import {getIsFetchingSelector, getOrderSelector} from "../../selectors/orders-selectors";
 import {getOrder} from "../../reducers/ordersReducer";
 import {getUserSelector} from "../../selectors/user-selectors";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 const OrderPageContainer = (props) => {
     useEffect( ()=> {
@@ -27,4 +29,8 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getOrder})(withRouter(OrderPageContainer));
+export default compose(
+    connect(mapStateToProps, {getOrder}),
+    withRouter,
+    withAuthRedirect
+)(OrderPageContainer);

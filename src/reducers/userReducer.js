@@ -89,10 +89,12 @@ export const signIn = (username, password) => (dispatch) => {
     authAPI.login(username, password)
         .then(res=> {
             if (res.responseCode===0) {
+                dispatch(setIsFetching(false));
                 dispatch(setUserData(res.data));
                 dispatch(setAuth(true));
                 localStorage.setItem("token", res.data.token);
             } else {
+                dispatch(setIsFetching(false));
                 if (res.message===notFoundMsg) {
                     let msg = "Неверный логин и/или пароль";
                     dispatch(createUserError(msg));
@@ -100,7 +102,6 @@ export const signIn = (username, password) => (dispatch) => {
                     dispatch(createUserError(res.message));
                 }
             }
-            dispatch(setIsFetching(false));
         })
 };
 
@@ -117,13 +118,16 @@ export const getMe = () => (dispatch) => {
 };
 
 export const signOut = (id) => (dispatch) => {
+    dispatch(setIsFetching(true));
     authAPI.logout(id)
         .then(res => {
             if (res.responseCode===0) {
+                dispatch(setIsFetching(false));
                 delete localStorage.token;
                 dispatch(setUserData(initialState.user));
                 dispatch(setAuth(false));
             }
+            dispatch(setIsFetching(false));
         })
 };
 

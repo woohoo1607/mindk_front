@@ -9,6 +9,7 @@ import {
     isAuthSelector,
     isUserErrorSelector
 } from "../../selectors/user-selectors";
+import {Redirect} from "react-router-dom";
 
 const LoginContainer = (props) => {
 
@@ -19,17 +20,17 @@ const LoginContainer = (props) => {
         }
     }, []);
 
-    const logIn = async (username, password) => {
-        let isLogin = props.signIn(username, password);
-        if (!isLogin) {
-
-        }
+    const logIn = (username, password) => {
+        props.signIn(username, password);
     };
     return (
-        <Login {...props}
-               logIn={logIn}
+        <>
+            {props.isAuth && <Redirect to='/' />}
+            <Login {...props}
+                   logIn={logIn}
 
-        />
+            />
+        </>
     )
 };
 

@@ -68,6 +68,11 @@ export const ordersAPI = {
     getOrderById (id) {
         return instance.get(`orders/${id}`, getToken()).then(response => {
            return response.data
+        }).catch(err=> {
+            return {
+                ...JSON.parse(err.request.responseText),
+                status: JSON.parse(err.request.status)
+            }
         });
     },
     addOrder (orderData) {

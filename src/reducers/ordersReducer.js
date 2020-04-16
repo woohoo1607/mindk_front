@@ -3,6 +3,9 @@ import {ordersAPI} from "../api/api";
 const SET_ORDERS_LIST = "SET_ORDERS_LIST";
 const SET_ORDER_DATA = "SET_ORDER_DATA";
 const IS_FETCHING = "IS_FETCHING";
+const SET_MSG_ORDERS_ERROR = "SET_MSG_ORDERS_ERROR";
+const SET_IS_ORDERS_ERROR = "SET_IS_ORDERS_ERROR";
+const SET_STATUS_ERROR = "SET_STATUS_ERROR";
 
 let initialState = {
     ordersList: [],
@@ -17,6 +20,9 @@ let initialState = {
         products: []
     },
     isFetching: false,
+    msgOrdersError: '',
+    isOrdersError: false,
+    statusError: '',
 };
 
 const ordersReducer = (state = initialState, action) => {
@@ -45,6 +51,27 @@ const ordersReducer = (state = initialState, action) => {
                 isFetching: action.isFetching
             };
         }
+        case SET_MSG_ORDERS_ERROR:
+        {
+            return {
+                ...state,
+                msgOrdersError: action.msgOrdersError
+            };
+        }
+        case SET_IS_ORDERS_ERROR:
+        {
+            return {
+                ...state,
+                isOrdersError: action.isOrdersError
+            };
+        }
+        case SET_STATUS_ERROR:
+        {
+            return {
+                ...state,
+                statusError: action.statusError
+            };
+        }
         default:
             return state;
     }
@@ -59,6 +86,27 @@ export const setOrderData = (order) =>
 export const setIsFetching = (isFetching) =>
     ({type: IS_FETCHING, isFetching: isFetching});
 
+export const setMsgOrdersError = (msgOrdersError) =>
+    ({type: SET_MSG_ORDERS_ERROR, msgOrdersError: msgOrdersError});
+
+export const changeErrorOrdersStatus = (isOrdersError) =>
+    ({type: SET_IS_ORDERS_ERROR, isOrdersError: isOrdersError});
+
+export const setStatusError = (statusError) =>
+    ({type: SET_STATUS_ERROR, statusError: statusError});
+
+export const resetOrdersError = () => (dispatch) => {
+    dispatch(changeErrorOrdersStatus(false));
+    dispatch(setMsgOrdersError(''));
+    dispatch(setStatusError(''));
+};
+
+export const createOrdersError = (msg, status) => (dispatch) => {
+    dispatch(changeErrorOrdersStatus(true));
+    dispatch(setMsgOrdersError(msg));
+    dispatch(setStatusError(status));
+};
+
 export const getOrdersList = () => (dispatch) => {
     dispatch(setIsFetching(true));
     ordersAPI.getOrders()
@@ -72,10 +120,14 @@ export const getOrdersList = () => (dispatch) => {
 };
 export const getOrder = (id) => (dispatch) => {
     dispatch(setIsFetching(true));
+    dispatch(resetOrdersError());
     ordersAPI.getOrderById(id)
         .then(res=> {
             if (res.responseCode===0) {
                 dispatch(setOrderData(res.data));
+                dispatch(setIsFetching(false));
+            } else {
+                dispatch(createOrdersError(res.message, res.status));
                 dispatch(setIsFetching(false));
             }
         })

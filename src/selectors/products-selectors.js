@@ -24,6 +24,10 @@ export const getCategoriesListSelector = (state) => {
     return state.products.categories
 };
 
+export const getIsFetchingSelector = (state) => {
+    return state.products.isFetching
+};
+
 export const getFiltersDataSelector = (state) => {
     return state.products.filtersData
 };

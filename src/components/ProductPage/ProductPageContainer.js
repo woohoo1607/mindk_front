@@ -5,7 +5,7 @@ import {Redirect, withRouter} from "react-router-dom";
 import ProductPage from "./ProductPage";
 import {getProduct, resetProductsError} from "../../reducers/productsReducer";
 import {
-    geIsProductsErrorSelector,
+    geIsProductsErrorSelector, getIsFetchingSelector,
     getMsgProductsErrorSelector,
     getProductSelector,
     getProductsSelector, getStatusErrorSelector
@@ -44,6 +44,7 @@ let mapStateToProps = (state) => {
         msgProductsError: getMsgProductsErrorSelector(state),
         isProductsError: geIsProductsErrorSelector(state),
         statusError: getStatusErrorSelector(state),
+        isFetching: getIsFetchingSelector(state),
     }
 };
 

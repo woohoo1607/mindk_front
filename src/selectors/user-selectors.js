@@ -19,3 +19,7 @@ export const getMsgUserErrorSelector = (state) => {
 export const getIsFetchingUserSelector = (state) => {
     return state.user.isFetching
 };
+
+export const getIsWasRequestGetMe = (state) => {
+    return state.user.isWasRequestGetMe
+};

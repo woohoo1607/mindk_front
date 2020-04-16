@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
 
 import Login from "./Login";
 import {resetUserError, signIn} from "../../reducers/userReducer";
@@ -45,4 +45,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {signIn, resetUserError})(LoginContainer);
+export default connect(mapStateToProps, {signIn, resetUserError})(withRouter(LoginContainer));

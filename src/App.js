@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 
 import HeaderContainer from "./components/Header/HeaderContainer";
 import AfterHeader from "./components/AfterHeader/AfterHeader";
@@ -12,6 +12,7 @@ import CatalogContainer from "./components/Catalog/CatalogContainer";
 import CheckoutContainer from "./components/Checkout/CheckoutContainer";
 import PopUp from "./components/PopUp/PopUp";
 import './App.css';
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
@@ -21,15 +22,16 @@ function App() {
         <div className="clr"></div>
         <div className="split"></div>
         <AfterHeader />
-
-        <Route exact path='/' render={ () => <HomeContainer /> }/>
-        <Route exact path='/login' render={ () => <LoginContainer /> }/>
-        <Route path='/products/:id' render={ () => <ProductPageContainer /> }/>
-        <Route exact path='/profile' render={ () => <ProfileContainer /> }/>
-        <Route path='/orders/:id' render={ () => <OrderPageContainer /> }/>
-        <Route path='/catalog' render={ () => <CatalogContainer /> }/>
-        <Route path='/checkout' render={ () => <CheckoutContainer /> }/>
-
+        <Switch>
+            <Route exact path='/' component={HomeContainer} />
+            <Route exact path='/login' component={LoginContainer} />
+            <Route path='/products/:id' component={ProductPageContainer} />
+            <Route exact path='/profile' component={ProfileContainer} />
+            <Route path='/orders/:id' component={OrderPageContainer} />
+            <Route path='/catalog' component={CatalogContainer} />
+            <Route path='/checkout' component={CheckoutContainer} />
+            <Route component={NotFound} />
+        </Switch>
         <PopUp />
     </div>
   );

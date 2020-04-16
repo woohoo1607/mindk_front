@@ -11,8 +11,8 @@ import OrderPageContainer from "./components/OrderPage/OrderPageContainer";
 import CatalogContainer from "./components/Catalog/CatalogContainer";
 import CheckoutContainer from "./components/Checkout/CheckoutContainer";
 import PopUp from "./components/PopUp/PopUp";
-import './App.css';
 import NotFound from "./components/NotFound/NotFound";
+import './App.css';
 
 function App() {
   return (

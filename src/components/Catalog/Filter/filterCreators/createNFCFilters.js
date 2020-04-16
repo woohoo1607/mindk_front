@@ -5,6 +5,7 @@ const createNFCFilters = (deviceType, attributes, values) => {
     let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
     if (deviceType===deviceTypes.WATCH) {
         let parameters = ["есть","нету"];
+        let query = ["есть", "нету"];
         let count = [0,0];
         valuesArr.forEach(elem => {
             let val = elem.value;
@@ -14,7 +15,7 @@ const createNFCFilters = (deviceType, attributes, values) => {
                 count[1]++;
             }
         });
-        return {name: filterInfo.name, parameters, count}
+        return {name: filterInfo.name, parameters, count, searchName:filterInfo.id, query}
     }
 };
 

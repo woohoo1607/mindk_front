@@ -1,7 +1,6 @@
 import {deviceTypes} from "../filter-const";
 
 const createDisplayFilters = (deviceType, attributes, values) => {
-
     let filterInfo = attributes.find(a => a.name === 'Диагональ дисплея');
     let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
     if (deviceType===deviceTypes.MOBILE) {

@@ -5,6 +5,7 @@ const createCaseColorFilters = (deviceType, attributes, values) => {
     let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
     if (deviceType===deviceTypes.WATCH) {
         let parameters = ["Золотой","Серый", "Белый", "Черный", "Синий", "другой"];
+        let query = ["Золотой", "Серый","Белый","Черный", "Синий", "другой"];
         let count = [0,0,0,0,0,0];
         valuesArr.forEach(elem => {
             let val = elem.value;
@@ -22,7 +23,7 @@ const createCaseColorFilters = (deviceType, attributes, values) => {
                 count[5]++;
             }
         });
-        return {name: filterInfo.name, parameters, count}
+        return {name: filterInfo.name, parameters, count, searchName:filterInfo.id, query}
     }
 };
 

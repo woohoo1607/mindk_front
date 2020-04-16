@@ -5,6 +5,7 @@ const createStrapColorFilters = (deviceType, attributes, values) => {
     let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
     if (deviceType===deviceTypes.WATCH) {
         let parameters = ["Золотой","Серый", "Белый", "Черный", "Синий", "Розовый", "другой"];
+        let query = ["Золотой", "Серый","Белый","Черный", "Синий", "Розовый", "другой"];
         let count = [0,0,0,0,0,0,0];
         valuesArr.forEach(elem => {
             let val = elem.value;
@@ -24,7 +25,7 @@ const createStrapColorFilters = (deviceType, attributes, values) => {
                 count[6]++;
             }
         });
-        return {name: filterInfo.name, parameters, count}
+        return {name: filterInfo.name, parameters, count, searchName:filterInfo.id, query}
     }
 };
 

@@ -5,6 +5,7 @@ const createOSFilters = (deviceType, attributes, values) => {
     let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
     if (deviceType===deviceTypes.WATCH) {
         let parameters = ["WatchOS","Tizen", "WearOS", "другая"];
+        let query = ["WatchOS", "Tizen","WearOS","другая"];
         let count = [0,0,0,0];
         valuesArr.forEach(elem => {
             let val = elem.value;
@@ -18,7 +19,7 @@ const createOSFilters = (deviceType, attributes, values) => {
                 count[3]++;
             }
         });
-        return {name: filterInfo.name, parameters, count}
+        return {name: filterInfo.name, parameters, count, searchName:filterInfo.id, query}
     }
 };
 

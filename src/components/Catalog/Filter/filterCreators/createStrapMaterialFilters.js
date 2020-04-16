@@ -5,6 +5,7 @@ const createStrapMaterialFilters = (deviceType, attributes, values) => {
     let valuesArr = values.filter(v=>v.id_product_attributes===filterInfo.id);
     if (deviceType===deviceTypes.WATCH) {
         let parameters = ["фторэластомер","Силикон", "Кожа", "Сталь", "другой"];
+        let query = ["фторэластомер", "Силикон","Кожа","Сталь", "другой"];
         let count = [0,0,0,0,0];
         valuesArr.forEach(elem => {
             let val = elem.value;
@@ -20,7 +21,7 @@ const createStrapMaterialFilters = (deviceType, attributes, values) => {
                 count[4]++;
             }
         });
-        return {name: filterInfo.name, parameters, count}
+        return {name: filterInfo.name, parameters, count, searchName:filterInfo.id, query}
     }
 };
 

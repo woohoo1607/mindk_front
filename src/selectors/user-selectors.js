@@ -20,6 +20,6 @@ export const getIsFetchingUserSelector = (state) => {
     return state.user.isFetching
 };
 
-export const getIsWasRequestGetMe = (state) => {
+export const getIsWasRequestGetMeSelector = (state) => {
     return state.user.isWasRequestGetMe
 };

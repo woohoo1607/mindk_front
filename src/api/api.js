@@ -20,7 +20,12 @@ export const productsAPI = {
     getProduct(id) {
         return instance.get(`products/${id}`, getToken()).then(response => {
             return response.data
-        })
+        }).catch(err=> {
+            return {
+                ...JSON.parse(err.request.responseText),
+                status: JSON.parse(err.request.status)
+            }
+        });
     }
 };
 

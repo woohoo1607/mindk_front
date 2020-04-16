@@ -27,3 +27,15 @@ export const getCategoriesListSelector = (state) => {
 export const getFiltersDataSelector = (state) => {
     return state.products.filtersData
 };
+
+export const getMsgProductsErrorSelector = (state) => {
+    return state.products.msgProductsError
+};
+
+export const geIsProductsErrorSelector = (state) => {
+    return state.products.isProductsError
+};
+
+export const getStatusErrorSelector = (state) => {
+    return state.products.statusError
+};

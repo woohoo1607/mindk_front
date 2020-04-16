@@ -6,6 +6,9 @@ const SET_COUNT = "SET_COUNT";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_CATEGORIES = "SET_CATEGORIES";
 const SET_FILTERS_DATA = "SET_FILTERS_DATA";
+const SET_MSG_PRODUCTS_ERROR = "SET_IS_MSG_PRODUCTS_ERROR";
+const SET_IS_PRODUCTS_ERROR = "SET_IS_PRODUCTS_ERROR";
+const SET_STATUS_ERROR = "SET_STATUS_ERROR";
 
 let initialState = {
     products: [],
@@ -15,6 +18,9 @@ let initialState = {
     count: 0,
     categories: [],
     filtersData: {},
+    msgProductsError: '',
+    isProductsError: false,
+    statusError: '',
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -61,6 +67,27 @@ const productsReducer = (state = initialState, action) => {
                 filtersData: {...action.filtersData}
             };
         }
+        case SET_MSG_PRODUCTS_ERROR:
+        {
+            return {
+                ...state,
+                msgProductsError: action.msgProductsError
+            };
+        }
+        case SET_IS_PRODUCTS_ERROR:
+        {
+            return {
+                ...state,
+                isProductsError: action.isProductsError
+            };
+        }
+        case SET_STATUS_ERROR:
+        {
+            return {
+                ...state,
+                statusError: action.statusError
+            };
+        }
         default:
             return state;
     }
@@ -84,6 +111,27 @@ export const setCategories = (categories) =>
 export const setFiltersData = (filtersData) =>
     ({type: SET_FILTERS_DATA, filtersData: filtersData});
 
+export const setMsgProductsError = (msgProductsError) =>
+    ({type: SET_MSG_PRODUCTS_ERROR, msgProductsError: msgProductsError});
+
+export const changeErrorProductsStatus = (isProductsError) =>
+    ({type: SET_IS_PRODUCTS_ERROR, isProductsError: isProductsError});
+
+export const setStatusError = (statusError) =>
+    ({type: SET_STATUS_ERROR, statusError: statusError});
+
+export const resetProductsError = () => (dispatch) => {
+    dispatch(changeErrorProductsStatus(false));
+    dispatch(setMsgProductsError(''));
+    dispatch(setStatusError(''));
+};
+
+export const createProductsError = (msg, status) => (dispatch) => {
+    dispatch(changeErrorProductsStatus(true));
+    dispatch(setMsgProductsError(msg));
+    dispatch(setStatusError(status));
+};
+
 export const getProducts = (page) => (dispatch) => {
     productsAPI.getProducts(page)
         .then(response => {
@@ -96,10 +144,13 @@ export const getProducts = (page) => (dispatch) => {
 };
 
 export const getProduct = (id) => (dispatch) => {
+    dispatch(resetProductsError());
     productsAPI.getProduct(id)
         .then(response => {
             if (response.responseCode ===0) {
                 dispatch(setProduct(response.data));
+            } else {
+                dispatch(createProductsError(response.message, response.status))
             }
         });
 };

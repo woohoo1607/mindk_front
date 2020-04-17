@@ -2,10 +2,10 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 
 import Home from "./Home";
-import {getCategoriesList, getProducts, setCurrentPage} from "../../reducers/productsReducer";
+import {getCategoriesList, getProducts} from "../../reducers/productsReducer";
 import {
     getCategoriesListSelector,
-    getCurrentPageSelector,
+    getCurrentPageSelector, getIsFetchingSelector,
     getPageSizeSelector,
     getProductsCountSelector,
     getProductsSelector
@@ -34,9 +34,7 @@ const HomeContainer = (props) => {
 
     return (
         <Home {...props}
-              setCurrentPage={props.setCurrentPage}
               categoriesMenu = {categoriesMenu}
-              addProductCart={props.addProductCart}
         />
     )
 };
@@ -49,7 +47,8 @@ let mapStateToProps = (state) => {
         productsCount: getProductsCountSelector(state),
         pageSize: getPageSizeSelector(state),
         categories: getCategoriesListSelector(state),
+        isFetching: getIsFetchingSelector(state),
     }
 };
 
-export default connect(mapStateToProps, {getProducts, setCurrentPage, getCategoriesList, addProductCart})(HomeContainer);
+export default connect(mapStateToProps, {getProducts, getCategoriesList, addProductCart})(HomeContainer);

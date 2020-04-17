@@ -4,6 +4,7 @@ import ReactPaginate from "react-paginate";
 import ProductCard from "../ProductCard/ProductCard";
 import Filter from "./Filter/Filter";
 import CatalogMainPage from "./CatalogMainPage";
+import Fetching from "../Fetching/Fetching";
 import "./Catalog.css";
 
 const Catalog = (props) => {
@@ -14,14 +15,18 @@ const Catalog = (props) => {
                 {props.search &&
                     <>
                         <Filter filtersData={props.filtersData} applyFiltersInSearch={props.applyFiltersInSearch} search={props.search} filtersFromSearch={props.filtersFromSearch}/>
-                        <section className="productsContainer">
-                            {props.products.map(p=> <ProductCard key={p.id} product={p} addProductCart={props.addProductCart}/>)}
-                        </section>
+                        {props.isFetching && <Fetching />}
+                        {!props.isFetching &&
+                            <section className="productsContainer">
+                            {props.products.map(p => <ProductCard key={p.id} product={p}
+                                                                  addProductCart={props.addProductCart}/>)}
+                            </section>
+                        }
                     </>
                 }
                 {!props.search && <CatalogMainPage />}
             </div>
-            {props.search &&
+            {props.search && !props.isFetching &&
                 <ReactPaginate pageCount={totalPages}
                                pageRangeDisplayed={3}
                                marginPagesDisplayed={3}

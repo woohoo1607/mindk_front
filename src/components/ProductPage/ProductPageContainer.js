@@ -11,12 +11,17 @@ import {
     getProductsSelector, getStatusErrorSelector
 } from "../../selectors/products-selectors";
 import {addProductCart} from "../../reducers/cartReducer";
+import Fetching from "../Fetching/Fetching";
 
 
 const ProductPageContainer = (props) => {
 
     useEffect( ()=> {
-        props.getProduct(props.match.params.id)
+        if (isNaN(+props.match.params.id)) {
+           props.history.push("/404");
+        } else {
+            props.getProduct(props.match.params.id);
+        }
     }, [props.match.params.id]);
 
     useEffect(()=> {
@@ -30,8 +35,8 @@ const ProductPageContainer = (props) => {
     return (
         <>
             {is404 && <Redirect to='/404' />}
-            <ProductPage {...props}
-            />
+            {props.isFetching && <Fetching/>}
+            {!props.isFetching && <ProductPage {...props} />}
         </>
     )
 };

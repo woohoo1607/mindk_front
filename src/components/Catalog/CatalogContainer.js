@@ -6,7 +6,7 @@ import {getCategoriesList, getProducts, setCurrentPage} from "../../reducers/pro
 import Catalog from "./Catalog";
 import {
     getCategoriesListSelector,
-    getCurrentPageSelector, getFiltersDataSelector,
+    getCurrentPageSelector, getFiltersDataSelector, getIsFetchingSelector,
     getPageSizeSelector,
     getProductsCountSelector,
     getProductsSelector
@@ -61,6 +61,7 @@ let mapStateToProps = (state) => {
         pageSize: getPageSizeSelector(state),
         categories: getCategoriesListSelector(state),
         filtersData: getFiltersDataSelector(state),
+        isFetching: getIsFetchingSelector(state),
     }
 };
 

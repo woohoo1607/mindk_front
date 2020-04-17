@@ -13,6 +13,7 @@ import {
 import {getOrder, resetOrdersError} from "../../reducers/ordersReducer";
 import {getUserSelector} from "../../selectors/user-selectors";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import Fetching from "../Fetching/Fetching";
 
 const OrderPageContainer = (props) => {
     useEffect( ()=> {
@@ -32,10 +33,11 @@ const OrderPageContainer = (props) => {
         <>
             {is404 && <Redirect to='/404' />}
             {is403 && <Redirect to='/404' />}
-            <OrderPage order={props.order}
-                       user={props.user}
-                       isFetching={props.isFetching}
-            />
+            {props.isFetching && <Fetching />}
+            {!props.isFetching &&
+                <OrderPage order={props.order}
+                           user={props.user}
+                />}
         </>
     )
 };

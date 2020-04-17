@@ -19,8 +19,6 @@ import {addProductCart, clearCart, createOrder, deleteProductCart, resetCartErro
 import {createUser, resetUserError, signIn} from "../../reducers/userReducer";
 import {callPopUp} from "../../reducers/popupReducer";
 
-
-
 const CheckoutContainer = (props) => {
 
     useEffect(()=> {
@@ -31,25 +29,25 @@ const CheckoutContainer = (props) => {
         }
     }, []);
 
-    let [isFetching, setIsFetching] = useState(false);
+    let [isFetchingCheckout, setIsFetchingCheckout] = useState(false);
 
     const msgSuccess = "Ваш заказ успешно создан и передан на обработку";
     const createNewOrder = async (data) => {
-        setIsFetching(true);
+        setIsFetchingCheckout(true);
         const isNewOrder = await props.createOrder(data);
         if (isNewOrder) {
             props.clearCart();
-            setIsFetching(false);
-            setIsFetching(false);
+            setIsFetchingCheckout(false);
+            setIsFetchingCheckout(false);
             props.history.push("/profile");
             props.callPopUp(msgSuccess);
         } else {
-            setIsFetching(false);
+            setIsFetchingCheckout(false);
         }
     };
 
     const registerAndCreateNewOrder = async (user, order) => {
-        setIsFetching(true);
+        setIsFetchingCheckout(true);
         const isRegister = await props.createUser(user);
         if (isRegister) {
             const isLogIn = await props.signIn(user.login, user.pass);
@@ -57,17 +55,17 @@ const CheckoutContainer = (props) => {
                 const isNewOrder = await props.createOrder(order);
                 if (isNewOrder) {
                     props.clearCart();
-                    setIsFetching(false);
+                    setIsFetchingCheckout(false);
                     props.history.push("/profile");
                     props.callPopUp(msgSuccess);
                 } else {
-                    setIsFetching(false);
+                    setIsFetchingCheckout(false);
                 }
             } else {
-                setIsFetching(false);
+                setIsFetchingCheckout(false);
             }
         } else {
-            setIsFetching(false);
+            setIsFetchingCheckout(false);
         }
     };
 
@@ -97,6 +95,7 @@ const CheckoutContainer = (props) => {
               msgUserError={props.msgUserError}
               isCartError={props.isCartError}
               msgCartError={props.msgCartError}
+              isFetchingCheckout={isFetchingCheckout}
         />
     )
 };

@@ -11,7 +11,7 @@ import useStyles from "./CategoriesMenuStyles";
 const CreateMenuLi = ({id, name, childrenCount, children, index, changeWhoOpen, whoOpen}) => {
     const classes = useStyles();
 
-    const changeStatus = (parent_id) => {
+    const changeStatus = parent_id => () => {
         changeWhoOpen(parent_id);
     };
 
@@ -20,7 +20,7 @@ const CreateMenuLi = ({id, name, childrenCount, children, index, changeWhoOpen, 
             <NavLink to={`/catalog?page=1&category=${id}`} className={classes.link}>
                 <ListItem button
                           key={id}
-                          onMouseEnter={()=> changeStatus(id)}
+                          onMouseEnter={changeStatus(id)}
                 >
                     <ListItemText primary={name} />
                     {!!childrenCount && <ArrowForwardIosIcon fontSize="small"/>}

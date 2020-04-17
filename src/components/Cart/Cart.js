@@ -36,7 +36,7 @@ const Cart = ({isOpen, onClose, productsCart, productsCartData, isFetching, addC
                         <h3>Сумма заказа:</h3>
                         <p>{total_price} <span>грн.</span></p>
                     </div>
-                    <NavLink to="checkout" className="create-order" onClick={onClose}>
+                    <NavLink to="/checkout" className="create-order" onClick={onClose}>
                         <p>Оформить заказ</p>
                     </NavLink>
                 </div>

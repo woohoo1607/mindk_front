@@ -8,6 +8,10 @@ import "./Profile.css";
 
 const Profile = (props) => {
 
+    const signOut = id => () => {
+        props.signOut(id)
+    };
+
     let [myInfo, setMyInfo] = useState(true);
     let [ordersHistory, setOrdersHistory] = useState(false);
 
@@ -31,7 +35,7 @@ const Profile = (props) => {
                     <h2>{props.user.first_name + " " + props.user.second_name}</h2>
                     <h3>{props.user.email}</h3>
                     <h3>{props.user.mobile_phone}</h3>
-                    <Button click={()=> props.signOut(props.user.id)}
+                    <Button click={signOut(props.user.id)}
                             title="Выйти"
                             height="30px"
                             width="60px"
@@ -45,8 +49,8 @@ const Profile = (props) => {
             <div className="clr"></div>
             <div className="profile-tabs">
                 <ul className="profile-tabs-nav">
-                    <li onClick={()=> goToMyInfo()} className={myInfo ? 'active' : undefined}>Мои данные</li>
-                    <li onClick={()=> goToOrdersHistory()} className={ordersHistory ? 'active' : undefined}>История заказов</li>
+                    <li onClick={goToMyInfo} className={myInfo ? 'active' : undefined}>Мои данные</li>
+                    <li onClick={goToOrdersHistory} className={ordersHistory ? 'active' : undefined}>История заказов</li>
                 </ul>
                 <div className="clr"></div>
                 <div className="profile-tabs-container">

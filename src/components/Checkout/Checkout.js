@@ -3,9 +3,10 @@ import React from "react";
 import CheckoutForm from "./CheckoutForm/CheckoutForm";
 import ProductForCart from "../Cart/ProductForCart/ProductForCart";
 import {totalPriceAllOrder} from "../../helpers/totalPriceAllOrder";
+import Fetching from "../Fetching/Fetching";
 import "./styles.css";
 
-const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder, addCount, reduceCount, deleteProductCart, registerAndCreateNewOrder, isUserError, msgUserError, isCartError, msgCartError}) => {
+const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder, addCount, reduceCount, deleteProductCart, registerAndCreateNewOrder, isUserError, msgUserError, isCartError, msgCartError, ...props}) => {
 
     const submit = (data) => {
         let products = productsCartData.map(product => {
@@ -56,6 +57,7 @@ const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder,
     return (
         <div className="center">
             <div className="checkout">
+                {props.isFetchingCheckout && <Fetching />}
                 <div className="checkout-form">
                     {isUserError && <p className="checkout-error">{msgUserError}</p>}
                     {isCartError && <p className="checkout-error">{msgCartError}</p>}

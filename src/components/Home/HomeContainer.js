@@ -10,6 +10,7 @@ import {
     getProductsCountSelector,
     getProductsSelector
 } from "../../selectors/products-selectors";
+import {addProductCart} from "../../reducers/cartReducer";
 
 const HomeContainer = (props) => {
     useEffect( ()=> {
@@ -35,6 +36,7 @@ const HomeContainer = (props) => {
         <Home {...props}
               setCurrentPage={props.setCurrentPage}
               categoriesMenu = {categoriesMenu}
+              addProductCart={props.addProductCart}
         />
     )
 };
@@ -50,4 +52,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getProducts, setCurrentPage, getCategoriesList})(HomeContainer);
+export default connect(mapStateToProps, {getProducts, setCurrentPage, getCategoriesList, addProductCart})(HomeContainer);

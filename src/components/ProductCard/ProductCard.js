@@ -5,13 +5,14 @@ import noProductImg from "../../img/product-no-image.jpg";
 import "./ProductsCard.css";
 
 const ProductCard = (props) => {
-
+    let isNew = props.isNew || false;
     const addProduct = (id) => () => {
         props.addProductCart(id, 1);
     };
 
     return (
         <div className="product">
+            {isNew && <p className="isNew">Новинка</p>}
             <NavLink to={`/products/${props.product.id}`} key={props.product.id}>
                 <div className="productPhoto">
                     {props.product.img && <img src={props.product.img} />}

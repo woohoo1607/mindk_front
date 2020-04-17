@@ -8,4 +8,5 @@
 .productFooter { margin: 10px 0 10px 10px; display: flex; height: 43px;}
 .buy {background-color: #343e5c; width: 40%; line-height: 43px; color: #FFF; cursor: pointer;}
 .product:hover {border: 2px solid #343e5c;}
+.product:hover > .isNew {background-color: #00bb12; color: #FFF;}
 a {text-decoration: none;}

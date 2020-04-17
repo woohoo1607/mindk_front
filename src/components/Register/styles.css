@@ -1,0 +1,9 @@
+.register {width: 30%; margin: 30px auto;}
+.register h2 {color: #000; font-size: 25px; font-weight: bold; text-align: center; margin: 10px 0;}
+
+.register form {}
+.register-field {}
+.submit-register {text-align: center; margin: 20px 0;}
+.submit-register button {width: 250px; background-color: #2ea8fd; color: #FFF; font-size: 20px; border: none; padding: 10px; border-radius: 10px; cursor: pointer;}
+
+.register-error {color: red; width: 100%; text-align: center; margin: 20px 0;}

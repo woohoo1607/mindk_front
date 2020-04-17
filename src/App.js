@@ -13,6 +13,7 @@ import CheckoutContainer from "./components/Checkout/CheckoutContainer";
 import PopUp from "./components/PopUp/PopUp";
 import NotFound from "./components/NotFound/NotFound";
 import './App.css';
+import RegisterContainer from "./components/Register/RegisterContainer";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path='/orders/:id' component={OrderPageContainer} />
             <Route path='/catalog' component={CatalogContainer} />
             <Route path='/checkout' component={CheckoutContainer} />
+            <Route path='/register' component={RegisterContainer} />
             <Route component={NotFound} />
         </Switch>
         <PopUp />

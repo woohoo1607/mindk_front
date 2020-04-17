@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 import {reduxForm, Field} from "redux-form";
 
 import {renderTextField} from "../FormsControls/FormControls";
@@ -34,6 +35,7 @@ const Login = (props) => {
                 <p className="login-error">{props.msgUserError}</p>
                 <LoginReduxForm onSubmit={onSubmit} isFetching={props.isFetching}/>
                 {props.isFetching && <Fetching />}
+                <span>Нет аккаунта? <NavLink to='/register'>Зарегистрируйся</NavLink></span>
             </div>
         </div>
     )

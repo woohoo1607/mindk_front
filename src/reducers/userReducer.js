@@ -162,10 +162,12 @@ export const createUserError = (msg) => (dispatch) => {
 };
 
 export const createUser = (user) => (dispatch) => {
+    dispatch(setIsFetching(true));
     dispatch(resetUserError());
     return authAPI.register(user)
         .then(res=> {
             if (res.responseCode===0) {
+                dispatch(setIsFetching(false));
                 return true;
             } else {
                 if (res.message===uniqueErrorMsg) {
@@ -174,6 +176,7 @@ export const createUser = (user) => (dispatch) => {
                 } else {
                     dispatch(createUserError(res.message));
                 }
+                dispatch(setIsFetching(false));
                 return false
             }
         }).catch(err=>console.log(err))

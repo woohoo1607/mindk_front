@@ -3,3 +3,4 @@
 .login-btn {margin:15px 0 0 75px; width: 200px; background-color: #2ea8fd; color: #FFF; font-size: 20px; border: none; padding: 10px; border-radius: 10px; cursor: pointer;}
 .login-btn:hover {background-color: #289CF1;}
 .login-error {color: red; width: 100%; margin: 20px 0;}
+.login span {text-align: center; margin-top: 15px; display: block;}

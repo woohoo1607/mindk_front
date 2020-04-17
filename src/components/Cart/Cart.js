@@ -19,28 +19,35 @@ const Cart = ({isOpen, onClose, productsCart, productsCartData, isFetching, addC
             <DialogTitle>
                 Корзина
             </DialogTitle>
-            <DialogContent>
-                {productsCartData.map(p=> <ProductForCart key={p.id}
-                                                          id={p.id}
-                                                          name={p.name}
-                                                          price={p.price}
-                                                          img={p.img}
-                                                          stock_quantity={p.stock_quantity}
-                                                          productsCart={productsCart}
-                                                          addCount={addCount}
-                                                          reduceCount={reduceCount}
-                                                          deleteProductCart={deleteProductCart}
-                />)}
-                <div className="dialog-footer">
-                    <div className="total-price-cart">
-                        <h3>Сумма заказа:</h3>
-                        <p>{total_price} <span>грн.</span></p>
+            {total_price===0 &&
+                <DialogContent>
+                    <h3>Ваша корзина к сожалению пуста=(</h3>
+                </DialogContent>
+            }
+            {total_price!==0 &&
+                <DialogContent>
+                    {productsCartData.map(p => <ProductForCart key={p.id}
+                                                               id={p.id}
+                                                               name={p.name}
+                                                               price={p.price}
+                                                               img={p.img}
+                                                               stock_quantity={p.stock_quantity}
+                                                               productsCart={productsCart}
+                                                               addCount={addCount}
+                                                               reduceCount={reduceCount}
+                                                               deleteProductCart={deleteProductCart}
+                    />)}
+                    <div className="dialog-footer">
+                        <div className="total-price-cart">
+                            <h3>Сумма заказа:</h3>
+                            <p>{total_price} <span>грн.</span></p>
+                        </div>
+                        <NavLink to="/checkout" className="create-order" onClick={onClose}>
+                            <p>Оформить заказ</p>
+                        </NavLink>
                     </div>
-                    <NavLink to="/checkout" className="create-order" onClick={onClose}>
-                        <p>Оформить заказ</p>
-                    </NavLink>
-                </div>
-            </DialogContent>
+                </DialogContent>
+            }
         </Dialog>
     )
 };

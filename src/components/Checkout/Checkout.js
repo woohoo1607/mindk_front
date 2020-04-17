@@ -1,4 +1,5 @@
 import React from "react";
+import {Redirect} from "react-router-dom";
 
 import CheckoutForm from "./CheckoutForm/CheckoutForm";
 import ProductForCart from "../Cart/ProductForCart/ProductForCart";
@@ -56,6 +57,7 @@ const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder,
 
     return (
         <div className="center">
+            {total_price===0 && <Redirect to='/catalog' />}
             <div className="checkout">
                 {props.isFetchingCheckout && <Fetching />}
                 <div className="checkout-form">

@@ -11,7 +11,7 @@ import {
     isUserErrorSelector
 } from "../../selectors/user-selectors";
 import {getProduct} from "../../reducers/productsReducer";
-import {signOut, updateUserData} from "../../reducers/userReducer";
+import {resetUserError, signOut, updateUserData} from "../../reducers/userReducer";
 import {getOrderSelector, getOrdersListSelector} from "../../selectors/orders-selectors";
 import {getOrdersList} from "../../reducers/ordersReducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -20,8 +20,12 @@ import Fetching from "../Fetching/Fetching";
 
 const ProfileContainer = (props) => {
     useEffect( ()=> {
-        props.getOrdersList()
-    }, [props.user.token]);
+        props.getOrdersList();
+
+        return function () {
+            props.resetUserError();
+        }
+    }, []);
 
     const updateUser = (user) => {
         props.updateUserData(user);
@@ -59,7 +63,7 @@ let mapStateToProps = (state) => {
 };
 
 export default compose(
-    connect(mapStateToProps, {getProduct, signOut, getOrdersList, updateUserData}),
+    connect(mapStateToProps, {getProduct, signOut, getOrdersList, updateUserData, resetUserError}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer);

@@ -2,7 +2,7 @@ import React from "react";
 import {reduxForm, Field} from "redux-form";
 
 import {renderTextField} from "../FormsControls/FormControls";
-import {email, requiredField} from "../../validators/validators";
+import {email, requiredField, number, maxLength10} from "../../validators/validators";
 import Fetching from "../Fetching/Fetching";
 
 const ProfileDataEditForm = (props) => {
@@ -15,7 +15,7 @@ const ProfileDataEditForm = (props) => {
                 <Field name="second_name" component={renderTextField} label="Фамилия" validate={[requiredField]}/>
             </div>
             <div className="inputContainer">
-                <Field name="mobile_phone" component={renderTextField} label="Номер телефона" validate={[requiredField]}/>
+                <Field name="mobile_phone" component={renderTextField} label="Номер телефона" validate={[requiredField, number, maxLength10]}/>
             </div>
             <div className="inputContainer">
                 <Field name="email" component={renderTextField} label="email" validate={[requiredField, email]}/>

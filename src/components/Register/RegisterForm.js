@@ -2,7 +2,7 @@ import React from 'react';
 import {reduxForm, Field} from "redux-form";
 
 import {renderTextField} from "../FormsControls/FormControls";
-import {email, requiredField} from "../../validators/validators";
+import {email, requiredField, number, maxLength10} from "../../validators/validators";
 
 
 const RegisterForm = ({handleSubmit}) => {
@@ -18,7 +18,7 @@ const RegisterForm = ({handleSubmit}) => {
                 <Field name="email" component={renderTextField} label="Email" type="email" validate={[requiredField, email]}/>
             </div>
             <div className="register-field">
-                <Field name="mobile_phone" component={renderTextField} label="Мобильный телефон" type="text" validate={[requiredField]}/>
+                <Field name="mobile_phone" component={renderTextField} label="Мобильный телефон" type="text" validate={[requiredField, number, maxLength10]}/>
             </div>
             <div className="register-field">
                 <Field name="login" component={renderTextField} label="Login" type="text" validate={[requiredField]}/>

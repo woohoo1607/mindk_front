@@ -2,7 +2,7 @@ import React from 'react';
 import {reduxForm, Field} from "redux-form";
 
 import {renderTextArea, renderTextField} from "../../FormsControls/FormControls";
-import {email, requiredField} from "../../../validators/validators";
+import {email, requiredField, number, maxLength10} from "../../../validators/validators";
 
 
 const CheckoutForm = ({handleSubmit, isAuth}) => {
@@ -18,7 +18,7 @@ const CheckoutForm = ({handleSubmit, isAuth}) => {
                 <Field name="email" component={renderTextField} label="Email" type="email" validate={[requiredField, email]}/>
             </div>
             <div className="checkout-field">
-                <Field name="mobile_phone" component={renderTextField} label="Мобильный телефон" type="text" validate={[requiredField]}/>
+                <Field name="mobile_phone" component={renderTextField} label="Мобильный телефон" type="text" validate={[requiredField, number, maxLength10]}/>
             </div>
             {!isAuth && <>
             <div className="checkout-field">

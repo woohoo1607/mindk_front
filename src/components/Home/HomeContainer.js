@@ -14,8 +14,8 @@ import {addProductCart} from "../../reducers/cartReducer";
 
 const HomeContainer = (props) => {
     useEffect( ()=> {
-        props.getProducts(`?page=${props.currentPage}`)
-    }, [props.currentPage]);
+        props.getProducts(`?page=1`)
+    }, []);
 
     useEffect( ()=> {
         props.getCategoriesList()

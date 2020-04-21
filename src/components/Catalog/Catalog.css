@@ -8,3 +8,5 @@
 .one-category-link:hover {border: 1px solid #343e5c;}
 .one-category-link h2 {text-align: center; font-size: 25px; margin: 15px 0;}
 .one-category-link img {height: 300px; width: 500px;}
+
+.noProducts {width: 100%; text-align: center; margin: 15px auto; font-size: 25px;}

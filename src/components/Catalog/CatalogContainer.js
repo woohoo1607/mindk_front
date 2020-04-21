@@ -19,13 +19,11 @@ import {getFiltersFromSearch} from "../../helpers/getFiltersFromSearch";
 const CatalogContainer = (props) => {
     useEffect( ()=> {
         props.getProducts(props.location.search);
-    }, [props.location.search]);
 
-    useEffect( ()=> {
-        if (props.categories.length===0) {
-            props.getCategoriesList();
+        return function () {
+            props.setCurrentPage(1);
         }
-    }, []);
+    }, [props.location.search]);
 
     const changePage = (page) => {
         if (props.location.search) {

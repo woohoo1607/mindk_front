@@ -8,6 +8,7 @@ import Fetching from "../Fetching/Fetching";
 import "./Catalog.css";
 
 const Catalog = (props) => {
+    let isProducts = props.products.length ? true : false;
     let totalPages = Math.ceil(props.productsCount/props.pageSize);
     return (
         <div className="center">
@@ -26,7 +27,8 @@ const Catalog = (props) => {
                 }
                 {!props.search && <CatalogMainPage />}
             </div>
-            {props.search && !props.isFetching &&
+            {!isProducts && <div className="noProducts">Товары в данной категории еще не добавлены</div>}
+            {props.search && !props.isFetching && isProducts &&
                 <ReactPaginate pageCount={totalPages}
                                pageRangeDisplayed={3}
                                marginPagesDisplayed={3}

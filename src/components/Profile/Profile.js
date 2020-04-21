@@ -54,7 +54,12 @@ const Profile = (props) => {
                 </ul>
                 <div className="clr"></div>
                 <div className="profile-tabs-container">
-                    {myInfo && <ProfileDataEdit {...props.user}/>}
+                    {myInfo && <ProfileDataEdit {...props.user}
+                                                updateUser={props.updateUser}
+                                                isUserError={props.isUserError}
+                                                msgUserError={props.msgUserError}
+                                                isFetching={props.isFetching}
+                    />}
                     {ordersHistory && <OrdersHistory ordersList={props.ordersList}/>}
                 </div>
             </div>

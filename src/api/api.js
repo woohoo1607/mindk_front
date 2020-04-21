@@ -56,7 +56,12 @@ export const authAPI = {
 };
 
 export const userAPI = {
-
+    updateUser(user) {
+        let data = qs.stringify(user);
+        return instance.put(`users`, data, getToken()).then(response => {
+            return response.data
+        }).catch(err=> JSON.parse(err.request.responseText));
+    },
 };
 
 export const ordersAPI = {

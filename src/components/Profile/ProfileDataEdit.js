@@ -1,49 +1,49 @@
 import React from "react";
 import {reduxForm, Field} from "redux-form";
 
-import {Input} from "../FormsControls/FormControls";
-import "./Profile.css";
+import {renderTextField} from "../FormsControls/FormControls";
+import {email, requiredField} from "../../validators/validators";
+import Fetching from "../Fetching/Fetching";
 
 const ProfileDataEditForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className="inputContainer">
-                <p className="inputName">Имя</p>
-                <Field name="first_name" component={Input} placeholder="Имя"/>
+                <Field name="first_name" component={renderTextField} label="Имя" validate={[requiredField]}/>
             </div>
             <div className="inputContainer">
-                <p className="inputName">Фамилия</p>
-                <Field name="second_name" component={Input} placeholder="Фамилия"/>
+                <Field name="second_name" component={renderTextField} label="Фамилия" validate={[requiredField]}/>
             </div>
             <div className="inputContainer">
-                <p className="inputName">Телефон</p>
-                <Field name="mobile_phone" component={Input} placeholder="Номер телефона"/>
+                <Field name="mobile_phone" component={renderTextField} label="Номер телефона" validate={[requiredField]}/>
             </div>
             <div className="inputContainer">
-                <p className="inputName">Email</p>
-                <Field name="email" component={Input} placeholder="email"/>
+                <Field name="email" component={renderTextField} label="email" validate={[requiredField, email]}/>
             </div>
-            <button type="submit">Сохранить</button>
+            <div className="submit-update-data">
+                <button type="submit">Сохранить</button>
+            </div>
         </form>
     )
 };
 
 const ProfileDataEditReduxForm = reduxForm({form:'loginForm'})(ProfileDataEditForm);
 
-const ProfileDataEdit = (props) => {
+const ProfileDataEdit = ({isUserError, msgUserError, updateUser, isFetching, ...props}) => {
     let initial = {
         first_name: props.first_name,
         second_name: props.second_name,
         mobile_phone: props.mobile_phone,
         email: props.email,
     };
-    console.log(initial);
     const onSubmit = (formData) => {
-        console.log(formData);
+        updateUser(formData);
     };
     return (
         <div className="profile-data">
             <h2>Мои данные</h2>
+            {isUserError && <p className="register-error">{msgUserError}</p>}
+            {isFetching && <Fetching />}
             <ProfileDataEditReduxForm onSubmit={onSubmit} initialValues={initial}/>
         </div>
     )

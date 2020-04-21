@@ -1,7 +1,7 @@
 //isWasRequestGetMe - флажок который дает понять бы ли запрос getMe на сервер
 //нужен что бы коректно работал withAuthRedirect
 //когда пользователь зашел по прямой закрытой ссылке и еще не успел авторизироваться по токену
-import {authAPI} from "../api/api";
+import {authAPI, userAPI} from "../api/api";
 
 const SET_USER_DATA = "SET_USER_DATA";
 const SET_IS_AUTH = "SET_IS_AUTH";
@@ -180,6 +180,21 @@ export const createUser = (user) => (dispatch) => {
                 return false
             }
         }).catch(err=>console.log(err))
+};
+
+export const updateUserData = (user) => (dispatch) => {
+    dispatch(setIsFetching(true));
+    dispatch(resetUserError());
+    userAPI.updateUser(user)
+        .then(res=> {
+            if (res.responseCode===0) {
+                dispatch(setIsFetching(false));
+                dispatch(getMe());
+            } else {
+                dispatch(setIsFetching(false));
+                dispatch(createUserError(res.message));
+            }
+        });
 };
 
 export default userReducer;

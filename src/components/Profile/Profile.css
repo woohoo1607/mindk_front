@@ -18,7 +18,8 @@
 .profile-data {}
 .profile-data form {width: 400px; margin: 0 auto; font-size: 16px;}
 .profile-data form p {  }
-.profile-data form input {height: 30px; width: 100%; margin: 5px 0 10px 0; font-size: 16px;}
+.submit-update-data {text-align: center; margin: 20px 0;}
+.submit-update-data button {width: 250px; background-color: #2ea8fd; color: #FFF; font-size: 20px; border: none; padding: 10px; border-radius: 10px; cursor: pointer;}
 
 #orders-history {}
 #orders-history li {float: none; width: auto; background-color: #FFF;}

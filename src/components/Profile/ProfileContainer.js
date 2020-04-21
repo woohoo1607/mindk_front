@@ -4,9 +4,14 @@ import {withRouter} from "react-router-dom";
 import {compose} from "redux";
 
 import Profile from './Profile';
-import {getIsFetchingUserSelector, getUserSelector, isAuthSelector} from "../../selectors/user-selectors";
+import {
+    getIsFetchingUserSelector, getMsgUserErrorSelector,
+    getUserSelector,
+    isAuthSelector,
+    isUserErrorSelector
+} from "../../selectors/user-selectors";
 import {getProduct} from "../../reducers/productsReducer";
-import {signOut} from "../../reducers/userReducer";
+import {signOut, updateUserData} from "../../reducers/userReducer";
 import {getOrderSelector, getOrdersListSelector} from "../../selectors/orders-selectors";
 import {getOrdersList} from "../../reducers/ordersReducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -18,6 +23,10 @@ const ProfileContainer = (props) => {
         props.getOrdersList()
     }, [props.user.token]);
 
+    const updateUser = (user) => {
+        props.updateUserData(user);
+    };
+
     return (
         <div className="center">
             {props.isFetching && <Fetching/>}
@@ -25,7 +34,12 @@ const ProfileContainer = (props) => {
                 <Profile user={props.user}
                          signOut={props.signOut}
                          ordersList={props.ordersList}
-                        order={props.order}
+                         order={props.order}
+                         isUserError={props.isUserError}
+                         msgUserError={props.msgUserError}
+                         updateUser={updateUser}
+                         isFetching={props.isFetching}
+
                 />
             }
         </div>
@@ -39,11 +53,13 @@ let mapStateToProps = (state) => {
         ordersList: getOrdersListSelector(state),
         order: getOrderSelector(state),
         isFetching: getIsFetchingUserSelector(state),
+        isUserError: isUserErrorSelector(state),
+        msgUserError: getMsgUserErrorSelector(state),
     }
 };
 
 export default compose(
-    connect(mapStateToProps, {getProduct, signOut, getOrdersList}),
+    connect(mapStateToProps, {getProduct, signOut, getOrdersList, updateUserData}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer);

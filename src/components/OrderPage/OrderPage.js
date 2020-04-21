@@ -2,9 +2,8 @@ import React from "react";
 import Moment from 'react-moment';
 import 'moment-timezone';
 
-import "./OrderPage.css";
-import noProductImg from "../../img/product-no-image.jpg";
 import TableWithSelectedProducts from "./TableWithSelectedProducts/TableWithSelectedProducts";
+import "./OrderPage.css";
 
 const OrderPage = (props) => {
 
@@ -21,7 +20,7 @@ const OrderPage = (props) => {
                     <tr>
                         <th>Дата заказа</th>
                         <td>
-                            <Moment format="DD.MM.YYYY в HH:MM" date={props.order["date_start"]}/>
+                            <Moment format="DD.MM.YYYY в hh:mm" date={props.order["date_start"]}/>
                         </td>
                     </tr>
                     <tr>

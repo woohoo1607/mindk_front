@@ -2,8 +2,8 @@ import React from "react";
 
 import CategoriesMenu from "./CategoriesMenu/CategoriesMenu";
 import ProductCard from "../ProductCard/ProductCard";
-import Fetching from "../Fetching/Fetching";
 import AdCarousel from "../AdCarousel/AdCarousel";
+import Fetching from "../Fetching/Fetching";
 import "./Home.css";
 
 const Home = (props) => {
@@ -16,10 +16,11 @@ const Home = (props) => {
                 </div>
                 {props.isFetching && <Fetching />}
                 {!props.isFetching &&
-                <section className="products-home-container">
-                    {props.products.map(p => <ProductCard key={p.id} product={p}
-                                                          addProductCart={props.addProductCart} isNew={true}/>)}
-                </section>
+                    <section className="products-home-container">
+                        {props.products.map(p => <ProductCard key={p.id} product={p}
+                                                              addProductCart={props.addProductCart}
+                                                              isNew={true}/>)}
+                    </section>
                 }
             </div>
         </div>

@@ -20,9 +20,9 @@ const Cart = ({isOpen, onClose, productsCart, productsCartData, isFetching, addC
                 Корзина
             </DialogTitle>
             {total_price===0 &&
-                <DialogContent>
-                    <h3>Ваша корзина к сожалению пуста=(</h3>
-                </DialogContent>
+            <DialogContent>
+                <h3>Ваша корзина к сожалению пуста=(</h3>
+            </DialogContent>
             }
             {total_price!==0 &&
                 <DialogContent>

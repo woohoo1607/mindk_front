@@ -32,7 +32,7 @@ const HomeContainer = (props) => {
 
     return (
         <Home {...props}
-              categoriesMenu = {categoriesMenu}
+               categoriesMenu = {categoriesMenu}
         />
     )
 };

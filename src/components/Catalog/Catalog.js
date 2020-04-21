@@ -19,8 +19,8 @@ const Catalog = (props) => {
                         {props.isFetching && <Fetching />}
                         {!props.isFetching &&
                             <section className="productsContainer">
-                            {props.products.map(p => <ProductCard key={p.id} product={p}
-                                                                  addProductCart={props.addProductCart}/>)}
+                                {props.products.map(p => <ProductCard key={p.id} product={p}
+                                                                      addProductCart={props.addProductCart}/>)}
                             </section>
                         }
                     </>

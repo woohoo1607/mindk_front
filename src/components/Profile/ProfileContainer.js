@@ -17,7 +17,6 @@ import {getOrdersList} from "../../reducers/ordersReducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import Fetching from "../Fetching/Fetching";
 
-
 const ProfileContainer = (props) => {
     useEffect( ()=> {
         props.getOrdersList();

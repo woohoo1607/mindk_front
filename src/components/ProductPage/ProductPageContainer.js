@@ -13,12 +13,11 @@ import {
 import {addProductCart} from "../../reducers/cartReducer";
 import Fetching from "../Fetching/Fetching";
 
-
 const ProductPageContainer = (props) => {
 
     useEffect( ()=> {
         if (isNaN(+props.match.params.id)) {
-           props.history.push("/404");
+            props.history.push("/404");
         } else {
             props.getProduct(props.match.params.id);
         }

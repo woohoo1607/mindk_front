@@ -37,7 +37,9 @@ const OrderPageContainer = (props) => {
             {!props.isFetching &&
                 <OrderPage order={props.order}
                            user={props.user}
-                />}
+                           isFetching={props.isFetching}
+                />
+            }
         </>
     )
 };

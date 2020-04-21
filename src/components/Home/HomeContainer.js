@@ -12,6 +12,7 @@ import {
     getProductsSelector
 } from "../../selectors/products-selectors";
 import {addProductCart} from "../../reducers/cartReducer";
+import {callPopUp} from "../../reducers/popupReducer";
 
 const HomeContainer = (props) => {
     useEffect( ()=> {
@@ -49,4 +50,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getProducts, getCategoriesList, addProductCart})(withRouter(HomeContainer));
+export default connect(mapStateToProps, {getProducts, getCategoriesList, addProductCart, callPopUp})(withRouter(HomeContainer));

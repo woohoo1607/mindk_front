@@ -5,9 +5,11 @@ import noProductImg from "../../img/product-no-image.jpg";
 import "./ProductsCard.css";
 
 const ProductCard = (props) => {
+    const msg = "Товар добавлен в корзину";
     let isNew = props.isNew || false;
     const addProduct = (id) => () => {
         props.addProductCart(id, 1);
+        props.callPopUp(msg);
     };
 
     return (

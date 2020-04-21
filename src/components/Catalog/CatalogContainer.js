@@ -15,6 +15,7 @@ import {addProductCart} from "../../reducers/cartReducer";
 import {changePageInSearch} from "../../helpers/changePageInSearch";
 import {changeFilterInSearch} from "../../helpers/changeFilterInSearch";
 import {getFiltersFromSearch} from "../../helpers/getFiltersFromSearch";
+import {callPopUp} from "../../reducers/popupReducer";
 
 const CatalogContainer = (props) => {
     useEffect( ()=> {
@@ -63,4 +64,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getProducts, setCurrentPage, getCategoriesList, addProductCart})(withRouter(CatalogContainer));
+export default connect(mapStateToProps, {getProducts, setCurrentPage, getCategoriesList, addProductCart, callPopUp})(withRouter(CatalogContainer));

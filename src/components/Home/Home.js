@@ -19,6 +19,7 @@ const Home = (props) => {
                     <section className="products-home-container">
                         {props.products.map(p => <ProductCard key={p.id} product={p}
                                                               addProductCart={props.addProductCart}
+                                                              callPopUp={props.callPopUp}
                                                               isNew={true}/>)}
                     </section>
                 }

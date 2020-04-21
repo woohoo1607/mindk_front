@@ -8,17 +8,13 @@ import Fetching from "../Fetching/Fetching";
 import "./styles.css";
 
 const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder, addCount, reduceCount, deleteProductCart, registerAndCreateNewOrder, isUserError, msgUserError, isCartError, msgCartError, ...props}) => {
-    useEffect(()=>{
-       setInitialForm({
-           first_name: user.first_name,
-           second_name: user.second_name,
-           email: user.email,
-           mobile_phone: user.mobile_phone
-       })
-    }, []);
+    let [initialForm, setInitialForm] = useState({
+        first_name: user.first_name,
+        second_name: user.second_name,
+        email: user.email,
+        mobile_phone: user.mobile_phone});
 
-    let [initialForm, setInitialForm] = useState({});
-    const submit = (data) => {
+        const submit = (data) => {
         setInitialForm({...data});
         let products = productsCartData.map(product => {
             let result = {

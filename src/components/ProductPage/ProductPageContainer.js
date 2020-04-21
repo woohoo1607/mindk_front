@@ -21,9 +21,6 @@ const ProductPageContainer = (props) => {
         } else {
             props.getProduct(props.match.params.id);
         }
-    }, [props.match.params.id]);
-
-    useEffect(()=> {
         return function clear() {
             props.resetProductsError();
         }

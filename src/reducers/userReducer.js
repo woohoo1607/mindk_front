@@ -101,13 +101,14 @@ export const setIsFetching = (isFetching) =>
 export const signIn = (username, password) => (dispatch) => {
     dispatch(resetUserError());
     dispatch(setIsFetching(true));
-    authAPI.login(username, password)
+    return authAPI.login(username, password)
         .then(res=> {
             if (res.responseCode===0) {
                 dispatch(setIsFetching(false));
                 dispatch(setUserData(res.data));
                 dispatch(setAuth(true));
                 localStorage.setItem("token", res.data.token);
+                return true
             } else {
                 dispatch(setIsFetching(false));
                 if (res.message===notFoundMsg) {
@@ -116,6 +117,7 @@ export const signIn = (username, password) => (dispatch) => {
                 } else {
                     dispatch(createUserError(res.message));
                 }
+                return false
             }
         })
 };

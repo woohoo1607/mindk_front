@@ -6,7 +6,10 @@ export const email = value =>
 
 export const number = value => value && isNaN(Number(value)) ? 'Номер телефона должен содержать только цифры' : undefined;
 
-const maxLength = max => value =>
-    value && value.length > max ? `Максимальное число символов = ${max}` : undefined;
+const maxLength = max => value => value && value.length > max ? `Максимальное число символов = ${max}` : undefined;
+
+const minLength = max => value => value && value.length < max ? `Минимальное число символов = ${max}` : undefined;
 
 export const maxLength10 = maxLength(10);
+
+export const minLength10 = minLength(10);

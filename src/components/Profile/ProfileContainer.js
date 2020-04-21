@@ -33,18 +33,15 @@ const ProfileContainer = (props) => {
     return (
         <div className="center">
             {props.isFetching && <Fetching/>}
-            {!props.isFetching &&
-                <Profile user={props.user}
-                         signOut={props.signOut}
-                         ordersList={props.ordersList}
-                         order={props.order}
-                         isUserError={props.isUserError}
-                         msgUserError={props.msgUserError}
-                         updateUser={updateUser}
-                         isFetching={props.isFetching}
-
-                />
-            }
+            <Profile user={props.user}
+                     signOut={props.signOut}
+                     ordersList={props.ordersList}
+                     order={props.order}
+                     isUserError={props.isUserError}
+                     msgUserError={props.msgUserError}
+                     updateUser={updateUser}
+                     isFetching={props.isFetching}
+            />
         </div>
     )
 };

@@ -1,6 +1,5 @@
-
 .product-for-cart {display: flex; padding: 15px 0; border-bottom: 1px solid #343e5c;}
-.product-for-cart img {width: 130px;}
+.product-for-cart img {width: 130px; max-height: 190px;}
 .cart-img {height: 175px;}
 .cart-title {display: flex; justify-content: space-between; margin-bottom: 15px;}
 

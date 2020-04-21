@@ -3,7 +3,7 @@ import {reduxForm, Field} from "redux-form";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import {renderTextField} from "../FormsControls/FormControls";
-import {email, requiredField, number, maxLength10} from "../../validators/validators";
+import {email, requiredField, number, maxLength10, minLength10} from "../../validators/validators";
 
 const RegisterForm = ({handleSubmit, onChangeCaptcha, siteKey, disabled}) => {
     return (
@@ -18,7 +18,7 @@ const RegisterForm = ({handleSubmit, onChangeCaptcha, siteKey, disabled}) => {
                 <Field name="email" component={renderTextField} label="Email" type="email" validate={[requiredField, email]}/>
             </div>
             <div className="register-field">
-                <Field name="mobile_phone" component={renderTextField} label="Мобильный телефон" type="text" validate={[requiredField, number, maxLength10]}/>
+                <Field name="mobile_phone" component={renderTextField} label="Мобильный телефон" type="text" validate={[requiredField, number, maxLength10, minLength10]}/>
             </div>
             <div className="register-field">
                 <Field name="login" component={renderTextField} label="Login" type="text" validate={[requiredField]}/>

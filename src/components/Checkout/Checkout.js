@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Redirect} from "react-router-dom";
 
 import CheckoutForm from "./CheckoutForm/CheckoutForm";
@@ -8,8 +8,18 @@ import Fetching from "../Fetching/Fetching";
 import "./styles.css";
 
 const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder, addCount, reduceCount, deleteProductCart, registerAndCreateNewOrder, isUserError, msgUserError, isCartError, msgCartError, ...props}) => {
+    useEffect(()=>{
+       setInitialForm({
+           first_name: user.first_name,
+           second_name: user.second_name,
+           email: user.email,
+           mobile_phone: user.mobile_phone
+       })
+    }, []);
 
+    let [initialForm, setInitialForm] = useState({});
     const submit = (data) => {
+        setInitialForm({...data});
         let products = productsCartData.map(product => {
             let result = {
                 quantity: productsCart.find(p=>p.id===product.id).count,
@@ -46,13 +56,6 @@ const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder,
         }
     };
 
-    let initial = {
-        first_name: user.first_name,
-        second_name: user.second_name,
-        email: user.email,
-        mobile_phone: user.mobile_phone
-    };
-
     let total_price = totalPriceAllOrder(productsCartData, productsCart);
 
     return (
@@ -64,7 +67,7 @@ const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder,
                     {isUserError && <p className="checkout-error">{msgUserError}</p>}
                     {isCartError && <p className="checkout-error">{msgCartError}</p>}
                     <h2>Оформление заказа:</h2>
-                    <CheckoutForm onSubmit={submit} isAuth={isAuth} initialValues={initial} />
+                    {!props.isFetchingCheckout && <CheckoutForm onSubmit={submit} isAuth={isAuth} initialValues={initialForm} />}
                 </div>
                 <div className="checkout-products">
                     <h3>Ваш заказ:</h3>

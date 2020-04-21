@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 import Home from "./Home";
 import {getCategoriesList, getProducts} from "../../reducers/productsReducer";
@@ -48,4 +49,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getProducts, getCategoriesList, addProductCart})(HomeContainer);
+export default connect(mapStateToProps, {getProducts, getCategoriesList, addProductCart})(withRouter(HomeContainer));

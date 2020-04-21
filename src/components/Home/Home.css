@@ -4,10 +4,4 @@
 
 .products-home-container {display: flex; flex-wrap: wrap; flex-direction: row; justify-content: normal; align-content: space-between; margin-top: 25px;}
 
-
-
-/*____________menu animation__________________*/
-.menuNav {}
-.menuNav div:hover {}
-.secondMenu {display: none;}
-.thirdMenu {display: none;}
+.menu-ad {display: flex;}

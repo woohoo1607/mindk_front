@@ -14,11 +14,8 @@ import {addProductCart} from "../../reducers/cartReducer";
 
 const HomeContainer = (props) => {
     useEffect( ()=> {
-        props.getProducts(`?page=1`)
-    }, []);
-
-    useEffect( ()=> {
-        props.getCategoriesList()
+        props.getProducts(`?page=1`);
+        props.getCategoriesList();
     }, []);
 
     let categoriesMenu = props.categories.filter(c=> c.parent_id===null);

@@ -1,11 +1,11 @@
 import React from 'react';
 import {reduxForm, Field} from "redux-form";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import {renderTextField} from "../FormsControls/FormControls";
 import {email, requiredField, number, maxLength10} from "../../validators/validators";
 
-
-const RegisterForm = ({handleSubmit}) => {
+const RegisterForm = ({handleSubmit, onChangeCaptcha, siteKey, disabled}) => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="register-field">
@@ -26,8 +26,13 @@ const RegisterForm = ({handleSubmit}) => {
             <div className="register-field">
                 <Field name="pass" component={renderTextField} label="Пароль" type="password" validate={[requiredField]}/>
             </div>
+            <div className="register-captcha">
+                <ReCAPTCHA sitekey={siteKey}
+                           onChange={onChangeCaptcha}
+                />
+            </div>
             <div className="submit-register">
-                <button type="submit">Зарегистрироваться</button>
+                <button type="submit" disabled={disabled} >Зарегистрироваться</button>
             </div>
         </form>
     )

@@ -16,6 +16,7 @@ import RegisterContainer from "./components/Register/RegisterContainer";
 import Footer from "./components/Footer/Footer";
 import Delivery from "./components/Delivery/Delivery";
 import './App.css';
+import Guarantee from "./components/Guarantee/Guarantee";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path='/checkout' component={CheckoutContainer} />
             <Route path='/register' component={RegisterContainer} />
             <Route path='/delivery' component={Delivery} />
+            <Route path='/guarantee' component={Guarantee} />
             <Route component={NotFound} />
         </Switch>
         <PopUp />

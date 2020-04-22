@@ -24,7 +24,7 @@
 .priceAndPurchase {margin: 15px 0; color: #000;}
 .priceAndPurchase p {font-size: 30px; font-weight: bold;}
 .priceAndPurchase p span {font-size: 20px; font-weight: normal;}
-.add-to-cart-btn {background-color: #343e5c; color: #FFF; height: 50px; width: 170px; font-size: 20px; font-weight: bold; margin-top: 15px; border: none;}
+.add-to-cart-btn {background-color: #343e5c; color: #FFF; height: 50px; width: 170px; font-size: 20px; font-weight: bold; margin-top: 15px; border: none; cursor: pointer;}
 
 .productDelivery {color: #000;}
 .productDelivery h3::before { content: ""; display: block; background: url("../../img/delivery-24.png"); background-size: contain; width: 18px; height: 18px; float: left; margin: -2px 6px 0 0;}

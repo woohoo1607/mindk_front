@@ -1,19 +1,36 @@
 import React, {useEffect} from "react";
-import Login from "./Login";
 import {connect} from "react-redux";
-import {signIn} from "../../reducers/userReducer";
-import {getUserSelector, isAuthSelector} from "../../reducers/user-selectors";
+import {Redirect, withRouter} from "react-router-dom";
+
+import Login from "./Login";
+import {resetUserError, signIn} from "../../reducers/userReducer";
+import {
+    getIsFetchingUserSelector, getMsgUserErrorSelector,
+    getUserSelector,
+    isAuthSelector,
+    isUserErrorSelector
+} from "../../selectors/user-selectors";
 
 const LoginContainer = (props) => {
-    const logIn = async (username, password) => {
-        let res = await props.signIn(username, password);
-        console.log(props.user);
+
+    useEffect(()=> {
+
+        return function clear() {
+            props.resetUserError();
+        }
+    }, []);
+
+    const logIn = (username, password) => {
+        props.signIn(username, password);
     };
     return (
-        <Login {...props}
-               logIn={logIn}
+        <>
+            {props.isAuth && <Redirect to='/' />}
+            <Login {...props}
+                   logIn={logIn}
 
-        />
+            />
+        </>
     )
 };
 
@@ -22,7 +39,10 @@ let mapStateToProps = (state) => {
     return {
         user: getUserSelector(state),
         isAuth: isAuthSelector(state),
+        isFetching: getIsFetchingUserSelector(state),
+        isUserError: isUserErrorSelector(state),
+        msgUserError: getMsgUserErrorSelector(state),
     }
 };
 
-export default connect(mapStateToProps, {signIn})(LoginContainer);
+export default connect(mapStateToProps, {signIn, resetUserError})(withRouter(LoginContainer));

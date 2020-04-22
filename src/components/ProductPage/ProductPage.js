@@ -1,12 +1,12 @@
 import React, {useState} from "react";
-import "./ProductsPage.css";
+
 import noProductImg from "../../img/product-no-image.jpg";
 import CharacteristicsTable from "./CharacteristicsTable";
 import MainCharacteristics from "./MainCharacteristics";
+import "./ProductsPage.css";
 
 const ProductPage = (props) => {
     let [productNavigation, setProductNavigation] = useState("Main");
-    console.log(props.product);
     let photos = [];
     let mainCharacteristics = [];
     if (props.product.attributes!==undefined) {
@@ -33,8 +33,8 @@ const ProductPage = (props) => {
                     <div className="clr"></div>
                 </div>
                 <div className="productInfoPictures">
-                    {photos.length>0 && <img src={photos[0].value} />}
-                    {photos.length===0 && <img src={noProductImg} />}
+                    {photos.length>0 && <img src={photos[0].value}  alt={props.product.name}/>}
+                    {photos.length===0 && <img src={noProductImg}  alt="no-img-logo"/>}
                 </div>
                 <div className="productInfoInfo">
                     <h2>{props.product.name}</h2>
@@ -42,6 +42,7 @@ const ProductPage = (props) => {
                         <MainCharacteristics mainCharacteristics={mainCharacteristics}
                                              product={props.product}
                                              setProductNavigation={setProductNavigation}
+                                             addProductCart={props.addProductCart}
                         />
                     }
                     {productNavigation==="Characteristics" &&

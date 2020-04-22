@@ -1,0 +1,14 @@
+.checkout {display: flex; justify-content: space-between; margin: 30px 5px;}
+
+.checkout-form {width: 50%;}
+.checkout-form h2 {color: #000; font-size: 20px; font-weight: bold;}
+.checkout-field {margin: 20px 0; width: 300px;}
+
+.checkout-products {width: 500px;}
+
+.checkout-total-price {display: flex; justify-content: space-between; margin: 20px 0;}
+.checkout-total-price h3 {font-size: 30px; color: #000;}
+.checkout-total-price p {font-weight: bold; font-size: 30px; color:#000;}
+.checkout-total-price p span {font-size: 20px;}
+
+.checkout-error {color: red; width: 50%; margin-bottom: 20px;}

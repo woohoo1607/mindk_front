@@ -1,6 +1,7 @@
 import React from 'react';
-import styles from "./FormsConrols.module.css"
+import { TextField } from '@material-ui/core';
 
+import styles from "./FormsConrols.module.css"
 
 export const Input = ({input, meta, ...props}) => {
 
@@ -10,4 +11,30 @@ export const Input = ({input, meta, ...props}) => {
             { meta.touched && meta.error && <span> ! </span>}
         </div>
     );
+};
+
+export const renderTextField = ({label, input, meta: {touched, invalid, error}, ...props}) => {
+    return <TextField label={label}
+                      placeholder={label}
+                      error={touched && invalid}
+                      helperText={touched && error}
+                      fullWidth={true}
+                      {...input}
+                      {...props}
+            />
+};
+
+export const renderTextArea = ({label, input, meta: {touched, invalid, error}, ...props}) => {
+    return <TextField label={label}
+                      placeholder={label}
+                      error={touched && invalid}
+                      helperText={touched && error}
+                      fullWidth={true}
+                      {...input}
+                      {...props}
+                      multiline
+                      rows={4}
+                      rowsMax={8}
+                      variant="outlined"
+    />
 };

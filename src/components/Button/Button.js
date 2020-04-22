@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./Button.css";
 
 const Button = (props) => {
@@ -9,6 +10,7 @@ const Button = (props) => {
         backgroundColor: props["background-color"],
         border: props.border,
         fontSize: props.fontSize,
+        cursor: "pointer",
     };
     return (
         <button style={style} onClick={props.click}>

@@ -11,3 +11,15 @@ export const getOrderSelector = (state) => {
 export const getIsFetchingSelector = (state) => {
     return state.orders.isFetching
 };
+
+export const getMsgOrdersErrorSelector = (state) => {
+    return state.orders.msgOrdersError
+};
+
+export const geIsOrdersErrorSelector = (state) => {
+    return state.orders.isOrdersError
+};
+
+export const getStatusErrorSelector = (state) => {
+    return state.orders.statusError
+};

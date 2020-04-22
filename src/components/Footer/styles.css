@@ -1,0 +1,7 @@
+footer {background-color: #000; margin-top: 40px; color: #FFF; padding: 15px 0;}
+footer p {margin-bottom: 10px;}
+footer a {text-decoration: none; color: #2ea8fd;}
+.footer-info {display: flex; justify-content: space-between}
+.footer-left {margin-top: 15px;}
+.footer-right {display: flex;}
+.footer-right img {height: 100px;}

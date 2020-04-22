@@ -20,7 +20,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /*-------------------------------------*/
 html {width:100%;}
 body {font-size:17px; color: #737373; background: #fff; line-height:1; font-family:'MontserratRegular', sans-serif;}
-a {color: #f39200; text-decoration: underline;}
+/*a {color: #f39200; text-decoration: underline;}*/
 a:hover {text-decoration:none;}
 .clr,#clr {clear: both;}
 * {box-sizing: border-box;}

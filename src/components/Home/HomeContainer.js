@@ -1,21 +1,39 @@
 import React, {useEffect} from "react";
-import Home from "./Home";
 import {connect} from "react-redux";
-import {getProducts, setCurrentPage} from "../../reducers/productsReducer";
+import {withRouter} from "react-router-dom";
+
+import Home from "./Home";
+import {getCategoriesList, getProducts} from "../../reducers/productsReducer";
 import {
-    getCurrentPageSelector,
+    getCategoriesListSelector,
+    getCurrentPageSelector, getIsFetchingSelector,
     getPageSizeSelector,
     getProductsCountSelector,
     getProductsSelector
-} from "../../reducers/products-selectors";
+} from "../../selectors/products-selectors";
+import {addProductCart} from "../../reducers/cartReducer";
+import {callPopUp} from "../../reducers/popupReducer";
 
 const HomeContainer = (props) => {
     useEffect( ()=> {
-        props.getProducts(props.currentPage)
-    }, [props.currentPage]);
+        props.getProducts(`?page=1`);
+        props.getCategoriesList();
+    }, []);
+
+    let categoriesMenu = props.categories.filter(c=> c.parent_id===null);
+
+    const findChildren = (parentArr, arr) => {
+        parentArr.map(main => {
+            main.children = arr.filter(c=> c.parent_id===main.id);
+            findChildren(main.children, arr);
+        })
+    };
+    findChildren(categoriesMenu, props.categories);
+
+
     return (
         <Home {...props}
-              setCurrentPage={props.setCurrentPage}
+               categoriesMenu = {categoriesMenu}
         />
     )
 };
@@ -27,7 +45,9 @@ let mapStateToProps = (state) => {
         currentPage: getCurrentPageSelector(state),
         productsCount: getProductsCountSelector(state),
         pageSize: getPageSizeSelector(state),
+        categories: getCategoriesListSelector(state),
+        isFetching: getIsFetchingSelector(state),
     }
 };
 
-export default connect(mapStateToProps, {getProducts, setCurrentPage})(HomeContainer);
+export default connect(mapStateToProps, {getProducts, getCategoriesList, addProductCart, callPopUp})(withRouter(HomeContainer));

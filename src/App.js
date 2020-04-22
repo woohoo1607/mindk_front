@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
-import {Route} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
+
 import HeaderContainer from "./components/Header/HeaderContainer";
 import AfterHeader from "./components/AfterHeader/AfterHeader";
 import HomeContainer from "./components/Home/HomeContainer";
@@ -8,6 +8,15 @@ import ProductPageContainer from "./components/ProductPage/ProductPageContainer"
 import LoginContainer from "./components/Login/LoginContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import OrderPageContainer from "./components/OrderPage/OrderPageContainer";
+import CatalogContainer from "./components/Catalog/CatalogContainer";
+import CheckoutContainer from "./components/Checkout/CheckoutContainer";
+import PopUp from "./components/PopUp/PopUp";
+import NotFound from "./components/NotFound/NotFound";
+import RegisterContainer from "./components/Register/RegisterContainer";
+import Footer from "./components/Footer/Footer";
+import Delivery from "./components/Delivery/Delivery";
+import Guarantee from "./components/Guarantee/Guarantee";
+import './App.css';
 
 function App() {
   return (
@@ -17,12 +26,22 @@ function App() {
         <div className="clr"></div>
         <div className="split"></div>
         <AfterHeader />
+        <Switch>
+            <Route exact path='/' component={HomeContainer} />
+            <Route exact path='/login' component={LoginContainer} />
+            <Route path='/products/:id' component={ProductPageContainer} />
+            <Route exact path='/profile' component={ProfileContainer} />
+            <Route path='/orders/:id' component={OrderPageContainer} />
+            <Route path='/catalog' component={CatalogContainer} />
+            <Route path='/checkout' component={CheckoutContainer} />
+            <Route path='/register' component={RegisterContainer} />
+            <Route path='/delivery' component={Delivery} />
+            <Route path='/guarantee' component={Guarantee} />
+            <Route component={NotFound} />
+        </Switch>
+        <PopUp />
 
-        <Route exact path='/' render={ () => <HomeContainer /> }/>
-        <Route exact path='/login' render={ () => <LoginContainer /> }/>
-        <Route path='/products/:id' render={ () => <ProductPageContainer /> }/>
-        <Route exact path='/profile' render={ () => <ProfileContainer /> }/>
-        <Route path='/orders/:id' render={ () => <OrderPageContainer /> }/>
+        <Footer />
     </div>
   );
 }

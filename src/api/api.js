@@ -11,8 +11,8 @@ let getToken = () => {
 };
 
 export const productsAPI = {
-    getProducts(currentPage=1) {
-        return instance.get(`products/?page=${currentPage}`, getToken()).then(response => {
+    getProducts(search= "?page=1") {
+        return instance.get(`products/${search}`, getToken()).then(response => {
             return response.data
         })
     },
@@ -20,7 +20,12 @@ export const productsAPI = {
     getProduct(id) {
         return instance.get(`products/${id}`, getToken()).then(response => {
             return response.data
-        })
+        }).catch(err=> {
+            return {
+                ...JSON.parse(err.request.responseText),
+                status: JSON.parse(err.request.status)
+            }
+        });
     }
 };
 
@@ -29,7 +34,7 @@ export const authAPI = {
         let data = qs.stringify({username, password});
         return instance.post(`login`, data).then(response => {
             return response.data
-        })
+        }).catch(err=> JSON.parse(err.request.responseText));
     },
     logout(id) {
         let data = qs.stringify({id});
@@ -37,8 +42,11 @@ export const authAPI = {
             return response.data
         })
     },
-    register() {
-
+    register(user) {
+        let data = qs.stringify(user);
+        return instance.post(`users`, data).then(response => {
+            return response.data
+        }).catch(err=> JSON.parse(err.request.responseText));
     },
     me() {
         return instance.get('me', getToken()).then(response => {
@@ -48,7 +56,12 @@ export const authAPI = {
 };
 
 export const userAPI = {
-
+    updateUser(user) {
+        let data = qs.stringify(user);
+        return instance.put(`users`, data, getToken()).then(response => {
+            return response.data
+        }).catch(err=> JSON.parse(err.request.responseText));
+    },
 };
 
 export const ordersAPI = {
@@ -60,6 +73,25 @@ export const ordersAPI = {
     getOrderById (id) {
         return instance.get(`orders/${id}`, getToken()).then(response => {
            return response.data
+        }).catch(err=> {
+            return {
+                ...JSON.parse(err.request.responseText),
+                status: JSON.parse(err.request.status)
+            }
         });
+    },
+    addOrder (orderData) {
+        let data = qs.stringify(orderData);
+        return instance.post(`orders`, data, getToken()).then(response => {
+           return response.data
+        }).catch(err=> JSON.parse(err.request.responseText));
+    }
+};
+
+export const categoriesAPI = {
+    getCategories () {
+        return instance.get(`categories`).then(response=> {
+            return response.data
+        })
     },
 };

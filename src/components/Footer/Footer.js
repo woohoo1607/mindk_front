@@ -17,10 +17,10 @@ const Footer = () => {
                         <p>Email: <a href="mailto:woohoo1607@gmail.com">woohoo1607@gmail.com</a></p>
                     </div>
                     <div className="footer-right">
-                        <img src={reactLogo}/>
-                        <img src={reduxLogo}/>
-                        <img src={nodejsLogo}/>
-                        <img src={postresqlLogo}/>
+                        <img src={reactLogo} alt="react-logo"/>
+                        <img src={reduxLogo} alt="redux-logo"/>
+                        <img src={nodejsLogo} alt="nodejs-logo"/>
+                        <img src={postresqlLogo} alt="postgresql-logo"/>
                     </div>
                 </div>
             </div>

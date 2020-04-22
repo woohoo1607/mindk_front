@@ -1,4 +1,4 @@
-.login {width: 350px; margin: 45px auto;}
+.login {width: 350px; margin: 45px auto 450px auto;}
 .login h2 {color: #000; text-align: center; font-size: 35px; font-weight: bold; margin-bottom: 20px;}
 .login-btn {margin:15px 0 0 75px; width: 200px; background-color: #2ea8fd; color: #FFF; font-size: 20px; border: none; padding: 10px; border-radius: 10px; cursor: pointer;}
 .login-btn:hover {background-color: #289CF1;}

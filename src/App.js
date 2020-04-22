@@ -15,8 +15,8 @@ import NotFound from "./components/NotFound/NotFound";
 import RegisterContainer from "./components/Register/RegisterContainer";
 import Footer from "./components/Footer/Footer";
 import Delivery from "./components/Delivery/Delivery";
-import './App.css';
 import Guarantee from "./components/Guarantee/Guarantee";
+import './App.css';
 
 function App() {
   return (

@@ -33,8 +33,8 @@ const ProductPage = (props) => {
                     <div className="clr"></div>
                 </div>
                 <div className="productInfoPictures">
-                    {photos.length>0 && <img src={photos[0].value} />}
-                    {photos.length===0 && <img src={noProductImg} />}
+                    {photos.length>0 && <img src={photos[0].value}  alt={props.product.name}/>}
+                    {photos.length===0 && <img src={noProductImg}  alt="no-img-logo"/>}
                 </div>
                 <div className="productInfoInfo">
                     <h2>{props.product.name}</h2>

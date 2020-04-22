@@ -14,6 +14,7 @@ import PopUp from "./components/PopUp/PopUp";
 import NotFound from "./components/NotFound/NotFound";
 import './App.css';
 import RegisterContainer from "./components/Register/RegisterContainer";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
             <Route component={NotFound} />
         </Switch>
         <PopUp />
+
+        <Footer />
     </div>
   );
 }

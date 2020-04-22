@@ -12,9 +12,10 @@ import CatalogContainer from "./components/Catalog/CatalogContainer";
 import CheckoutContainer from "./components/Checkout/CheckoutContainer";
 import PopUp from "./components/PopUp/PopUp";
 import NotFound from "./components/NotFound/NotFound";
-import './App.css';
 import RegisterContainer from "./components/Register/RegisterContainer";
 import Footer from "./components/Footer/Footer";
+import Delivery from "./components/Delivery/Delivery";
+import './App.css';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path='/catalog' component={CatalogContainer} />
             <Route path='/checkout' component={CheckoutContainer} />
             <Route path='/register' component={RegisterContainer} />
+            <Route path='/delivery' component={Delivery} />
             <Route component={NotFound} />
         </Switch>
         <PopUp />

@@ -116,6 +116,11 @@ export const getProductsCart = () => (dispatch) =>{
         dispatch(getCountProductsCart(cartProducts));
         dispatch(setIsFetchingCart(false));
     }
+    if (ids.length===0) {
+        dispatch(setProductsCart([]));
+        dispatch(setCountProductsCart(0));
+        dispatch(setIsFetchingCart(false));
+    }
 };
 
 export const getCountProductsCart = (cartProducts) => (dispatch) =>{

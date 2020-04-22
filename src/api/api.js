@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 import qs from 'qs';
-
+/*TODO --- перед билдом для Azure поменять baseURL, а также роуты: products на product, orders на order*/
 const instance = axios.create({
     withCredentials: true,
     baseURL: 'http://localhost:5000/',

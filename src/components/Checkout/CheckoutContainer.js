@@ -23,7 +23,7 @@ const CheckoutContainer = (props) => {
 
     useEffect(()=> {
 
-        return function clear() {
+        return function cleanup() {
             props.resetUserError();
             props.resetCartError();
         }
@@ -38,9 +38,8 @@ const CheckoutContainer = (props) => {
         if (isNewOrder) {
             props.clearCart();
             setIsFetchingCheckout(false);
-            setIsFetchingCheckout(false);
-            props.history.push("/profile");
             props.callPopUp(msgSuccess);
+            props.history.push("/profile");
         } else {
             setIsFetchingCheckout(false);
         }
@@ -115,4 +114,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {createOrder, addProductCart, deleteProductCart, clearCart, createUser, signIn, callPopUp, resetUserError, resetCartError})(withRouter(CheckoutContainer));
+export default withRouter(connect(mapStateToProps, {createOrder, addProductCart, deleteProductCart, clearCart, createUser, signIn, callPopUp, resetUserError, resetCartError})(CheckoutContainer));

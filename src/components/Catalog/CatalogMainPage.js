@@ -16,38 +16,38 @@ const CatalogMainPage = (props) => {
             <div className="one-category-link">
                 <NavLink to={linkBase+1}>
                     <h2>Apple Store</h2>
-                    <img src={apple} />
+                    <img src={apple} alt="apple-products"/>
                 </NavLink>
             </div>
             <div className="one-category-link">
                 <NavLink to={linkBase+9}>
                     <h2>Ноутбуки</h2>
-                    <img src={laptop} />
+                    <img src={laptop} alt="laptop-logo"/>
                 </NavLink>
             </div>
 
             <div className="one-category-link">
                 <NavLink to={linkBase+10}>
                     <h2>ПК</h2>
-                    <img src={pc} />
+                    <img src={pc} alt="pc-logo"/>
                 </NavLink>
             </div>
             <div className="one-category-link">
                 <NavLink to={linkBase+22}>
                     <h2>Смарт-часы</h2>
-                    <img src={smartWatches} />
+                    <img src={smartWatches} alt="smart-watch-logo"/>
                 </NavLink>
             </div>
             <div className="one-category-link">
                 <NavLink to={linkBase+7}>
                     <h2>Смартфоны</h2>
-                    <img src={smartphones} />
+                    <img src={smartphones} alt="smartphones-logo"/>
                 </NavLink>
             </div>
             <div className="one-category-link">
                 <NavLink to={linkBase+23}>
                     <h2>Планшеты</h2>
-                    <img src={tablet} />
+                    <img src={tablet} alt="tablet-logo"/>
                 </NavLink>
             </div>
         </div>

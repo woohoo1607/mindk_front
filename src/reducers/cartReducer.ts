@@ -226,13 +226,15 @@ export const createOrder = (data): ThunkType => {
     };
 }
 
-export const clearCart = (): ThunkType => (dispatch) => {
-    dispatch(setIsFetchingCart(true));
-    localStorage.removeItem("cartProducts");
-    dispatch(setProductsCartData([]));
-    dispatch(setProductsCart([]));
-    dispatch(setCountProductsCart(0));
-    dispatch(setIsFetchingCart(false));
+export const clearCart = (): ThunkType => {
+     return (dispatch) => {
+        dispatch(setIsFetchingCart(true));
+        localStorage.removeItem("cartProducts");
+        dispatch(setProductsCartData([]));
+        dispatch(setProductsCart([]));
+        dispatch(setCountProductsCart(0));
+        dispatch(setIsFetchingCart(false));
+    }
 };
 
 

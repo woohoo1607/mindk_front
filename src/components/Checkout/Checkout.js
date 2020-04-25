@@ -56,7 +56,7 @@ const Checkout = ({user, isAuth, productsCartData, productsCart, createNewOrder,
 
     return (
         <div className="center">
-            {total_price===0 && <Redirect to='/catalog' />}
+            {total_price===0 && !props.isFetchingCheckout && <Redirect to='/catalog' />}
             <div className="checkout">
                 {props.isFetchingCheckout && <Fetching />}
                 <div className="checkout-form">
